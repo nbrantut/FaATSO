@@ -12,13 +12,9 @@
 %HOW TO RUN THIS EXAMPLE:
 %
 % 1. make sure that the wrapper function run_fmm is in your Matlab path.
-% 2. maybe modify the path to the fmm binary if needed
+% 2. make sure that the executable fmm is in the PATH (check: getenv('PATH'))
 % 3. run the script.
 
-%set path to fmm binary
-%NOTE: change this if you decided to build fmm with a different name or
-%path!
-fmmpth = '../../../bin/./fmm';
 
 %spacing
 h =.1;
@@ -40,7 +36,7 @@ source = rand(1,3).*[Nx Ny Nz].*h;
 box = 1;
 
 % compute arrival times using fmm
-[T,x,y,z] = run_fmm(source, Vh, E, h, box, fmmpth);
+[T,x,y,z] = run_fmm(source, Vh, E, h, box);
 
 %plot result in contourplot
 show_movie_2d_xz(x,z,Vh,E,T, 0.01)

@@ -30,7 +30,7 @@ git clone https://github.com/nbrantut/Faatso.git
 cd Faatso/
 #+end_src
 
-If either Armadillo or Boost libraries are not in the default path of the compiler, you can add them in the Makefile by modifying the variables =LIB= and/or =INC=. If you want to customise the name or path for the executables, edit the Makefile and change the variables =TARGET_FMM= and/or =TARGET_TOMO= to your liking.
+If either Armadillo or Boost libraries are not in the default path of the compiler, you can add them in the Makefile by modifying the variables =LIB= and/or =INC=. If you want to customise the name or path for the executables, edit the Makefile and change the variables =TARGET_FMM= and/or =TARGET_TOMO= to your liking (note: if you do this, then the Matlab examples won't run properly since the programs' names are hard-coded in the scripts).
 
 To build the executables, simply run =make= or equivalently =make all=. This will generate object files in the =build/= directory, and two executables, =fmm= and =tomo= in the =bin= directory (or whatever name and path you decided if you changed the Makefile).
 
@@ -38,13 +38,20 @@ Either program can be built independently by running =make fmm= or =make tomo=. 
 
 ** Usage
 
+The first step is to let your shell access the binaries. This can be done by using the following command:
+#+begin_src shell
+export PATH=[Faatso root directory]/bin:$PATH
+#+end_src
+
+To execute the programs from within Matlab, this is unfortunately not enough, since Matlab uses its own environment variable PATH. To add the exectuables to Matlab's path, either use the routine =put_faatso_on_path= located in =interface/matlab/=, or use Matlab's command =setenv()=.
+
 *** Eikonal solver
     
 The program =fmm= is the eikonal solver that can be used as an independent tool to perform direct problem computations in 3D regular grids with a weak (elliptic) vertical transverse isotropy.
 
 The program requires 5 input arguments in a specific order (this is clearly not very flexible but in fact not a big deal since it is nearly always wrapped into a Matlab script). For example:
 #+begin_src shell
-./fmm V.bin E.bin 0 1 T.bin
+fmm V.bin E.bin 0 1 T.bin
 #+end_src
 where =V.bin= and =E.bin= are two filenames corresponding to the velocity and anisotropy structures (they should both be formed in the same grid dimensions), the third argument (here =0=) is the index of the source node in the grid, the fourth argument (here =1=) is a boolean (0 or 1) dictating whether a source box is to be used, and the last argument (=T.bin=) is again a filename where the arrival times will be stored.
 
@@ -64,7 +71,7 @@ The content of the parameter file and other input files is given in the companio
 
    A series of examples demonstrating the use of the eikonal solver and inversion program are given [[file:examples/][here]], as Matlab scripts. 
 
-Most examples require to add the folder [[interface/matlab/]] to Matlab's path (using for instance the command =addpath()=).
+Most examples require to add the folder [[interface/matlab/]] to Matlab's path (using for instance the command =addpath()=). Before running the examples, make sure that the executables =fmm= and =tomo= are accessible by Matlab: to ensure this, either use the routine =put_faatso_on_path= (after modifying it to set Faatso's root directory), or use directly Matlab's function =setenv('PATH',...)=. To run the examples using =tomo= with synthetic data, a similar procedure is required.
 
 With a conventional installation all matlab codes whould run without modifications: in each case, simply run the script called =example.m=.
 

@@ -1,8 +1,13 @@
-function run_synthetic(events, sensors, Vh, E, h, noise, synth_path, folder)
+function run_synthetic(events, sensors, Vh, E, h, noise, folder)
 %RUN_SYNTHETIC(events, sensors, Vh, E, h, noise, synth_path, folder)
 %
 %This functions build files for synthetic dataset, and stores then into a
 %specified folder, which must exist prior to calling the function (otherwise it will throw an error).
+%
+%NOTE: this function will return an error if the program "synthetic" is not in
+%the PATH environment variable used by Matlab. To fix this, use the routine
+%"put_synthetic_on_path" or directly add the path to fmm executable using
+%setenv.
 %
 %input:
 %    events:    array of event positions
@@ -11,8 +16,6 @@ function run_synthetic(events, sensors, Vh, E, h, noise, synth_path, folder)
 %    E:         anisotropy model
 %    h:         grid spacing
 %    noise:     noise level to add to the arrival times
-%    synth_path:path to run "synthetic" program. typically
-%               '../synthetic/./synthetic'
 %    folder:    folder where to store the output files
 
 [Nx,Ny,Nz] = size(Vh);
@@ -38,6 +41,6 @@ export_data(Efile, Nx, Ny, Nz, h, E);
 tshotfile = [folder  't_shots_synth.txt'];
 tevtfile = [folder  't_events_synth.txt'];
 
-cmd = [synth_path ' '  num2str(noise) ' ' Vfile ' ' Efile ' ' sensfile ' ' evtfile ' ' tshotfile ' ' tevtfile];
+cmd = ['synthetic '  num2str(noise) ' ' Vfile ' ' Efile ' ' sensfile ' ' evtfile ' ' tshotfile ' ' tevtfile];
 
 system(cmd);

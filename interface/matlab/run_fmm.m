@@ -1,8 +1,13 @@
-function [T,x,y,z] = run_fmm(source, Vh, E, h, box, fmm_path)
+function [T,x,y,z] = run_fmm(source, Vh, E, h, box)
 %[T,x,y,z] = RUN_FMM(source, Vh, E, h, box, fmm_path)
 %
 %This function is a wrapper to run the fmm program based on source location
 %and velocity structures defined in matlab.
+%
+%NOTE: this function will return an error if the program "fmm" is not in
+%the PATH environment variable used by Matlab. To fix this, use the routine
+%"put_faatso_on_path" or directly add the path to fmm executable using
+%setenv.
 %
 %input:
 %    source:   a triplet of (x,y,z) coordinates where the source will be.
@@ -12,8 +17,6 @@ function [T,x,y,z] = run_fmm(source, Vh, E, h, box, fmm_path)
 %              coefficient at each node.
 %    h:        the grid spacing.
 %    box:      0/1 depending if a source box is to be used.
-%    fmm_path: the path of the fmm executable. Typically looks like
-%              '[root directory of faatso]/bin/./fmm
 %
 %output:
 %    T:    an Nx-by-Ny-by-Nz array containing values of the arrival time
@@ -64,7 +67,7 @@ export_data(Efile, Nx, Ny, Nz, h, E);
 
 %% run the fmm algorithm
 Tfile = [safename '_T.bin'];
-cmd = [fmm_path ' ' Vfile ' ' Efile ' ' num2str(ind0) ' ' num2str(box) ' ' Tfile];
+cmd = ['fmm ' Vfile ' ' Efile ' ' num2str(ind0) ' ' num2str(box) ' ' Tfile];
 system(cmd);
 
 

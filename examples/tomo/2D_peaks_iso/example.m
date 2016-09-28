@@ -24,9 +24,9 @@
 %
 %HOW TO RUN THIS EXAMPLE:
 %
-% 1. mayeb modify the path to the "synthetic" binary if needed.
-% 2. make sure that the wrapper function run_synthetic is in your Matlab path.
-% 3. maybe modify the path to the tomo binary if needed
+% 1. make sure that the wrapper function run_synthetic is in your Matlab path.
+% 2. make sure that the executable synthetic is in the PATH (check: getenv('PATH')
+% 3. make sure that the executable tomo is in the PATH (check: getenv('PATH'))
 % 4. run the script.
 %
 %You may want to modify the parameters.txt file to explore the effect of
@@ -48,13 +48,8 @@ noise_p = 0.2;
 % name of folder where to store the files generated:
 folder = 'files/';
 
-% path to the executable to run the synthetic data
-synth_path = '../synthetic/./synthetic';
 % path to the run_synthetic wrapper function:
 addpath('../synthetic');
-
-% path to the tomo binary
-tomo_path = '../../../bin/./tomo';
 
 %first check that the folder exists, otherwise create it:
 if (exist(folder,'dir')~=7)
@@ -65,7 +60,7 @@ end
 [Vh, E, h, sensors, events] = truemodel_2d_xy(Nev);
 
 % compute synthetic data with noise:
-run_synthetic(events, sensors, Vh, E, h, noise_t, synth_path, folder)
+run_synthetic(events, sensors, Vh, E, h, noise_t, folder)
 
 % compute prior model
 [Vh_prior, E_prior, events_prior] = priormodel_2d_xy(V0, Vh, events, noise_p);
@@ -74,7 +69,7 @@ run_synthetic(events, sensors, Vh, E, h, noise_t, synth_path, folder)
 build_priorfiles(Vh_prior, E_prior, h, events_prior, folder);
 
 % run tomo:
-cmd = [tomo_path  ' parameters.txt'];
+cmd = 'tomo parameters.txt';
 system(cmd);
 
 %% show results in a plot:

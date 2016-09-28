@@ -16,10 +16,8 @@
 %HOW TO RUN THIS EXAMPLE:
 %
 % 1. make sure that the wrapper function run_fmm is in your Matlab path.
-% 2. maybe modify the path to the fmm binary if needed
+% 2. make sure that the executable fmm is in the PATH (check: getenv('PATH'))
 % 3. run the script.
-
-fmmpth = '../../../bin/./fmm';
 
 %% generate grid
 
@@ -61,7 +59,7 @@ for it=1:4
     box = 0;
 
     % compute arrival times
-    [T,x,y,z] = run_fmm(source, Vh, E, h, box, fmmpth);
+    [T,x,y,z] = run_fmm(source, Vh, E, h, box);
     
     % extract only what will be useful for our comparison
     sol(it).y = y;
@@ -72,7 +70,6 @@ end
 
 
 %% make the plots
-figure;
 
 %first plot: trace wavefronts using the most accurate version, for
 %display:

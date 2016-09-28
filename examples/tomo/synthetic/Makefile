@@ -4,6 +4,9 @@ SRCDIR := ../../../src
 BUILDDIR := ../../../build
 TARGET := synthetic
 
+LOCBUILDDIR := build
+LOCBINDIR := bin
+
 SOURCES := $(SRCDIR)/fmmiolib.cpp $(SRCDIR)/fmmlib.cpp  $(SRCDIR)/velocitylib.cpp $(SRCDIR)/numtools.cpp
 
 OBJECTS := $(patsubst $(SRCDIR)/%,$(BUILDDIR)/%,$(SOURCES:.cpp=.o))
@@ -12,13 +15,15 @@ CFLAGS := -std=c++11 -O3 -Wall
 LIB := -larmadillo
 INC := -I ../../../include
 
-all: $(TARGET)
+all: $(LOCBINDIR)/$(TARGET)
 
-$(TARGET): $(OBJECTS) synthetic.o
+$(LOCBINDIR)/$(TARGET): $(OBJECTS) $(LOCBUILDDIR)/$(TARGET).o
+	@mkdir -p $(LOCBINDIR)
 	@echo " Linking..."
-	@echo " $(CC) $^ -o $(TARGET) $(LIB)"; $(CC) $^ -o $(TARGET) $(LIB)
+	@echo " $(CC) $^ -o $(TARGET) $(LIB)"; $(CC) $^ -o $(LOCBINDIR)/$(TARGET) $(LIB)
 
-synthetic.o: synthetic.cpp
+$(LOCBUILDDIR)/$(TARGET).o: $(TARGET).cpp
+	@mkdir -p $(LOCBUILDDIR)
 	@echo " $(CC) $(CFLAGS) $(INC) -c -o $@ $<"; $(CC) $(CFLAGS) $(INC) -c -o $@ $<
 
 $(BUILDDIR)/%.o: $(SRCDIR)/%.cpp
@@ -27,6 +32,6 @@ $(BUILDDIR)/%.o: $(SRCDIR)/%.cpp
 
 clean:
 	@echo " Cleaning..."; 
-	@echo " $(RM) -r $(TARGET) synthetic.o"; $(RM) -r $(TARGET) synthetic.o
+	@echo " $(RM) -r $(LOCBINDIR)/$(TARGET) $(LOCBUILDDIR)/$(TARGET).o"; $(RM) -r $(LOCBINDIR)/$(TARGET) $(LOCBUILDDIR)/$(TARGET).o
 
 .PHONY: clean

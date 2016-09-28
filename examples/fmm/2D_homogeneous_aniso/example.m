@@ -10,13 +10,9 @@
 %HOW TO RUN THIS EXAMPLE:
 %
 % 1. make sure that the wrapper function run_fmm is in your Matlab path.
-% 2. maybe modify the path to the fmm binary if needed
+% 2. make sure that the executable fmm is in the PATH (check: getenv('PATH'))
 % 3. run the script.
 
-%set path to fmm binary
-%NOTE: change this if you decided to build fmm with a different name or
-%path!
-fmmpth = '../../../bin/./fmm';
 
 %spacing
 h =.1;
@@ -37,7 +33,7 @@ source = [0 0 0];
 box = 1;
 
 % compute arrival times
-[T,x,y,z] = run_fmm(source, Vh, E, h, box, fmmpth);
+[T,x,y,z] = run_fmm(source, Vh, E, h, box);
 
 % compute exact arrival times using analytical formula
 Texact = analytical_2d_hom_aniso(source, x, z, 1, 0.25);
