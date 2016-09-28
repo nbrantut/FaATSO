@@ -1,0 +1,104 @@
+\hypertarget{class_m}{}\section{M Class Reference}
+\label{class_m}\index{M@{M}}
+
+
+The class \hyperlink{class_m}{M} corresponds to the model parameters in the inverse problem. It contains not only the vector of (cartesian) model parameters, but all other informations (file names, prior values, etc) and methods to build covariance matrices etc.  
+
+
+
+
+{\ttfamily \#include $<$tomolib.\+hpp$>$}
+
+\subsection*{Public Member Functions}
+\begin{DoxyCompactItemize}
+\item 
+\hypertarget{class_m_a5466fd39fe84f5612cb451d4b019b2b5}{}\hyperlink{class_m_a5466fd39fe84f5612cb451d4b019b2b5}{M} ()\label{class_m_a5466fd39fe84f5612cb451d4b019b2b5}
+
+\begin{DoxyCompactList}\small\item\em Default constructor. \end{DoxyCompactList}\item 
+\hypertarget{class_m_aac816311b2e43c2dd92bf70ef4bf4c4e}{}\hyperlink{class_m_aac816311b2e43c2dd92bf70ef4bf4c4e}{M} (const \hyperlink{class_parameters}{Parameters} \&)\label{class_m_aac816311b2e43c2dd92bf70ef4bf4c4e}
+
+\begin{DoxyCompactList}\small\item\em constructor with call to a parameters set \end{DoxyCompactList}\item 
+void \hyperlink{class_m_a7371d3ae555c21f0555fd8d30e76160b}{initialise} (const \hyperlink{class_parameters}{Parameters} \&)
+\begin{DoxyCompactList}\small\item\em Initialisation of \hyperlink{class_m}{M} from parameters. \end{DoxyCompactList}\item 
+\hypertarget{class_m_aa5bb4779a1c249dc8249f7e6a702f8bf}{}void \hyperlink{class_m_aa5bb4779a1c249dc8249f7e6a702f8bf}{update\+\_\+internals} ()\label{class_m_aa5bb4779a1c249dc8249f7e6a702f8bf}
+
+\begin{DoxyCompactList}\small\item\em method to convert m values (from the vector m) into data structures v0, E0, events. Important note\+: the values of m where m\+\_\+prior should be -\/inf (i.\+e., zero speed, not computed) are imposed equal to a very negative number during export to v0 (and hence also for the refined grid vf). So when computing arrivla times in the next iterations, the rays will be prevented from going through V=0 regions. \end{DoxyCompactList}\item 
+void \hyperlink{class_m_a8d9192b1fabcfdb0a4e860ff41e23827}{export\+\_\+data} ()
+\begin{DoxyCompactList}\small\item\em method to export velocity model and event locations into readable files. \end{DoxyCompactList}\item 
+\hypertarget{class_m_ab4b29e117e8249308cf4f738b2e470da}{}void \hyperlink{class_m_ab4b29e117e8249308cf4f738b2e470da}{export\+\_\+m} ()\label{class_m_ab4b29e117e8249308cf4f738b2e470da}
+
+\begin{DoxyCompactList}\small\item\em method to export directly the vector m into a dedicated text file. \end{DoxyCompactList}\end{DoxyCompactItemize}
+\subsection*{Public Attributes}
+\begin{DoxyCompactItemize}
+\item 
+\hypertarget{class_m_a93ca113823caa7be72cdb37b9f38f2b2}{}arma\+::vec \hyperlink{class_m_a93ca113823caa7be72cdb37b9f38f2b2}{m}\label{class_m_a93ca113823caa7be72cdb37b9f38f2b2}
+
+\begin{DoxyCompactList}\small\item\em vector of model parameters \end{DoxyCompactList}\item 
+\hypertarget{class_m_ae50d1e51deae3028c315c8e1376ecac3}{}arma\+::vec \hyperlink{class_m_ae50d1e51deae3028c315c8e1376ecac3}{m\+\_\+prior}\label{class_m_ae50d1e51deae3028c315c8e1376ecac3}
+
+\begin{DoxyCompactList}\small\item\em vector of prior values of m \end{DoxyCompactList}\item 
+\hypertarget{class_m_ae65c01bcdca53a92ed9c79d4236a3adb}{}arma\+::mat \hyperlink{class_m_ae65c01bcdca53a92ed9c79d4236a3adb}{Cmi}\label{class_m_ae65c01bcdca53a92ed9c79d4236a3adb}
+
+\begin{DoxyCompactList}\small\item\em inverse of correlation matrix \end{DoxyCompactList}\item 
+\hypertarget{class_m_ab653e08675522b7db973777825ee5eb2}{}std\+::vector$<$ \hyperlink{classlocations_1_1_location}{locations\+::\+Location} $>$ \hyperlink{class_m_ab653e08675522b7db973777825ee5eb2}{events}\label{class_m_ab653e08675522b7db973777825ee5eb2}
+
+\begin{DoxyCompactList}\small\item\em vector storing event positions \end{DoxyCompactList}\item 
+\hypertarget{class_m_a507aff114ae0f48cbc140df0307e2f09}{}\hyperlink{class_data}{Data} \hyperlink{class_m_a507aff114ae0f48cbc140df0307e2f09}{v0}\label{class_m_a507aff114ae0f48cbc140df0307e2f09}
+
+\begin{DoxyCompactList}\small\item\em data structure containing ln(v) on a grid \end{DoxyCompactList}\item 
+\hypertarget{class_m_a82088ed3c05ba157b2a989bf8b7234a2}{}\hyperlink{class_data}{Data} \hyperlink{class_m_a82088ed3c05ba157b2a989bf8b7234a2}{E0}\label{class_m_a82088ed3c05ba157b2a989bf8b7234a2}
+
+\begin{DoxyCompactList}\small\item\em data structure containing E on a grid \end{DoxyCompactList}\item 
+\hypertarget{class_m_a61aa549798080380365aa3d0e360e3d8}{}\hyperlink{class_data}{Data} \hyperlink{class_m_a61aa549798080380365aa3d0e360e3d8}{vf}\label{class_m_a61aa549798080380365aa3d0e360e3d8}
+
+\begin{DoxyCompactList}\small\item\em data structure containing ln(v) on a refined grid \end{DoxyCompactList}\item 
+\hypertarget{class_m_a7e2544d0f3635e91cc3c1af82a009fdc}{}\hyperlink{class_data}{Data} \hyperlink{class_m_a7e2544d0f3635e91cc3c1af82a009fdc}{Ef}\label{class_m_a7e2544d0f3635e91cc3c1af82a009fdc}
+
+\begin{DoxyCompactList}\small\item\em data structure containing E on a refined grid \end{DoxyCompactList}\item 
+\hypertarget{class_m_a9253f8fa827548abf4e542e80b315aa1}{}int \hyperlink{class_m_a9253f8fa827548abf4e542e80b315aa1}{n}\label{class_m_a9253f8fa827548abf4e542e80b315aa1}
+
+\begin{DoxyCompactList}\small\item\em grid refinement factor \end{DoxyCompactList}\end{DoxyCompactItemize}
+
+
+\subsection{Detailed Description}
+The class \hyperlink{class_m}{M} corresponds to the model parameters in the inverse problem. It contains not only the vector of (cartesian) model parameters, but all other informations (file names, prior values, etc) and methods to build covariance matrices etc. 
+
+\subsection{Member Function Documentation}
+\hypertarget{class_m_a8d9192b1fabcfdb0a4e860ff41e23827}{}\index{M@{M}!export\+\_\+data@{export\+\_\+data}}
+\index{export\+\_\+data@{export\+\_\+data}!M@{M}}
+\subsubsection[{export\+\_\+data()}]{\setlength{\rightskip}{0pt plus 5cm}void M\+::export\+\_\+data (
+\begin{DoxyParamCaption}
+{}
+\end{DoxyParamCaption}
+)}\label{class_m_a8d9192b1fabcfdb0a4e860ff41e23827}
+
+
+method to export velocity model and event locations into readable files. 
+
+
+\begin{DoxyParams}{Parameters}
+{\em param} & the structre containing input parameters and file names. \\
+\hline
+\end{DoxyParams}
+\hypertarget{class_m_a7371d3ae555c21f0555fd8d30e76160b}{}\index{M@{M}!initialise@{initialise}}
+\index{initialise@{initialise}!M@{M}}
+\subsubsection[{initialise(const Parameters \&)}]{\setlength{\rightskip}{0pt plus 5cm}void M\+::initialise (
+\begin{DoxyParamCaption}
+\item[{const {\bf Parameters} \&}]{param}
+\end{DoxyParamCaption}
+)}\label{class_m_a7371d3ae555c21f0555fd8d30e76160b}
+
+
+Initialisation of \hyperlink{class_m}{M} from parameters. 
+
+
+\begin{DoxyParams}{Parameters}
+{\em param} & the structure containing input parameters. \\
+\hline
+\end{DoxyParams}
+
+
+The documentation for this class was generated from the following files\+:\begin{DoxyCompactItemize}
+\item 
+/\+Volumes/\+Data/\+Projects/\+Tomography/\+Faatso/include/tomolib.\+hpp\item 
+/\+Volumes/\+Data/\+Projects/\+Tomography/\+Faatso/src/tomolib.\+cpp\end{DoxyCompactItemize}

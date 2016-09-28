@@ -1,0 +1,119 @@
+\hypertarget{class_parameters}{}\section{Parameters Class Reference}
+\label{class_parameters}\index{Parameters@{Parameters}}
+
+
+the class \hyperlink{class_parameters}{Parameters} is a structure containing inversion parameters, file names, etc.  
+
+
+
+
+{\ttfamily \#include $<$tomolib.\+hpp$>$}
+
+\subsection*{Public Member Functions}
+\begin{DoxyCompactItemize}
+\item 
+\hypertarget{class_parameters_af4d94ee360ac0157d9065f78797fe9a1}{}\hyperlink{class_parameters_af4d94ee360ac0157d9065f78797fe9a1}{Parameters} ()\label{class_parameters_af4d94ee360ac0157d9065f78797fe9a1}
+
+\begin{DoxyCompactList}\small\item\em basic class constructor. Sets default values. These are quite arbitrary so it is not very useful at this stage (was written as a test). \end{DoxyCompactList}\item 
+\hypertarget{class_parameters_a1644cf009201db844a865c187ceddb78}{}\hyperlink{class_parameters_a1644cf009201db844a865c187ceddb78}{Parameters} (const std\+::string \&)\label{class_parameters_a1644cf009201db844a865c187ceddb78}
+
+\begin{DoxyCompactList}\small\item\em class constructor with call to a parameter file. \end{DoxyCompactList}\item 
+\hypertarget{class_parameters_a8844c0e0b7931802c29988b3eef1452d}{}void \hyperlink{class_parameters_a8844c0e0b7931802c29988b3eef1452d}{initialise} (const std\+::string \&)\label{class_parameters_a8844c0e0b7931802c29988b3eef1452d}
+
+\begin{DoxyCompactList}\small\item\em initialisation of parameters from an ascii parameter file. \end{DoxyCompactList}\end{DoxyCompactItemize}
+\subsection*{Public Attributes}
+\begin{DoxyCompactItemize}
+\item 
+\hypertarget{class_parameters_aaae1c65836e5cc200a71e55e1f85b6cc}{}std\+::string \hyperlink{class_parameters_aaae1c65836e5cc200a71e55e1f85b6cc}{folder}\label{class_parameters_aaae1c65836e5cc200a71e55e1f85b6cc}
+
+\begin{DoxyCompactList}\small\item\em name fo folder to store all input/saved files. \end{DoxyCompactList}\item 
+\hypertarget{class_parameters_a53e2cf472e9d687a26374cda4211ce8f}{}std\+::string \hyperlink{class_parameters_a53e2cf472e9d687a26374cda4211ce8f}{paramfile}\label{class_parameters_a53e2cf472e9d687a26374cda4211ce8f}
+
+\begin{DoxyCompactList}\small\item\em name of parameter file (ascii) \end{DoxyCompactList}\item 
+\hypertarget{class_parameters_a69c3f616da6012e882f5cc6a4ac2bc52}{}std\+::string \hyperlink{class_parameters_a69c3f616da6012e882f5cc6a4ac2bc52}{sensorfile}\label{class_parameters_a69c3f616da6012e882f5cc6a4ac2bc52}
+
+\begin{DoxyCompactList}\small\item\em name of sensor file (ascii) \end{DoxyCompactList}\item 
+\hypertarget{class_parameters_a6f54aa04f6aa0ddd72a769d6e1bf8dd9}{}std\+::string \hyperlink{class_parameters_a6f54aa04f6aa0ddd72a769d6e1bf8dd9}{eventfile}\label{class_parameters_a6f54aa04f6aa0ddd72a769d6e1bf8dd9}
+
+\begin{DoxyCompactList}\small\item\em name of event position file (ascii) \end{DoxyCompactList}\item 
+\hypertarget{class_parameters_abf0f99fc486e2502bb1c56dea7a47790}{}std\+::string \hyperlink{class_parameters_abf0f99fc486e2502bb1c56dea7a47790}{tsurveyfile}\label{class_parameters_abf0f99fc486e2502bb1c56dea7a47790}
+
+\begin{DoxyCompactList}\small\item\em name of survey arrival times file (ascii) \end{DoxyCompactList}\item 
+\hypertarget{class_parameters_ac333c359e83f8576d6e97731740d8a5c}{}std\+::string \hyperlink{class_parameters_ac333c359e83f8576d6e97731740d8a5c}{teventfile}\label{class_parameters_ac333c359e83f8576d6e97731740d8a5c}
+
+\begin{DoxyCompactList}\small\item\em name of event arrival times file (ascii) \end{DoxyCompactList}\item 
+\hypertarget{class_parameters_a841eafa3511c88d82e0abb19c5d61078}{}std\+::string \hyperlink{class_parameters_a841eafa3511c88d82e0abb19c5d61078}{vpriorfile}\label{class_parameters_a841eafa3511c88d82e0abb19c5d61078}
+
+\begin{DoxyCompactList}\small\item\em name of prior ln(v) structure file (.dat) \end{DoxyCompactList}\item 
+\hypertarget{class_parameters_a0b28754d62c18f739744589a018a3fd5}{}std\+::string \hyperlink{class_parameters_a0b28754d62c18f739744589a018a3fd5}{Epriorfile}\label{class_parameters_a0b28754d62c18f739744589a018a3fd5}
+
+\begin{DoxyCompactList}\small\item\em name of prior E structure file (.dat) \end{DoxyCompactList}\item 
+\hypertarget{class_parameters_ae8ed1b81af86ba0163851b3997469191}{}std\+::string \hyperlink{class_parameters_ae8ed1b81af86ba0163851b3997469191}{vpostfile}\label{class_parameters_ae8ed1b81af86ba0163851b3997469191}
+
+\begin{DoxyCompactList}\small\item\em name of posterior ln(v) structure file (.dat) \end{DoxyCompactList}\item 
+\hypertarget{class_parameters_aecbac99b3ffaba3d0095807e86573e6e}{}std\+::string \hyperlink{class_parameters_aecbac99b3ffaba3d0095807e86573e6e}{Epostfile}\label{class_parameters_aecbac99b3ffaba3d0095807e86573e6e}
+
+\begin{DoxyCompactList}\small\item\em name of posterior E structure file (.dat) \end{DoxyCompactList}\item 
+\hypertarget{class_parameters_ab3eb89fdf1b78f161c06c0db824766a2}{}std\+::string \hyperlink{class_parameters_ab3eb89fdf1b78f161c06c0db824766a2}{eventpostfile}\label{class_parameters_ab3eb89fdf1b78f161c06c0db824766a2}
+
+\begin{DoxyCompactList}\small\item\em name of posterior event positions file (ascii) \end{DoxyCompactList}\item 
+\hypertarget{class_parameters_a63aca1b68e0c3a3719eff262f0d537d3}{}std\+::string \hyperlink{class_parameters_a63aca1b68e0c3a3719eff262f0d537d3}{dcalcfile}\label{class_parameters_a63aca1b68e0c3a3719eff262f0d537d3}
+
+\begin{DoxyCompactList}\small\item\em name of file for theoretical arrival times (ascii) \end{DoxyCompactList}\item 
+\hypertarget{class_parameters_aad74d1327d7ac7eb90dfc6b3b6bdef03}{}std\+::string \hyperlink{class_parameters_aad74d1327d7ac7eb90dfc6b3b6bdef03}{Cmpostfile}\label{class_parameters_aad74d1327d7ac7eb90dfc6b3b6bdef03}
+
+\begin{DoxyCompactList}\small\item\em name of file for posterior covariance matrix (ascii) \end{DoxyCompactList}\item 
+\hypertarget{class_parameters_ad432587d4e468340b10f6e0f5c171f07}{}std\+::string \hyperlink{class_parameters_ad432587d4e468340b10f6e0f5c171f07}{mpostfile}\label{class_parameters_ad432587d4e468340b10f6e0f5c171f07}
+
+\begin{DoxyCompactList}\small\item\em name of file for posterior model values (ascii) \end{DoxyCompactList}\item 
+\hypertarget{class_parameters_a1270dd90767f117031f0aac51f30f886}{}std\+::string \hyperlink{class_parameters_a1270dd90767f117031f0aac51f30f886}{residualfile}\label{class_parameters_a1270dd90767f117031f0aac51f30f886}
+
+\begin{DoxyCompactList}\small\item\em name of file with residuals \end{DoxyCompactList}\item 
+\hypertarget{class_parameters_a00253c8b1546d94fe3b897c1187e30af}{}int \hyperlink{class_parameters_a00253c8b1546d94fe3b897c1187e30af}{n}\label{class_parameters_a00253c8b1546d94fe3b897c1187e30af}
+
+\begin{DoxyCompactList}\small\item\em grid refinement factor \end{DoxyCompactList}\item 
+\hypertarget{class_parameters_a877a21e7ec0f9ce1ed77fda9e2bead27}{}double \hyperlink{class_parameters_a877a21e7ec0f9ce1ed77fda9e2bead27}{s\+\_\+surveys}\label{class_parameters_a877a21e7ec0f9ce1ed77fda9e2bead27}
+
+\begin{DoxyCompactList}\small\item\em variance on arrival times from surveys \end{DoxyCompactList}\item 
+\hypertarget{class_parameters_a2aabd7d4c432c067c87446c430b0b137}{}double \hyperlink{class_parameters_a2aabd7d4c432c067c87446c430b0b137}{s\+\_\+events}\label{class_parameters_a2aabd7d4c432c067c87446c430b0b137}
+
+\begin{DoxyCompactList}\small\item\em variance on arrival times from events \end{DoxyCompactList}\item 
+\hypertarget{class_parameters_a1a66d61a5f2afd737ea2cbc0c74e9358}{}int \hyperlink{class_parameters_a1a66d61a5f2afd737ea2cbc0c74e9358}{maxit}\label{class_parameters_a1a66d61a5f2afd737ea2cbc0c74e9358}
+
+\begin{DoxyCompactList}\small\item\em max number of Q\+N iterations \end{DoxyCompactList}\item 
+\hypertarget{class_parameters_acfd7724d13974a7319efffe6c06002bc}{}double \hyperlink{class_parameters_acfd7724d13974a7319efffe6c06002bc}{tol}\label{class_parameters_acfd7724d13974a7319efffe6c06002bc}
+
+\begin{DoxyCompactList}\small\item\em tolerance to exit Q\+N loop \end{DoxyCompactList}\item 
+\hypertarget{class_parameters_a9af1dadb296181402dd7e912627c516b}{}double \hyperlink{class_parameters_a9af1dadb296181402dd7e912627c516b}{mu}\label{class_parameters_a9af1dadb296181402dd7e912627c516b}
+
+\begin{DoxyCompactList}\small\item\em quasi-\/\+Newton step size \end{DoxyCompactList}\item 
+\hypertarget{class_parameters_a84da37ac0f21d429dfa2e42879b2583a}{}double \hyperlink{class_parameters_a84da37ac0f21d429dfa2e42879b2583a}{s\+\_\+v}\label{class_parameters_a84da37ac0f21d429dfa2e42879b2583a}
+
+\begin{DoxyCompactList}\small\item\em std dev on ln(v) \end{DoxyCompactList}\item 
+\hypertarget{class_parameters_a697134003e20023ff1b703d168c23477}{}double \hyperlink{class_parameters_a697134003e20023ff1b703d168c23477}{s\+\_\+\+E}\label{class_parameters_a697134003e20023ff1b703d168c23477}
+
+\begin{DoxyCompactList}\small\item\em std dev on E \end{DoxyCompactList}\item 
+\hypertarget{class_parameters_af037423164c649695584ea99336a6b43}{}double \hyperlink{class_parameters_af037423164c649695584ea99336a6b43}{lambda}\label{class_parameters_af037423164c649695584ea99336a6b43}
+
+\begin{DoxyCompactList}\small\item\em correlation length \end{DoxyCompactList}\item 
+\hypertarget{class_parameters_abc42eec18b6c845d39cb801a9497eda3}{}double \hyperlink{class_parameters_abc42eec18b6c845d39cb801a9497eda3}{s\+\_\+x}\label{class_parameters_abc42eec18b6c845d39cb801a9497eda3}
+
+\begin{DoxyCompactList}\small\item\em std dev on x position of events \end{DoxyCompactList}\item 
+\hypertarget{class_parameters_a96a537045f89c972ffad89796f39ece6}{}double \hyperlink{class_parameters_a96a537045f89c972ffad89796f39ece6}{s\+\_\+y}\label{class_parameters_a96a537045f89c972ffad89796f39ece6}
+
+\begin{DoxyCompactList}\small\item\em std dev on x position of events \end{DoxyCompactList}\item 
+\hypertarget{class_parameters_ad1df7369bd337edce362825af61a49bb}{}double \hyperlink{class_parameters_ad1df7369bd337edce362825af61a49bb}{s\+\_\+z}\label{class_parameters_ad1df7369bd337edce362825af61a49bb}
+
+\begin{DoxyCompactList}\small\item\em std dev on x position of events \end{DoxyCompactList}\item 
+\hypertarget{class_parameters_af0981e025f8ca9c984e862eb7778e498}{}double \hyperlink{class_parameters_af0981e025f8ca9c984e862eb7778e498}{s\+\_\+t0}\label{class_parameters_af0981e025f8ca9c984e862eb7778e498}
+
+\begin{DoxyCompactList}\small\item\em std dev on x position of events \end{DoxyCompactList}\end{DoxyCompactItemize}
+
+
+\subsection{Detailed Description}
+the class \hyperlink{class_parameters}{Parameters} is a structure containing inversion parameters, file names, etc. 
+
+The documentation for this class was generated from the following files\+:\begin{DoxyCompactItemize}
+\item 
+/\+Volumes/\+Data/\+Projects/\+Tomography/\+Faatso/include/tomolib.\+hpp\item 
+/\+Volumes/\+Data/\+Projects/\+Tomography/\+Faatso/src/tomolib.\+cpp\end{DoxyCompactItemize}

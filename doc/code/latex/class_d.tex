@@ -1,0 +1,111 @@
+\hypertarget{class_d}{}\section{D Class Reference}
+\label{class_d}\index{D@{D}}
+
+
+The class \hyperlink{class_d}{D} corresponds to the data/observables and all the associated informations in the inverse problem.  
+
+
+
+
+{\ttfamily \#include $<$tomolib.\+hpp$>$}
+
+\subsection*{Public Member Functions}
+\begin{DoxyCompactItemize}
+\item 
+\hypertarget{class_d_aaa9c0c32402aef951a8c23b6ac6e8913}{}\hyperlink{class_d_aaa9c0c32402aef951a8c23b6ac6e8913}{D} ()\label{class_d_aaa9c0c32402aef951a8c23b6ac6e8913}
+
+\begin{DoxyCompactList}\small\item\em Default constructor. \end{DoxyCompactList}\item 
+\hypertarget{class_d_ae3e6197e0e936ea8fcc0f0e0415b0882}{}\hyperlink{class_d_ae3e6197e0e936ea8fcc0f0e0415b0882}{D} (const \hyperlink{class_parameters}{Parameters} \&, const \hyperlink{class_m}{M} \&)\label{class_d_ae3e6197e0e936ea8fcc0f0e0415b0882}
+
+\begin{DoxyCompactList}\small\item\em constructor with call to a parameters set \end{DoxyCompactList}\item 
+void \hyperlink{class_d_aae447abcdaa132f565316ee549893d3d}{initialise} (const \hyperlink{class_parameters}{Parameters} \&, const \hyperlink{class_m}{M} \&)
+\begin{DoxyCompactList}\small\item\em Initialisation of \hyperlink{class_d}{D} from parameters. \end{DoxyCompactList}\item 
+void \hyperlink{class_d_ad985a819e820a7d29fea9324ce5c2c1a}{export\+\_\+all} ()
+\begin{DoxyCompactList}\small\item\em method to export data into files. \end{DoxyCompactList}\item 
+\hypertarget{class_d_a2a51e07cb62d4e2857b473a479217fec}{}void \hyperlink{class_d_a2a51e07cb62d4e2857b473a479217fec}{forward\+\_\+model} (\hyperlink{class_m}{M} \&, arma\+::mat \&)\label{class_d_a2a51e07cb62d4e2857b473a479217fec}
+
+\begin{DoxyCompactList}\small\item\em method to compute theoretical arrival times from a model. \end{DoxyCompactList}\item 
+double \hyperlink{class_d_af616cd278b1ae31796bd5f0475205841}{get\+\_\+residual} (\hyperlink{class_m}{M} \&)
+\begin{DoxyCompactList}\small\item\em Method to compute least-\/square residual. \end{DoxyCompactList}\end{DoxyCompactItemize}
+\subsection*{Public Attributes}
+\begin{DoxyCompactItemize}
+\item 
+\hypertarget{class_d_a2b8c8d96c2d740e7c5190902a5989fd0}{}arma\+::vec {\bfseries d}\label{class_d_a2b8c8d96c2d740e7c5190902a5989fd0}
+
+\item 
+\hypertarget{class_d_ac4ae5f24a1d28e0f9ead82e3d2ceb6da}{}arma\+::vec {\bfseries d\+\_\+obs}\label{class_d_ac4ae5f24a1d28e0f9ead82e3d2ceb6da}
+
+\item 
+\hypertarget{class_d_ac980b27c922d177de65224fff98ad8e2}{}arma\+::mat {\bfseries Cdi}\label{class_d_ac980b27c922d177de65224fff98ad8e2}
+
+\item 
+\hypertarget{class_d_aa525d3826786c43ac8a2a7bbad2131a9}{}std\+::vector$<$ \hyperlink{class_sources}{Sources} $>$ \hyperlink{class_d_aa525d3826786c43ac8a2a7bbad2131a9}{path}\label{class_d_aa525d3826786c43ac8a2a7bbad2131a9}
+
+\begin{DoxyCompactList}\small\item\em this is a vector of \hyperlink{class_sources}{Sources} elements, of size equal to the number of sensors (virtual sources). \end{DoxyCompactList}\item 
+\hypertarget{class_d_a6d2c6be7472058d3a1d30a914a767aba}{}std\+::vector$<$ \hyperlink{classlocations_1_1_location}{locations\+::\+Location} $>$ \hyperlink{class_d_a6d2c6be7472058d3a1d30a914a767aba}{sensors}\label{class_d_a6d2c6be7472058d3a1d30a914a767aba}
+
+\begin{DoxyCompactList}\small\item\em vector storing sensor positions \end{DoxyCompactList}\end{DoxyCompactItemize}
+
+
+\subsection{Detailed Description}
+The class \hyperlink{class_d}{D} corresponds to the data/observables and all the associated informations in the inverse problem. 
+
+\subsection{Member Function Documentation}
+\hypertarget{class_d_ad985a819e820a7d29fea9324ce5c2c1a}{}\index{D@{D}!export\+\_\+all@{export\+\_\+all}}
+\index{export\+\_\+all@{export\+\_\+all}!D@{D}}
+\subsubsection[{export\+\_\+all()}]{\setlength{\rightskip}{0pt plus 5cm}void D\+::export\+\_\+all (
+\begin{DoxyParamCaption}
+{}
+\end{DoxyParamCaption}
+)}\label{class_d_ad985a819e820a7d29fea9324ce5c2c1a}
+
+
+method to export data into files. 
+
+
+\begin{DoxyParams}{Parameters}
+{\em param} & the \hyperlink{class_parameters}{Parameters} structures which includes files names etc.. \\
+\hline
+\end{DoxyParams}
+\hypertarget{class_d_af616cd278b1ae31796bd5f0475205841}{}\index{D@{D}!get\+\_\+residual@{get\+\_\+residual}}
+\index{get\+\_\+residual@{get\+\_\+residual}!D@{D}}
+\subsubsection[{get\+\_\+residual(\+M \&)}]{\setlength{\rightskip}{0pt plus 5cm}double D\+::get\+\_\+residual (
+\begin{DoxyParamCaption}
+\item[{{\bf M} \&}]{model}
+\end{DoxyParamCaption}
+)}\label{class_d_af616cd278b1ae31796bd5f0475205841}
+
+
+Method to compute least-\/square residual. 
+
+
+\begin{DoxyParams}{Parameters}
+{\em model} & an object of class \hyperlink{class_m}{M} containing prior and current model vecotr and inverse of coviarance matrix. \\
+\hline
+\end{DoxyParams}
+\begin{DoxyReturn}{Returns}
+the least square residual. 
+\end{DoxyReturn}
+\hypertarget{class_d_aae447abcdaa132f565316ee549893d3d}{}\index{D@{D}!initialise@{initialise}}
+\index{initialise@{initialise}!D@{D}}
+\subsubsection[{initialise(const Parameters \&, const M \&)}]{\setlength{\rightskip}{0pt plus 5cm}void D\+::initialise (
+\begin{DoxyParamCaption}
+\item[{const {\bf Parameters} \&}]{param, }
+\item[{const {\bf M} \&}]{model}
+\end{DoxyParamCaption}
+)}\label{class_d_aae447abcdaa132f565316ee549893d3d}
+
+
+Initialisation of \hyperlink{class_d}{D} from parameters. 
+
+
+\begin{DoxyParams}{Parameters}
+{\em param} & the object containing input parameters and file names. \\
+\hline
+\end{DoxyParams}
+
+
+The documentation for this class was generated from the following files\+:\begin{DoxyCompactItemize}
+\item 
+/\+Volumes/\+Data/\+Projects/\+Tomography/\+Faatso/include/tomolib.\+hpp\item 
+/\+Volumes/\+Data/\+Projects/\+Tomography/\+Faatso/src/tomolib.\+cpp\end{DoxyCompactItemize}

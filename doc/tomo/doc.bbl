@@ -1,0 +1,30 @@
+\begin{thebibliography}{4}
+\providecommand{\natexlab}[1]{#1}
+\expandafter\ifx\csname urlstyle\endcsname\relax
+  \providecommand{\doi}[1]{doi:\discretionary{}{}{}#1}\else
+  \providecommand{\doi}{doi:\discretionary{}{}{}\begingroup
+  \urlstyle{rm}\Url}\fi
+\input{englbst.tex}
+\newcommand{\Capitalize}[1]{\uppercase{#1}}
+\newcommand{\capitalize}[1]{\expandafter\Capitalize#1}
+
+\bibitem[{Aki \bbland{} Lee(1976)}]{aki76}
+\textsc{Aki, K.} \bbland{} \textsc{W.~H.~K. Lee} (1976), Determination of
+  thres-dimensional velocity anomalies under and seismic array using first {P}
+  arrival times from local earthquakes. 1. {A} homogeneous initial model,
+  \emph{J. Geophys. Res.}, 81(23), 4381--4399.
+
+\bibitem[{Tarantola(2005)}]{tarantola05}
+\textsc{Tarantola, A.} (2005), \emph{Inverse Problem Theory}, 2nd
+  \bbledition{}, Society for Industrial Mathematics, Philadelphia.
+
+\bibitem[{Thomsen(1986)}]{thomsen86}
+\textsc{Thomsen, L.} (1986), Weak elastic anisotropy, \emph{Geophysics},
+  51(10), 1954--1966.
+
+\bibitem[{Thurber(1983)}]{thurber83}
+\textsc{Thurber, C.~H.} (1983), Earthquake locations and three-dimensional
+  crustal structure in the {C}oyote {L}ake area, central {C}alifornia, \emph{J.
+  Geophys. Res.}, 88(B10), 8226--8236.
+
+\end{thebibliography}

@@ -1,0 +1,237 @@
+\documentclass{article}
+\usepackage{amsmath,amssymb}
+\usepackage{graphicx}
+\usepackage{natbib}
+
+\renewcommand\vec[1]{\mathbf{#1}}
+
+\title{A second order 3D Fast Marching Method for VTI media}
+\author{Nicolas \textsc{Brantut}}
+\date{03/08/2016}
+
+\begin{document}
+
+\maketitle
+
+\begin{abstract}
+This document presents an implementation of the fast marching method to compute arrival times in heterogeneous vertical-transversely isotropic media. The implementation uses second order finite differences (when possible) to solve the anisotropic Eikonal equation, using only \emph{known} points, as described in \citet{sethian99}. The updating procedure uses a Newton-Raphson method to solve the discretised anisotropic Eikonal equation. In order to mitigate against inaccuracies around the source point, the trial arrival times at all points in a cubic box surrounding the source point are computed using analytical solutions, assuming constant velocity and anisotropy parameter, set equal to that of the source point. The implementation is written in C++, and uses formatted binary files as input and output.
+\end{abstract}
+
+\section{Some notes on the Fast Marching Method}
+
+\subsection{Introduction and basic algorithm}
+
+It seems that the fast marching method was introduced separately by a few authors: \citet{tsitsiklis95,sethian96,helmsen96}. A very pedagogical exposition of the method, including a second order implementation, is given by \citet{sethian99} and I won't discuss it too much here. Essentially, the fast marching method is an efficient way to solve certain classes of Hamilton-Jacobi equations:
+\begin{equation} \label{eq:HJ}
+  H(\vec{x},\nabla u) = s(\vec{x}),
+\end{equation}
+where $\vec{x}$ is a position in space, and $u$ is the unknown function of $\vec{x}$. The Eikonal equation found in seismology, of interest here, is a special case where $u$ is the arrival time of a wavefront and $s$ is the slowness. For an anisotropic medium, the Eikonal equation reads:
+\begin{equation} \label{eq:eikonal}
+  \left\{\left(\frac{\partial u}{\partial x}\right)^2 + \left(\frac{\partial u}{\partial y}\right)^2 + \left(\frac{\partial u}{\partial z}\right)^2  \right\}^{1/2} \times V(\nabla u /|\nabla u|)= 1,
+\end{equation}
+where $(x,y,z)$ denote a cartesian coordinates, and $V$ is the wavespeed, which depends on the orientation of the wavefront.
+
+A discretised version of Equation \eqref{eq:eikonal} using \emph{upwind} first order finite differences is due to \citet{rouy92}:
+\begin{align} 
+  \left\{  \max(D^{-x}_{ijk}u, -D^{+x}_{ijk}u, 0)^2 \right. &\nonumber \\
+  \quad \left. +  \max(D^{-y}_{ijk}u, -D^{+y}_{ijk}u, 0)^2 \right. &\nonumber \\
+  \quad \left. +  \max(D^{-y}_{ijk}u, -D^{+y}_{ijk}u, 0)^2 \right\}^{1/2}& \nonumber \\
+\quad  \times V_{ijk}(\phi) & = 1 \label{eq:eikonal_discr},
+\end{align}
+where $V_{ijk}(\phi)$ is the wave velocity at node $(i,j,k)$, $\phi$ is the phase angle, and 
+\begin{equation}
+  D^{-x}_{ijk}u = \frac{u_{i,j,k} - u_{i-1,j,k}}{h} \quad D^{+x}_{ijk}u = \frac{u_{i+1,j,k} - u_{i,j,k}}{h}
+\end{equation}
+denote first order finite differences operators.
+
+The fast marching method consists in solving \eqref{eq:eikonal_discr} sequentially, from small to large values of $u$, hence preserving causality. The use of \emph{upwind} finite differences is absolutely key: it allows to preserve causality and ensures the unconditional stability of the method (is first order finite differences are used). A discussion of why this holds is given in \citet{sethian99}. The method was originally developed for \emph{isotropic} eikonal equations, but also applies for \emph{anisotropic} equations without modifications in special cases (further details below). The algorithm is the following:
+\begin{enumerate}
+\item fix the starting source point at $u=0$, and tag this point \emph{known}, all other points begin tagged as \emph{unknown}.
+\item update the neighbours of the newly \emph{known} point by solving \eqref{eq:eikonal_discr}, and tag them \emph{trial} and remove them from the \emph{unknown} set.
+\item choose the point with minimum $u$ amongst the \emph{trial} points, tag it as \emph{known} and remove it from the \emph{trial} set.
+\item go back to (2) until no points remain tagged as \emph{trial}.
+\end{enumerate}
+The key step is number (3), which ensures that points are updated with increasing values of $u$ (the information does not flow backwards).
+
+\subsection{The anisotropic case}
+
+Although for general anisotropy this methods requires some modifications \citep[e.g.][]{sethian03}, it can be shown that the conventional methods as outlined above is valid when the direction of anisotropy is aligned with the grid. More generally, the conventional method applies when the Hamiltonian $H$ satisfies the so-called ``Osher'' criterion \citep[see for instance a description in][]{tsai03}:
+\begin{equation}\label{eq:osher}
+  p_i\frac{\partial H}{\partial p_i} \geq 0,
+\end{equation}
+where the $p_i$ denote the arguments of the Hamiltonian $H(p_1,p_2,...)$. In the eikonal equation, the $p_i$ are the first spatial derivatives of $u$. In the case of vertical transverse isotropy, the velocity is only dependent on the angle $\theta$ between the vertical axis and the direction of the normal to the wavefront. In this work, I use a simple model for transverse anisotropy which depends only on the cosine of that angle:
+\begin{equation}
+  V(\theta) = V_0(1 + E\cos^2\theta),
+\end{equation}
+where $V_0$ is the horizontal wavespeed and $E$ is an anisotropy parameter related to Thomsen's parameter $\epsilon$:
+\begin{equation}
+  E = -\frac{\epsilon}{1+\epsilon},
+\end{equation}
+assuming a model for weak anisotropy and $\delta = \epsilon$ \citep{thomsen86}. The cosine of $\theta$ is related to the partial derivatives of $u$ in the following way:
+\begin{equation}
+  \cos\theta = \frac{\partial_zu}{\sqrt{ (\partial_xu)^2 + (\partial_yu)^2 + (\partial_zu)^2} }.
+\end{equation}
+
+The Hamiltonian is hence of the form:
+\begin{equation}
+H(p_1,p_2,p_3) = V_0\sqrt{p_1^2 + p_2^2 + p_3^2 }\big(1 + E p_3^2/(p_1^2 + p_2^2 + p_3^2)\big),
+\end{equation}
+and satisfies Osher's condition provided that $-1/2 < E < 1$, which is largely in the remit of the assumption of weak anistropy.
+
+\subsection{Second order finite differences}
+
+The first order finite difference approximation of the eikonal equation is quite crude, and tends to generate large errors along diagonal points of the grid. This can be mitigated by using a second order (upwind) approximation, as described in \citet{sethian99}. The discretised eikonal equation becomes:
+\begin{align}
+  \left\{ \max\left[D^{-x}_{ijk}u + \mathrm{switch}_{ijk}^{-x}D^{-2x}_{ijk}u, -D^{+x}_{ijk}u + \mathrm{switch}_{ijk}^{+x}D^{+2x}_{ijk}u, 0\right]^2 \right. &\nonumber \\
+  \quad \left. + \max\left[D^{-y}_{ijk}u + \mathrm{switch}_{ijk}^{-y}D^{-2y}_{ijk}u, -D^{+y}_{ijk}u + \mathrm{switch}_{ijk}^{+y}D^{+2y}_{ijk}u, 0\right]^2 \right. & \nonumber \\
+  \quad \left. + \max\left[D^{-z}_{ijk}u + \mathrm{switch}_{ijk}^{-z}D^{-2z}_{ijk}u, -D^{+z}_{ijk}u + \mathrm{switch}_{ijk}^{+z}D^{+2z}_{ijk}u, 0\right]^2 \right\}^{1/2}& \nonumber\\
+\qquad \times V_{ijk}(\theta) & = 1 \label{eq:eikonal_discr_2},
+\end{align}
+where
+\begin{equation}
+  \mathrm{switch}_{ijk}^{-x}=\left\{\begin{array}{l}
+  1 \quad \text{if } u_{i-2,i,k} \text{ and } u_{i-1,i,k} \text{ are known and }u_{i-2,i,k}<u_{i-1,j,k},\\
+  0 \quad \text{otherwise},\end{array}\right.
+\end{equation}
+and
+\begin{equation}
+\mathrm{switch}_{ijk}^{+x}=\left\{\begin{array}{l}
+  1 \quad \text{if } u_{i+2,i,k} \text{ and } u_{i+1,i,k} \text{ are known and }u_{i+2,i,k}<u_{i+1,j,k},\\
+  0 \quad \text{otherwise},\end{array}\right.
+\end{equation}
+and
+\begin{equation}
+  D^{-2x}_{ijk}u = \frac{u_{i,j,k} - 2u_{i-1,j,k} + u_{i-2,j,k}}{2h}, \quad D^{+2x}_{ijk}u = \frac{u_{i,j,k} - 2u_{i+1,j,k} + u_{i+2,j,k}}{2h}.
+\end{equation}
+One important fact to keep in mind when using a second order approximation is that the scheme may not be applicable when sharp changes in wave speeds occur. In that case, the solution of $u_{i,j,k}$ might not exists (or would be a complex number). In terms of implementation, this means that a safety switch should be there to avoid a crash, and possibly to revert to a first order approximation when needed. Here, I have done that by setting the arrival time to infinity (or NaN), so that in the worst case scenario a solution using only one or two neighbours will be chosen.
+
+\subsection{Source box}
+
+The scheme is not strictly speaking second-order accurate, because the conditions for the switches are not always met. This is usually quite benign, except for the points immediately surrounding the source node: this is where the error is the largest, especially along the diagonals, because there is no way to use a second order scheme around the the source. Therfore, if used as is, the large first-order error generated around the source node will be ``dragged'' along throughout the grid, even if second-order approximations are made after that. A workaround can be found in \citet{rickett99}, and consists in computing the arrival time around the source node analytically, assuming a constant velocity (and anisotropy) there. This ``source box'' is made large enough to include all the 8 nearest points within a cube surrounding the source, and especially includes all the first diagonal points.
+
+\subsection{Ray tracing}
+
+Once the arrival times have been computed at all points, it is relatively easy to compute ray paths a posteriori. In the isotropic case, ray tracing is straightforward because the ray angle at every point is perpendicular to the wavefront (i.e., following the gradient of the arrival time field). In the anisotropic case, the situation is a bit different because the rays are no longer perpendicular to the wavefront: the phase angle is not the same of the group angle. So, at every point, one needs to compute the group angle (from the phase angle, given by the gradient of the arrival time field) in order to obtain the ray orientation.
+
+The relationship between group $V_\mathrm{g}$ and phase velocity $V$ is \citep{thomsen86}:
+\begin{equation}
+  V_\mathrm{g}^2(\phi) = V^2(\theta) + \left(\frac{dV}{d\theta}\right)^2,
+\end{equation}
+where $\phi$ is the group angle and $\theta$ is the phase angle.
+The relationship between the group angle and the phase angle is:
+\begin{equation}
+  \tan\phi = \frac{\tan\theta + (1/V)(dV/d\theta)}{1 - (\tan\theta/V)(dV/d\theta)}.
+\end{equation}
+
+Here the phase velocity is given by
+\begin{equation}
+  V(\theta) = V_\mathrm{h}(1 + E\cos^2\theta).
+\end{equation}
+Therefore, the group angle is then given by
+\begin{equation}
+  \tan\phi = \tan\theta\times(1 - E + \tan^2\theta)/(1 + E + (1+2E)\tan^2\theta),
+\end{equation}
+and the group velocity is (as a function of the \emph{phase} angle $\theta$)
+\begin{equation}
+  V_\mathrm{g}[\phi(\theta)] = V_\mathrm{h}\times F(\theta,E),
+\end{equation}
+where 
+\begin{equation}
+  F(\theta,E) = \left\{ 1 + 2E\cos^2\theta +E^2\cos^2\theta\left( 1 + 3\sin^2\theta\right)\right\}^{1/2}.
+\end{equation}
+
+\section{Implementation}
+
+The detail of the implementation is given elsewhere in a companion document (\verb+refman.pdf+), and will not be recalled here. The algorithm is embedded in the public method \verb+march+ of the class \verb+Grid+. The method \verb+march+ uses the position (more precisely, the linear index in the grid) of the source point as input. Therefore, if the wavefront arrival times have to be computed for several sources, several \verb+grid+ objects can be generated and arrival times computed in parallel. If the same grid has to be re-used, a public method \verb+reset()+ can be called.
+
+The one important practical point is that the code uses a Fibonacci Heap structure, which is from the Boost library. It can be downloaded on the Boost website if needed. The library files should then be in a place where the compiler can find them (or use the option \verb+-I+ of the \verb|g++| compiler to indicate the path of the library). 
+
+\section{Input and Output}
+
+
+For now I have made a simple implementation for a single source. The code is in \verb+main_fmm.cpp+ and should compile into \verb+fmm+ using \verb+make+. The program needs five inputs from the terminal, in the following order:
+\begin{enumerate}
+\item a binary file containing the grid dimensions, spacing, and the velocity at all nodes, sorted in according to their linear index in the grid,
+\item another similar binary file containing the anisotropy parameter at all nodes,
+\item an integer corresponding to the linear index of the source point in the grid,
+\item an integer equal to 0 if no sourcebox is to be used (any number otherwise),
+\item the name of a file, in which the arrival times at all nodes will be stored following a format similar to the first 2 files.
+\end{enumerate}
+A typical call to \verb+fmm+ looks like:
+\begin{verbatim}
+>>./fmm V.bin E.bin 0 1 T.bin
+\end{verbatim}
+but it is strongly advised to use Matlab (or similar) wrappers to make calls and interface with visualisation tools.
+
+\paragraph{Input/output file structure.} The input and output binary files containing the grid settings, velocity, anisotropy and arrival times have all the same structure. They contain the following sequence:
+\begin{itemize}
+\item three integers (of the default size for \verb+int+), corresponding respectively to $N_x,N_y,N_z$,
+\item one \verb+double+, corresponding to $h$,
+\item a sequence of $N_x\times N_y\times N_z$ \verb+double+ with the corresponding values for the data (velocity, anisotrpy, etc), sorted according to their linear index in the grid.
+\end{itemize}
+The so-called ``linear index'' $I$ in the grid, based on the ``subscript indices'' $(i,j,k)$ in that grid, is given by
+\begin{equation}
+  I = i + j\times N_x + k\times N_x\times N_y,
+\end{equation}
+where $N_x$ is the number of points in the $x$ direction, and $N_y$ is the number of points in the $y$ direction. This definition of the linear index is the same as that used by Matlab.
+
+The input/output structures are wrapped into a class \verb+Data+, which contains public methods to \verb+load+ and \verb+save+ (amongst other things) these binary files. There are companions Matlab functions to import and export the data contained in these files, used in the wrappers.
+
+
+\begin{thebibliography}{9}
+\providecommand{\natexlab}[1]{#1}
+\expandafter\ifx\csname urlstyle\endcsname\relax
+  \providecommand{\doi}[1]{doi:\discretionary{}{}{}#1}\else
+  \providecommand{\doi}{doi:\discretionary{}{}{}\begingroup
+  \urlstyle{rm}\Url}\fi
+\input{englbst.tex}
+\newcommand{\Capitalize}[1]{\uppercase{#1}}
+\newcommand{\capitalize}[1]{\expandafter\Capitalize#1}
+
+\bibitem[{Helmsen \bbletal{}(1996)Helmsen, Puckett, Colella, \bbland{}
+  Dorr}]{helmsen96}
+\textsc{Helmsen, J.}, \textsc{E.~Puckett}, \textsc{P.~Colella}, \bbland{}
+  \textsc{M.~Dorr} (1996), Two methods for simulating photolithography
+  development in {3D}, \emph{Proc. SPIE}, 2726(253).
+
+\bibitem[{Rickett \bbland{} Fomel(1999)}]{rickett99}
+\textsc{Rickett, J.} \bbland{} \textsc{S.~Fomel} (1999), A second-order fast
+  marching eikonal solver, \emph{Stanford Exploratio Project Report}, 100,
+  287--293.
+
+\bibitem[{Rouy \bbland{} Tourin(1992)}]{rouy92}
+\textsc{Rouy, E.} \bbland{} \textsc{A.~Tourin} (1992), A viscosity solutions
+  approach to shape-from-shading, \emph{{SIAM} J. Numer. Anal.}, 29(3),
+  867--884.
+
+\bibitem[{Sethian(1996)}]{sethian96}
+\textsc{Sethian, J.~A.} (1996), A fast marching level set method for
+  monotonically advancing fronts, \emph{Proc. Natl. Acad. Sci. USA}, 93,
+  1591--1595.
+
+\bibitem[{Sethian(1999)}]{sethian99}
+\textsc{Sethian, J.~A.} (1999), Fast marching methods, \emph{{SIAM} Review},
+  41(2), 199--235.
+
+\bibitem[{Sethian \bbland{} Vladimirsky(2003)}]{sethian03}
+\textsc{Sethian, J.~A.} \bbland{} \textsc{A.~Vladimirsky} (2003), Ordered
+  upwind methods for static {H}amilton-{J}acobi equations: {T}heory and
+  algorithms, \emph{{SIAM} J. Numer. Anal.}, 41(1), 325--363.
+
+\bibitem[{Thomsen(1986)}]{thomsen86}
+\textsc{Thomsen, L.} (1986), Weak elastic anisotropy, \emph{Geophysics},
+  51(10), 1954--1966.
+
+\bibitem[{Tsai \bbletal{}(2003)Tsai, Cheng, Osher, \bbland{} Zhao}]{tsai03}
+\textsc{Tsai, Y.-H.~R.}, \textsc{L.-T. Cheng}, \textsc{S.~Osher}, \bbland{}
+  \textsc{H.-K. Zhao} (2003), Fast sweeping algorithms for a class of
+  {H}amilton-{J}acobi equations, \emph{SIAM J. Numer. Anal.}, 41(2), 673--694.
+
+\bibitem[{Tsitsiklis(1995)}]{tsitsiklis95}
+\textsc{Tsitsiklis, J.~N.} (1995), Efficient algorithms for globally optimal
+  trajectories, \emph{{IEEE} Trans. Autom. Control}, 40(9), 1528--1538.
+
+\end{thebibliography}
+
+
+\end{document}

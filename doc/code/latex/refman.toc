@@ -1,0 +1,84 @@
+\contentsline {chapter}{\numberline {1}Class Index}{1}{chapter.1}
+\contentsline {section}{\numberline {1.1}Class List}{1}{section.1.1}
+\contentsline {chapter}{\numberline {2}Class Documentation}{3}{chapter.2}
+\contentsline {section}{\numberline {2.1}D Class Reference}{3}{section.2.1}
+\contentsline {subsection}{\numberline {2.1.1}Detailed Description}{3}{subsection.2.1.1}
+\contentsline {subsection}{\numberline {2.1.2}Member Function Documentation}{4}{subsection.2.1.2}
+\contentsline {subsubsection}{\numberline {2.1.2.1}export\discretionary {\unhbox \voidb@x \hbox {\relax \fontsize {7}{8}\selectfont $\leftarrow \joinrel \rhook $}}{}{}\_\discretionary {\unhbox \voidb@x \hbox {\relax \fontsize {7}{8}\selectfont $\leftarrow \joinrel \rhook $}}{}{}all()}{4}{subsubsection.2.1.2.1}
+\contentsline {subsubsection}{\numberline {2.1.2.2}get\discretionary {\unhbox \voidb@x \hbox {\relax \fontsize {7}{8}\selectfont $\leftarrow \joinrel \rhook $}}{}{}\_\discretionary {\unhbox \voidb@x \hbox {\relax \fontsize {7}{8}\selectfont $\leftarrow \joinrel \rhook $}}{}{}residual(\discretionary {\unhbox \voidb@x \hbox {\relax \fontsize {7}{8}\selectfont $\leftarrow \joinrel \rhook $}}{}{}M \&)}{5}{subsubsection.2.1.2.2}
+\contentsline {subsubsection}{\numberline {2.1.2.3}initialise(const Parameters \&, const M \&)}{5}{subsubsection.2.1.2.3}
+\contentsline {section}{\numberline {2.2}Data Class Reference}{5}{section.2.2}
+\contentsline {subsection}{\numberline {2.2.1}Detailed Description}{6}{subsection.2.2.1}
+\contentsline {subsection}{\numberline {2.2.2}Constructor \& Destructor Documentation}{6}{subsection.2.2.2}
+\contentsline {subsubsection}{\numberline {2.2.2.1}Data(const int \&, const int \&, const int \&, const double \&)}{6}{subsubsection.2.2.2.1}
+\contentsline {subsection}{\numberline {2.2.3}Member Function Documentation}{6}{subsection.2.2.3}
+\contentsline {subsubsection}{\numberline {2.2.3.1}get\discretionary {\unhbox \voidb@x \hbox {\relax \fontsize {7}{8}\selectfont $\leftarrow \joinrel \rhook $}}{}{}\_\discretionary {\unhbox \voidb@x \hbox {\relax \fontsize {7}{8}\selectfont $\leftarrow \joinrel \rhook $}}{}{}interp\discretionary {\unhbox \voidb@x \hbox {\relax \fontsize {7}{8}\selectfont $\leftarrow \joinrel \rhook $}}{}{}\_\discretionary {\unhbox \voidb@x \hbox {\relax \fontsize {7}{8}\selectfont $\leftarrow \joinrel \rhook $}}{}{}ind\discretionary {\unhbox \voidb@x \hbox {\relax \fontsize {7}{8}\selectfont $\leftarrow \joinrel \rhook $}}{}{}\_\discretionary {\unhbox \voidb@x \hbox {\relax \fontsize {7}{8}\selectfont $\leftarrow \joinrel \rhook $}}{}{}coef(int $\ast $, double $\ast $, const int \&, const int \&, const int \&, const int \&, const int \&)}{6}{subsubsection.2.2.3.1}
+\contentsline {subsubsection}{\numberline {2.2.3.2}load(const char $\ast $)}{6}{subsubsection.2.2.3.2}
+\contentsline {subsubsection}{\numberline {2.2.3.3}refine(int)}{7}{subsubsection.2.2.3.3}
+\contentsline {subsubsection}{\numberline {2.2.3.4}save(const char $\ast $)}{7}{subsubsection.2.2.3.4}
+\contentsline {section}{\numberline {2.3}Grid Class Reference}{7}{section.2.3}
+\contentsline {subsection}{\numberline {2.3.1}Detailed Description}{8}{subsection.2.3.1}
+\contentsline {subsection}{\numberline {2.3.2}Constructor \& Destructor Documentation}{8}{subsection.2.3.2}
+\contentsline {subsubsection}{\numberline {2.3.2.1}Grid(const int \&, const int \&, const int \&, const double \&)}{8}{subsubsection.2.3.2.1}
+\contentsline {subsection}{\numberline {2.3.3}Member Function Documentation}{9}{subsection.2.3.3}
+\contentsline {subsubsection}{\numberline {2.3.3.1}export\discretionary {\unhbox \voidb@x \hbox {\relax \fontsize {7}{8}\selectfont $\leftarrow \joinrel \rhook $}}{}{}\_\discretionary {\unhbox \voidb@x \hbox {\relax \fontsize {7}{8}\selectfont $\leftarrow \joinrel \rhook $}}{}{}\discretionary {\unhbox \voidb@x \hbox {\relax \fontsize {7}{8}\selectfont $\leftarrow \joinrel \rhook $}}{}{}Tvector()}{9}{subsubsection.2.3.3.1}
+\contentsline {subsubsection}{\numberline {2.3.3.2}import\discretionary {\unhbox \voidb@x \hbox {\relax \fontsize {7}{8}\selectfont $\leftarrow \joinrel \rhook $}}{}{}\_\discretionary {\unhbox \voidb@x \hbox {\relax \fontsize {7}{8}\selectfont $\leftarrow \joinrel \rhook $}}{}{}\discretionary {\unhbox \voidb@x \hbox {\relax \fontsize {7}{8}\selectfont $\leftarrow \joinrel \rhook $}}{}{}T(const Data \&)}{9}{subsubsection.2.3.3.2}
+\contentsline {subsubsection}{\numberline {2.3.3.3}ind2sub(const int \&, int \&, int \&, int \&)}{9}{subsubsection.2.3.3.3}
+\contentsline {subsubsection}{\numberline {2.3.3.4}initialise(const std\discretionary {\unhbox \voidb@x \hbox {\relax \fontsize {7}{8}\selectfont $\leftarrow \joinrel \rhook $}}{}{}::vector$<$ double $>$ \&, const std\discretionary {\unhbox \voidb@x \hbox {\relax \fontsize {7}{8}\selectfont $\leftarrow \joinrel \rhook $}}{}{}::vector$<$ double $>$ \&)}{9}{subsubsection.2.3.3.4}
+\contentsline {subsubsection}{\numberline {2.3.3.5}initialise\discretionary {\unhbox \voidb@x \hbox {\relax \fontsize {7}{8}\selectfont $\leftarrow \joinrel \rhook $}}{}{}\_\discretionary {\unhbox \voidb@x \hbox {\relax \fontsize {7}{8}\selectfont $\leftarrow \joinrel \rhook $}}{}{}log(const std\discretionary {\unhbox \voidb@x \hbox {\relax \fontsize {7}{8}\selectfont $\leftarrow \joinrel \rhook $}}{}{}::vector$<$ double $>$ \&, const std\discretionary {\unhbox \voidb@x \hbox {\relax \fontsize {7}{8}\selectfont $\leftarrow \joinrel \rhook $}}{}{}::vector$<$ double $>$ \&)}{9}{subsubsection.2.3.3.5}
+\contentsline {subsubsection}{\numberline {2.3.3.6}march(const int \&, const bool \&)}{10}{subsubsection.2.3.3.6}
+\contentsline {subsubsection}{\numberline {2.3.3.7}sub2ind(const int \&, const int \&, const int \&)}{10}{subsubsection.2.3.3.7}
+\contentsline {section}{\numberline {2.4}locations\discretionary {\unhbox \voidb@x \hbox {\relax \fontsize {7}{8}\selectfont $\leftarrow \joinrel \rhook $}}{}{}:\discretionary {\unhbox \voidb@x \hbox {\relax \fontsize {7}{8}\selectfont $\leftarrow \joinrel \rhook $}}{}{}:Location Class Reference}{10}{section.2.4}
+\contentsline {subsection}{\numberline {2.4.1}Detailed Description}{11}{subsection.2.4.1}
+\contentsline {subsection}{\numberline {2.4.2}Constructor \& Destructor Documentation}{11}{subsection.2.4.2}
+\contentsline {subsubsection}{\numberline {2.4.2.1}Location(const double \&, const double \&, const double \&, const double \&)}{11}{subsubsection.2.4.2.1}
+\contentsline {subsection}{\numberline {2.4.3}Member Function Documentation}{11}{subsection.2.4.3}
+\contentsline {subsubsection}{\numberline {2.4.3.1}findind(\discretionary {\unhbox \voidb@x \hbox {\relax \fontsize {7}{8}\selectfont $\leftarrow \joinrel \rhook $}}{}{}Grid \&)}{11}{subsubsection.2.4.3.1}
+\contentsline {subsubsection}{\numberline {2.4.3.2}findind(const int \&, const int \&, const int \&, const double \&)}{11}{subsubsection.2.4.3.2}
+\contentsline {subsubsection}{\numberline {2.4.3.3}findxyz(\discretionary {\unhbox \voidb@x \hbox {\relax \fontsize {7}{8}\selectfont $\leftarrow \joinrel \rhook $}}{}{}Grid \&)}{11}{subsubsection.2.4.3.3}
+\contentsline {section}{\numberline {2.5}M Class Reference}{12}{section.2.5}
+\contentsline {subsection}{\numberline {2.5.1}Detailed Description}{13}{subsection.2.5.1}
+\contentsline {subsection}{\numberline {2.5.2}Member Function Documentation}{13}{subsection.2.5.2}
+\contentsline {subsubsection}{\numberline {2.5.2.1}export\discretionary {\unhbox \voidb@x \hbox {\relax \fontsize {7}{8}\selectfont $\leftarrow \joinrel \rhook $}}{}{}\_\discretionary {\unhbox \voidb@x \hbox {\relax \fontsize {7}{8}\selectfont $\leftarrow \joinrel \rhook $}}{}{}data()}{13}{subsubsection.2.5.2.1}
+\contentsline {subsubsection}{\numberline {2.5.2.2}initialise(const Parameters \&)}{13}{subsubsection.2.5.2.2}
+\contentsline {section}{\numberline {2.6}Node Class Reference}{13}{section.2.6}
+\contentsline {subsection}{\numberline {2.6.1}Detailed Description}{14}{subsection.2.6.1}
+\contentsline {subsection}{\numberline {2.6.2}Member Data Documentation}{14}{subsection.2.6.2}
+\contentsline {subsubsection}{\numberline {2.6.2.1}nhb}{14}{subsubsection.2.6.2.1}
+\contentsline {section}{\numberline {2.7}Parameters Class Reference}{14}{section.2.7}
+\contentsline {subsection}{\numberline {2.7.1}Detailed Description}{16}{subsection.2.7.1}
+\contentsline {section}{\numberline {2.8}Quasi\discretionary {\unhbox \voidb@x \hbox {\relax \fontsize {7}{8}\selectfont $\leftarrow \joinrel \rhook $}}{}{}Newton Class Reference}{16}{section.2.8}
+\contentsline {subsection}{\numberline {2.8.1}Detailed Description}{17}{subsection.2.8.1}
+\contentsline {subsection}{\numberline {2.8.2}Constructor \& Destructor Documentation}{17}{subsection.2.8.2}
+\contentsline {subsubsection}{\numberline {2.8.2.1}Quasi\discretionary {\unhbox \voidb@x \hbox {\relax \fontsize {7}{8}\selectfont $\leftarrow \joinrel \rhook $}}{}{}Newton(const Parameters \&)}{17}{subsubsection.2.8.2.1}
+\contentsline {subsection}{\numberline {2.8.3}Member Function Documentation}{17}{subsection.2.8.3}
+\contentsline {subsubsection}{\numberline {2.8.3.1}export\discretionary {\unhbox \voidb@x \hbox {\relax \fontsize {7}{8}\selectfont $\leftarrow \joinrel \rhook $}}{}{}\_\discretionary {\unhbox \voidb@x \hbox {\relax \fontsize {7}{8}\selectfont $\leftarrow \joinrel \rhook $}}{}{}posterior(\discretionary {\unhbox \voidb@x \hbox {\relax \fontsize {7}{8}\selectfont $\leftarrow \joinrel \rhook $}}{}{}M \&, D \&)}{17}{subsubsection.2.8.3.1}
+\contentsline {subsubsection}{\numberline {2.8.3.2}initialise(const Parameters \&)}{17}{subsubsection.2.8.3.2}
+\contentsline {subsubsection}{\numberline {2.8.3.3}iterate(\discretionary {\unhbox \voidb@x \hbox {\relax \fontsize {7}{8}\selectfont $\leftarrow \joinrel \rhook $}}{}{}M \&, D \&)}{17}{subsubsection.2.8.3.3}
+\contentsline {subsubsection}{\numberline {2.8.3.4}run(\discretionary {\unhbox \voidb@x \hbox {\relax \fontsize {7}{8}\selectfont $\leftarrow \joinrel \rhook $}}{}{}M \&, D \&)}{18}{subsubsection.2.8.3.4}
+\contentsline {section}{\numberline {2.9}Ray Class Reference}{18}{section.2.9}
+\contentsline {subsection}{\numberline {2.9.1}Detailed Description}{19}{subsection.2.9.1}
+\contentsline {subsection}{\numberline {2.9.2}Member Function Documentation}{19}{subsection.2.9.2}
+\contentsline {subsubsection}{\numberline {2.9.2.1}compute\discretionary {\unhbox \voidb@x \hbox {\relax \fontsize {7}{8}\selectfont $\leftarrow \joinrel \rhook $}}{}{}\_\discretionary {\unhbox \voidb@x \hbox {\relax \fontsize {7}{8}\selectfont $\leftarrow \joinrel \rhook $}}{}{}interp\discretionary {\unhbox \voidb@x \hbox {\relax \fontsize {7}{8}\selectfont $\leftarrow \joinrel \rhook $}}{}{}\_\discretionary {\unhbox \voidb@x \hbox {\relax \fontsize {7}{8}\selectfont $\leftarrow \joinrel \rhook $}}{}{}der(int, Data \&, Data \&)}{19}{subsubsection.2.9.2.1}
+\contentsline {subsubsection}{\numberline {2.9.2.2}compute\discretionary {\unhbox \voidb@x \hbox {\relax \fontsize {7}{8}\selectfont $\leftarrow \joinrel \rhook $}}{}{}\_\discretionary {\unhbox \voidb@x \hbox {\relax \fontsize {7}{8}\selectfont $\leftarrow \joinrel \rhook $}}{}{}t(const Data \&, const Data \&)}{19}{subsubsection.2.9.2.2}
+\contentsline {subsubsection}{\numberline {2.9.2.3}compute\discretionary {\unhbox \voidb@x \hbox {\relax \fontsize {7}{8}\selectfont $\leftarrow \joinrel \rhook $}}{}{}\_\discretionary {\unhbox \voidb@x \hbox {\relax \fontsize {7}{8}\selectfont $\leftarrow \joinrel \rhook $}}{}{}t\discretionary {\unhbox \voidb@x \hbox {\relax \fontsize {7}{8}\selectfont $\leftarrow \joinrel \rhook $}}{}{}\_\discretionary {\unhbox \voidb@x \hbox {\relax \fontsize {7}{8}\selectfont $\leftarrow \joinrel \rhook $}}{}{}and\discretionary {\unhbox \voidb@x \hbox {\relax \fontsize {7}{8}\selectfont $\leftarrow \joinrel \rhook $}}{}{}\_\discretionary {\unhbox \voidb@x \hbox {\relax \fontsize {7}{8}\selectfont $\leftarrow \joinrel \rhook $}}{}{}interp\discretionary {\unhbox \voidb@x \hbox {\relax \fontsize {7}{8}\selectfont $\leftarrow \joinrel \rhook $}}{}{}\_\discretionary {\unhbox \voidb@x \hbox {\relax \fontsize {7}{8}\selectfont $\leftarrow \joinrel \rhook $}}{}{}der(const Data \&, const Data \&, int, Data \&, Data \&, double \&, double \&, double \&)}{20}{subsubsection.2.9.2.3}
+\contentsline {subsubsection}{\numberline {2.9.2.4}trace(\discretionary {\unhbox \voidb@x \hbox {\relax \fontsize {7}{8}\selectfont $\leftarrow \joinrel \rhook $}}{}{}Grid \&, const double \&, const double \&, const double \&)}{20}{subsubsection.2.9.2.4}
+\contentsline {section}{\numberline {2.10}Sources Class Reference}{20}{section.2.10}
+\contentsline {subsection}{\numberline {2.10.1}Detailed Description}{21}{subsection.2.10.1}
+\contentsline {section}{\numberline {2.11}Tetra Class Reference}{21}{section.2.11}
+\contentsline {subsection}{\numberline {2.11.1}Detailed Description}{22}{subsection.2.11.1}
+\contentsline {subsection}{\numberline {2.11.2}Constructor \& Destructor Documentation}{22}{subsection.2.11.2}
+\contentsline {subsubsection}{\numberline {2.11.2.1}Tetra(const double \&, const double \&, const double \&)}{22}{subsubsection.2.11.2.1}
+\contentsline {subsection}{\numberline {2.11.3}Member Function Documentation}{22}{subsection.2.11.3}
+\contentsline {subsubsection}{\numberline {2.11.3.1}compute\discretionary {\unhbox \voidb@x \hbox {\relax \fontsize {7}{8}\selectfont $\leftarrow \joinrel \rhook $}}{}{}\_\discretionary {\unhbox \voidb@x \hbox {\relax \fontsize {7}{8}\selectfont $\leftarrow \joinrel \rhook $}}{}{}\discretionary {\unhbox \voidb@x \hbox {\relax \fontsize {7}{8}\selectfont $\leftarrow \joinrel \rhook $}}{}{}T()}{22}{subsubsection.2.11.3.1}
+\contentsline {section}{\numberline {2.12}Velocity Class Reference}{22}{section.2.12}
+\contentsline {subsection}{\numberline {2.12.1}Detailed Description}{23}{subsection.2.12.1}
+\contentsline {subsection}{\numberline {2.12.2}Constructor \& Destructor Documentation}{23}{subsection.2.12.2}
+\contentsline {subsubsection}{\numberline {2.12.2.1}Velocity(const double \&, const double \&)}{23}{subsubsection.2.12.2.1}
+\contentsline {subsection}{\numberline {2.12.3}Member Function Documentation}{23}{subsection.2.12.3}
+\contentsline {subsubsection}{\numberline {2.12.3.1}group\discretionary {\unhbox \voidb@x \hbox {\relax \fontsize {7}{8}\selectfont $\leftarrow \joinrel \rhook $}}{}{}\_\discretionary {\unhbox \voidb@x \hbox {\relax \fontsize {7}{8}\selectfont $\leftarrow \joinrel \rhook $}}{}{}angle(const double \&)}{23}{subsubsection.2.12.3.1}
+\contentsline {subsubsection}{\numberline {2.12.3.2}phase\discretionary {\unhbox \voidb@x \hbox {\relax \fontsize {7}{8}\selectfont $\leftarrow \joinrel \rhook $}}{}{}\_\discretionary {\unhbox \voidb@x \hbox {\relax \fontsize {7}{8}\selectfont $\leftarrow \joinrel \rhook $}}{}{}angle(const double \&)}{24}{subsubsection.2.12.3.2}
+\contentsline {subsubsection}{\numberline {2.12.3.3}tan\discretionary {\unhbox \voidb@x \hbox {\relax \fontsize {7}{8}\selectfont $\leftarrow \joinrel \rhook $}}{}{}\_\discretionary {\unhbox \voidb@x \hbox {\relax \fontsize {7}{8}\selectfont $\leftarrow \joinrel \rhook $}}{}{}group\discretionary {\unhbox \voidb@x \hbox {\relax \fontsize {7}{8}\selectfont $\leftarrow \joinrel \rhook $}}{}{}\_\discretionary {\unhbox \voidb@x \hbox {\relax \fontsize {7}{8}\selectfont $\leftarrow \joinrel \rhook $}}{}{}angle(const double \&)}{24}{subsubsection.2.12.3.3}
+\contentsline {subsubsection}{\numberline {2.12.3.4}Vgroup(const double \&)}{24}{subsubsection.2.12.3.4}
+\contentsline {subsubsection}{\numberline {2.12.3.5}Vphase(const double \&)}{24}{subsubsection.2.12.3.5}
+\contentsline {chapter}{Index}{27}{section*.25}

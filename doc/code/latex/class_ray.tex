@@ -1,0 +1,196 @@
+\hypertarget{class_ray}{}\section{Ray Class Reference}
+\label{class_ray}\index{Ray@{Ray}}
+
+
+The class \hyperlink{class_ray}{Ray} corresponds to a seismic ray.  
+
+
+
+
+{\ttfamily \#include $<$raylib.\+hpp$>$}
+
+\subsection*{Public Member Functions}
+\begin{DoxyCompactItemize}
+\item 
+\hypertarget{class_ray_a2e3d2c29f2df4ab3da10da79d4acb852}{}\hyperlink{class_ray_a2e3d2c29f2df4ab3da10da79d4acb852}{Ray} ()\label{class_ray_a2e3d2c29f2df4ab3da10da79d4acb852}
+
+\begin{DoxyCompactList}\small\item\em default class constructor \end{DoxyCompactList}\item 
+void \hyperlink{class_ray_ae0467e19b3cf83467dab708af0f8d5d6}{trace} (\hyperlink{class_grid}{Grid} \&, const double \&, const double \&, const double \&)
+\begin{DoxyCompactList}\small\item\em method to compute the ray path based on a \hyperlink{class_grid}{Grid}. \end{DoxyCompactList}\item 
+\hypertarget{class_ray_a59e61537ef33667eff39eaf62da7d0f5}{}void {\bfseries export\+\_\+ascii} (const char $\ast$)\label{class_ray_a59e61537ef33667eff39eaf62da7d0f5}
+
+\item 
+void \hyperlink{class_ray_a1133e78e15ac3cd0feb2bc67d1033b68}{compute\+\_\+interp\+\_\+der} (int, \hyperlink{class_data}{Data} \&, \hyperlink{class_data}{Data} \&)
+\begin{DoxyCompactList}\small\item\em method to extract the derivatives of the arrival time with respect to the (log(\+V)) or E at each node, on a coarser grid (by a factor n in all dimensions) than the one used to compute the ray initially. The values of log(\+V) and E on a fine grid are supposed to correspond to a trilinear interpolation of the values on the coarse grid. \end{DoxyCompactList}\item 
+double \hyperlink{class_ray_a56bc210ab5c67d0268a10fb4cc15dc71}{compute\+\_\+t} (const \hyperlink{class_data}{Data} \&, const \hyperlink{class_data}{Data} \&)
+\begin{DoxyCompactList}\small\item\em method to compute a travel time along the ray, given a velocity and anisotropy models (given on the same grid as the one used to initialise the ray). \end{DoxyCompactList}\item 
+double \hyperlink{class_ray_afe6a19d9cffac14fda35259562887930}{compute\+\_\+t\+\_\+and\+\_\+interp\+\_\+der} (const \hyperlink{class_data}{Data} \&, const \hyperlink{class_data}{Data} \&, int, \hyperlink{class_data}{Data} \&, \hyperlink{class_data}{Data} \&, double \&, double \&, double \&)
+\begin{DoxyCompactList}\small\item\em method to compute a travel time along the ray, given a velocity and anisotropy models (given on the same grid as the one used to initialise the ray), as well as the derivatives of the arrival time with respect to ln\+V and E, computed on a coarser grid (n times less nodes in each directions). \end{DoxyCompactList}\end{DoxyCompactItemize}
+\subsection*{Public Attributes}
+\begin{DoxyCompactItemize}
+\item 
+\hypertarget{class_ray_ad160cb47acacdb05e920ce0d88135d2c}{}std\+::vector$<$ double $>$ \hyperlink{class_ray_ad160cb47acacdb05e920ce0d88135d2c}{x}\label{class_ray_ad160cb47acacdb05e920ce0d88135d2c}
+
+\begin{DoxyCompactList}\small\item\em array of $x$ coordinates of ray path \end{DoxyCompactList}\item 
+\hypertarget{class_ray_a045afd15989ea118e479c7c564783964}{}std\+::vector$<$ double $>$ \hyperlink{class_ray_a045afd15989ea118e479c7c564783964}{y}\label{class_ray_a045afd15989ea118e479c7c564783964}
+
+\begin{DoxyCompactList}\small\item\em array of $y$ coordinates of ray path \end{DoxyCompactList}\item 
+\hypertarget{class_ray_a14e702c94a758047b9092ab08eda855e}{}std\+::vector$<$ double $>$ \hyperlink{class_ray_a14e702c94a758047b9092ab08eda855e}{z}\label{class_ray_a14e702c94a758047b9092ab08eda855e}
+
+\begin{DoxyCompactList}\small\item\em array of $z$ coordinates of ray path \end{DoxyCompactList}\item 
+\hypertarget{class_ray_a839eb936105ab5d984bb91bdfb4245ff}{}std\+::vector$<$ int $>$ \hyperlink{class_ray_a839eb936105ab5d984bb91bdfb4245ff}{ind}\label{class_ray_a839eb936105ab5d984bb91bdfb4245ff}
+
+\begin{DoxyCompactList}\small\item\em array of indices of nearest neighbour nodes along the ray path \end{DoxyCompactList}\item 
+\hypertarget{class_ray_ab84f0d4f37969ac7333a9253b4c5fc1b}{}std\+::vector$<$ double $>$ \hyperlink{class_ray_ab84f0d4f37969ac7333a9253b4c5fc1b}{tan\+\_\+theta}\label{class_ray_ab84f0d4f37969ac7333a9253b4c5fc1b}
+
+\begin{DoxyCompactList}\small\item\em array storing the tangent of the phase angle along the ray path \end{DoxyCompactList}\item 
+\hypertarget{class_ray_af7d096e9699fb46b41452c5fc7b4c52c}{}int \hyperlink{class_ray_af7d096e9699fb46b41452c5fc7b4c52c}{Nx}\label{class_ray_af7d096e9699fb46b41452c5fc7b4c52c}
+
+\begin{DoxyCompactList}\small\item\em Nx dimension of the grid in which the ray is traced. \end{DoxyCompactList}\item 
+\hypertarget{class_ray_a5dcf6898c9aef86a15a3876ecbce1dd4}{}int \hyperlink{class_ray_a5dcf6898c9aef86a15a3876ecbce1dd4}{Ny}\label{class_ray_a5dcf6898c9aef86a15a3876ecbce1dd4}
+
+\begin{DoxyCompactList}\small\item\em Ny dimension of the grid in which the ray is traced. \end{DoxyCompactList}\item 
+\hypertarget{class_ray_a2fc9a88559e4bfe1259f4cf937cdec42}{}int \hyperlink{class_ray_a2fc9a88559e4bfe1259f4cf937cdec42}{Nz}\label{class_ray_a2fc9a88559e4bfe1259f4cf937cdec42}
+
+\begin{DoxyCompactList}\small\item\em Nz dimension of the grid in which the ray is traced. \end{DoxyCompactList}\item 
+\hypertarget{class_ray_a5fbc95b84d8fd1d7980a737503c36890}{}double \hyperlink{class_ray_a5fbc95b84d8fd1d7980a737503c36890}{h}\label{class_ray_a5fbc95b84d8fd1d7980a737503c36890}
+
+\begin{DoxyCompactList}\small\item\em grid spacing. \end{DoxyCompactList}\item 
+\hypertarget{class_ray_ac5789a2463c98202618a3200fe099131}{}double \hyperlink{class_ray_ac5789a2463c98202618a3200fe099131}{der\+\_\+x0}\label{class_ray_ac5789a2463c98202618a3200fe099131}
+
+\begin{DoxyCompactList}\small\item\em derivative of arrival time with respect to x position of first ray point (i.\+e. target point) \end{DoxyCompactList}\item 
+\hypertarget{class_ray_ada1b3b30f65ad1870db6032fd8880bee}{}double \hyperlink{class_ray_ada1b3b30f65ad1870db6032fd8880bee}{der\+\_\+y0}\label{class_ray_ada1b3b30f65ad1870db6032fd8880bee}
+
+\begin{DoxyCompactList}\small\item\em derivative of arrival time with respect to y position of first ray point \end{DoxyCompactList}\item 
+\hypertarget{class_ray_ac26dc5d46b9ab5b57a542a1c2767861c}{}double \hyperlink{class_ray_ac26dc5d46b9ab5b57a542a1c2767861c}{der\+\_\+z0}\label{class_ray_ac26dc5d46b9ab5b57a542a1c2767861c}
+
+\begin{DoxyCompactList}\small\item\em derivative of arrival time with respect to z position of first ray point \end{DoxyCompactList}\item 
+\hypertarget{class_ray_a4ce9fa0820b71647b2f90b1ba01e21c1}{}std\+::vector$<$ double $>$ \hyperlink{class_ray_a4ce9fa0820b71647b2f90b1ba01e21c1}{der\+\_\+v}\label{class_ray_a4ce9fa0820b71647b2f90b1ba01e21c1}
+
+\begin{DoxyCompactList}\small\item\em array of derivatives with respect to v=ln(\+V) (V being horizontal velocity) \end{DoxyCompactList}\item 
+\hypertarget{class_ray_a46826c9e90b1b5296b9d854a1ab793ed}{}std\+::vector$<$ double $>$ \hyperlink{class_ray_a46826c9e90b1b5296b9d854a1ab793ed}{der\+\_\+\+E}\label{class_ray_a46826c9e90b1b5296b9d854a1ab793ed}
+
+\begin{DoxyCompactList}\small\item\em array of derivatives with respect to E \end{DoxyCompactList}\end{DoxyCompactItemize}
+
+
+\subsection{Detailed Description}
+The class \hyperlink{class_ray}{Ray} corresponds to a seismic ray. 
+
+A ray is traced a posteriori based on a regular \hyperlink{class_grid}{Grid} with computed arrival times. The tracing starts from the receiver (given as argument to the method \hyperlink{class_ray_ae0467e19b3cf83467dab708af0f8d5d6}{Ray\+::trace}), and progresses with steps equal to the grid spacing along the ray direction. In isotropic media, the ray direction at each piont is normal to the wavefront, i.\+e., along the gradient of the arrival time. In anisotropic media, the ray direction is N\+O\+T normal to the wavefront, and at each position the ray angle is found based on a conversion between the phase angle and the group angle. 
+
+\subsection{Member Function Documentation}
+\hypertarget{class_ray_a1133e78e15ac3cd0feb2bc67d1033b68}{}\index{Ray@{Ray}!compute\+\_\+interp\+\_\+der@{compute\+\_\+interp\+\_\+der}}
+\index{compute\+\_\+interp\+\_\+der@{compute\+\_\+interp\+\_\+der}!Ray@{Ray}}
+\subsubsection[{compute\+\_\+interp\+\_\+der(int, Data \&, Data \&)}]{\setlength{\rightskip}{0pt plus 5cm}void Ray\+::compute\+\_\+interp\+\_\+der (
+\begin{DoxyParamCaption}
+\item[{int}]{n, }
+\item[{{\bf Data} \&}]{ddv, }
+\item[{{\bf Data} \&}]{dd\+E}
+\end{DoxyParamCaption}
+)}\label{class_ray_a1133e78e15ac3cd0feb2bc67d1033b68}
+
+
+method to extract the derivatives of the arrival time with respect to the (log(\+V)) or E at each node, on a coarser grid (by a factor n in all dimensions) than the one used to compute the ray initially. The values of log(\+V) and E on a fine grid are supposed to correspond to a trilinear interpolation of the values on the coarse grid. 
+
+
+\begin{DoxyParams}{Parameters}
+{\em n} & the refinement factor. \\
+\hline
+{\em ddv} & a \hyperlink{class_data}{Data} structure which will contain the interpolated derivatives with respect to v=ln\+V. \\
+\hline
+{\em dd\+E} & a \hyperlink{class_data}{Data} structure which will contain the interpolated derivatives with respect to E. \\
+\hline
+\end{DoxyParams}
+\hypertarget{class_ray_a56bc210ab5c67d0268a10fb4cc15dc71}{}\index{Ray@{Ray}!compute\+\_\+t@{compute\+\_\+t}}
+\index{compute\+\_\+t@{compute\+\_\+t}!Ray@{Ray}}
+\subsubsection[{compute\+\_\+t(const Data \&, const Data \&)}]{\setlength{\rightskip}{0pt plus 5cm}double Ray\+::compute\+\_\+t (
+\begin{DoxyParamCaption}
+\item[{const {\bf Data} \&}]{tab\+\_\+v, }
+\item[{const {\bf Data} \&}]{tab\+\_\+\+E}
+\end{DoxyParamCaption}
+)}\label{class_ray_a56bc210ab5c67d0268a10fb4cc15dc71}
+
+
+method to compute a travel time along the ray, given a velocity and anisotropy models (given on the same grid as the one used to initialise the ray). 
+
+This essentially computes $t = \int_{Ray} (1/V_{group})ds.$ This is useful to recompute arrival times in a new velocity model assuming the ray path is fixed (e.\+g., avoiding to recompute the whole times in a new grid). 
+\begin{DoxyParams}{Parameters}
+{\em tab\+\_\+v} & \hyperlink{class_data}{Data} structure containing the ln(\+V) data, \\
+\hline
+{\em tab\+\_\+\+E} & \hyperlink{class_data}{Data} structure containing the E data. \\
+\hline
+\end{DoxyParams}
+\begin{DoxyReturn}{Returns}
+the travel time. 
+\end{DoxyReturn}
+\hypertarget{class_ray_afe6a19d9cffac14fda35259562887930}{}\index{Ray@{Ray}!compute\+\_\+t\+\_\+and\+\_\+interp\+\_\+der@{compute\+\_\+t\+\_\+and\+\_\+interp\+\_\+der}}
+\index{compute\+\_\+t\+\_\+and\+\_\+interp\+\_\+der@{compute\+\_\+t\+\_\+and\+\_\+interp\+\_\+der}!Ray@{Ray}}
+\subsubsection[{compute\+\_\+t\+\_\+and\+\_\+interp\+\_\+der(const Data \&, const Data \&, int, Data \&, Data \&, double \&, double \&, double \&)}]{\setlength{\rightskip}{0pt plus 5cm}double Ray\+::compute\+\_\+t\+\_\+and\+\_\+interp\+\_\+der (
+\begin{DoxyParamCaption}
+\item[{const {\bf Data} \&}]{tab\+\_\+v, }
+\item[{const {\bf Data} \&}]{tab\+\_\+\+E, }
+\item[{int}]{n, }
+\item[{{\bf Data} \&}]{ddv, }
+\item[{{\bf Data} \&}]{dd\+E, }
+\item[{double \&}]{ddx, }
+\item[{double \&}]{ddy, }
+\item[{double \&}]{ddz}
+\end{DoxyParamCaption}
+)}\label{class_ray_afe6a19d9cffac14fda35259562887930}
+
+
+method to compute a travel time along the ray, given a velocity and anisotropy models (given on the same grid as the one used to initialise the ray), as well as the derivatives of the arrival time with respect to ln\+V and E, computed on a coarser grid (n times less nodes in each directions). 
+
+This essentially computes $t = \int_{Ray} (1/V_{group})ds.$ and $dt/dv, dt/dE$. This is useful to recompute arrival times and frechet kernels in a new velocity model assuming the ray path is fixed (e.\+g., avoiding to recompute the whole times in a new grid). 
+\begin{DoxyParams}{Parameters}
+{\em tab\+\_\+v} & \hyperlink{class_data}{Data} structure containing the ln(\+V) data, \\
+\hline
+{\em tab\+\_\+\+E} & \hyperlink{class_data}{Data} structure containing the E data. \\
+\hline
+{\em n} & the grid refinement factor. \\
+\hline
+{\em ddv} & \hyperlink{class_data}{Data} structure to store the values of dt/dv (v on coraser grid). \\
+\hline
+{\em dd\+E} & \hyperlink{class_data}{Data} structure to store the values of dt/d\+E (E on coarser grid). \\
+\hline
+{\em ddx} & the value (double) of dt/dx0. \\
+\hline
+{\em ddy} & the value (double) of dt/dy0. \\
+\hline
+{\em ddz} & the value (double) of dt/dz0. \\
+\hline
+\end{DoxyParams}
+\begin{DoxyReturn}{Returns}
+the travel time. 
+\end{DoxyReturn}
+\hypertarget{class_ray_ae0467e19b3cf83467dab708af0f8d5d6}{}\index{Ray@{Ray}!trace@{trace}}
+\index{trace@{trace}!Ray@{Ray}}
+\subsubsection[{trace(\+Grid \&, const double \&, const double \&, const double \&)}]{\setlength{\rightskip}{0pt plus 5cm}void Ray\+::trace (
+\begin{DoxyParamCaption}
+\item[{{\bf Grid} \&}]{grd, }
+\item[{const double \&}]{xr, }
+\item[{const double \&}]{yr, }
+\item[{const double \&}]{zr}
+\end{DoxyParamCaption}
+)}\label{class_ray_ae0467e19b3cf83467dab708af0f8d5d6}
+
+
+method to compute the ray path based on a \hyperlink{class_grid}{Grid}. 
+
+
+\begin{DoxyParams}{Parameters}
+{\em grd} & the \hyperlink{class_grid}{Grid} in which arrival times T have been computed \\
+\hline
+{\em xr} & $x$ coordinate of receiver point \\
+\hline
+{\em yr} & $y$ coordinate of receiver point \\
+\hline
+{\em zr} & $z$ coordinate of receiver point \\
+\hline
+\end{DoxyParams}
+
+
+The documentation for this class was generated from the following files\+:\begin{DoxyCompactItemize}
+\item 
+/\+Volumes/\+Data/\+Projects/\+Tomography/\+Faatso/include/raylib.\+hpp\item 
+/\+Volumes/\+Data/\+Projects/\+Tomography/\+Faatso/src/raylib.\+cpp\end{DoxyCompactItemize}

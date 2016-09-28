@@ -1,0 +1,82 @@
+* Faatso
+
+Fast marching Anisotropic Acoustic emission Tomography using Standard Optimisation (Faatso) is a package to perform combined active/passive acoustic emission tomography for heterogeneous (weakly) vertical transversely isotropic media.
+
+The code contains two major elements:
+(1) a 3D VTI eikonal solver, which uses the Fast Marching Method.
+(2) a specific inverse problem solver which uses the least-square Quasi-Newton method to invert for sources positions and velocity structure iteratively.
+
+All the operating parts of the code are written in C++, and interfaces in Matlab are provided to ease the generation and visualisation of the results.
+
+** Installation
+
+*** Requirements and dependencies
+
+To run Faatso, you need:
+(1) a c++ compiler supporting c++11.
+(2) the c++ Boost library (downloadable from http://www.boost.org/users/download/), or at least the boost/heap library which is used in the fast marching algorithm.
+(3) the Armadillo library (downloadable from http://arma.sourceforge.net/download.html) together with Lapack, used to perform linear algebra in the inversion algorithm.
+(4) Matlab (or potentially Octave, but I have not tested that) to run the wrappers and examples.
+
+The path to the Boost header directory (typically something like /usr/local/boost_x_xx_x/) should be accessible by your compiler, for instance by adding it into the CPATH environment variable.
+
+The Armdillo library should also be in the set of library paths of the compiler.
+
+*** Building Faatso
+
+First clone this repository:
+#+begin_src shell
+git clone https://github.com/nbrantut/Faatso.git
+cd Faatso/
+#+end_src
+
+If either Armadillo or Boost libraries are not in the default path of the compiler, you can add them in the Makefile by modifying the variables =LIB= and/or =INC=. If you want to customise the name or path for the executables, edit the Makefile and change the variables =TARGET_FMM= and/or =TARGET_TOMO= to your liking.
+
+To build the executables, simply run =make= or equivalently =make all=. This will generate object files in the =build/= directory, and two executables, =fmm= and =tomo= in the =bin= directory (or whatever name and path you decided if you changed the Makefile).
+
+Either program can be built independently by running =make fmm= or =make tomo=. The binaries and object files are cleaned up by running =make clean=.
+
+** Usage
+
+*** Eikonal solver
+    
+The program =fmm= is the eikonal solver that can be used as an independent tool to perform direct problem computations in 3D regular grids with a weak (elliptic) vertical transverse isotropy.
+
+The program requires 5 input arguments in a specific order (this is clearly not very flexible but in fact not a big deal since it is nearly always wrapped into a Matlab script). For example:
+#+begin_src shell
+./fmm V.bin E.bin 0 1 T.bin
+#+end_src
+where =V.bin= and =E.bin= are two filenames corresponding to the velocity and anisotropy structures (they should both be formed in the same grid dimensions), the third argument (here =0=) is the index of the source node in the grid, the fourth argument (here =1=) is a boolean (0 or 1) dictating whether a source box is to be used, and the last argument (=T.bin=) is again a filename where the arrival times will be stored.
+
+The details of the structure of the binary files, the grid indexing and the signification of the source box parameter are reported in the specific [[./doc/fmm/doc.pdf][documentation]] of the fmm program.
+
+*** Coupled tomographic inversion
+
+The program =tomo= performs the tomographic inversion using the fast marching method for the forward problem and the least square quasi-Newton method for the inverse problem.
+
+The program requires one command line argument, which is the name of a text file containing parameter values (and paths to other input files):
+#+begin_src shell
+./tomo params.txt
+#+end_src
+The content of the parameter file and other input files is given in the companion [[file:doc/tomo/doc.pdf][documentation]].
+
+** Examples
+
+   A series of examples demonstrating the use of the eikonal solver and inversion program are given [[file:examples/][here]], as Matlab scripts. 
+
+Most examples require to add the folder [[interface/matlab/]] to Matlab's path (using for instance the command =addpath()=).
+
+With a conventional installation all matlab codes whould run without modifications: in each case, simply run the script called =example.m=.
+
+** Documentation
+
+The documentation is given in the folder [[doc/]] which contains a full explanation of the code internals ([[doc/code/latex/refman.pdf][pdf]] or [[doc/code/html/index.html][html]]), and methodological choices and details for the eikonal solver ([[doc/fmm/doc.pdf][pdf]]) and the inversion program ([[doc/tomo/doc.pdf][pdf]]).
+
+** Authors
+
+Nicolas Brantut, Rock and Ice Physics and Seismological Laboratory, University College London, UK.
+[[http://www.normalesup.org/~brantut][homepage]]
+
+** Acknowledgments
+
+Many thanks to Romain Jolivet for his help during the development of the inversion program, and for suggesting the name of the package. Thanks also to Ana Feirrera and Alex Song for their useful discussions about wave propagation, eikonal solvers and tomography.

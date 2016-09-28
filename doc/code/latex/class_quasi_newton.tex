@@ -1,0 +1,146 @@
+\hypertarget{class_quasi_newton}{}\section{Quasi\+Newton Class Reference}
+\label{class_quasi_newton}\index{Quasi\+Newton@{Quasi\+Newton}}
+
+
+The class \hyperlink{class_quasi_newton}{Quasi\+Newton} corresponds to the method and associated tools to solve the inverse problem. It is intended as a high-\/level wrapper to run iterations and exports to files, using objetcs of class \hyperlink{class_m}{M} and \hyperlink{class_d}{D} as inputs.  
+
+
+
+
+{\ttfamily \#include $<$tomolib.\+hpp$>$}
+
+\subsection*{Public Member Functions}
+\begin{DoxyCompactItemize}
+\item 
+\hypertarget{class_quasi_newton_acaf2392549a58260df32c0b77a175236}{}\hyperlink{class_quasi_newton_acaf2392549a58260df32c0b77a175236}{Quasi\+Newton} ()\label{class_quasi_newton_acaf2392549a58260df32c0b77a175236}
+
+\begin{DoxyCompactList}\small\item\em Default constructor. \end{DoxyCompactList}\item 
+\hyperlink{class_quasi_newton_acdf5d9bfe6f52db5abf04c372fa9192b}{Quasi\+Newton} (const \hyperlink{class_parameters}{Parameters} \&)
+\begin{DoxyCompactList}\small\item\em Constructor with assignment of parameter values. \end{DoxyCompactList}\item 
+void \hyperlink{class_quasi_newton_ae970b4a40406d2a1f1bbaf97f3ee5708}{initialise} (const \hyperlink{class_parameters}{Parameters} \&)
+\begin{DoxyCompactList}\small\item\em Method to initialise parameter values. \end{DoxyCompactList}\item 
+void \hyperlink{class_quasi_newton_ad6b725714c4ef6aeb9b40084051eda6f}{run} (\hyperlink{class_m}{M} \&, \hyperlink{class_d}{D} \&)
+\begin{DoxyCompactList}\small\item\em Method to run a set number of \hyperlink{class_quasi_newton}{Quasi\+Newton} iterations. this method ends when either the max number of iterations has been reached, or when the residual becomes smaller than the set tolerance. \end{DoxyCompactList}\item 
+void \hyperlink{class_quasi_newton_afe8797743864a335e5f3e636d6685903}{iterate} (\hyperlink{class_m}{M} \&, \hyperlink{class_d}{D} \&)
+\begin{DoxyCompactList}\small\item\em Method to perform one iteration of the \hyperlink{class_quasi_newton}{Quasi\+Newton} inversion procedure. During this process, the jacobian matrix G is computed and stored in the corresponding field of the class \hyperlink{class_quasi_newton}{Quasi\+Newton}, and the least-\/sqaure residual is also computed and stored in a vector. At the end of the iteration, the model and data are exported to external files, so that one can monitor the progress after each iteration. \end{DoxyCompactList}\item 
+void \hyperlink{class_quasi_newton_a6f48065d6c82b0d4679f53e7980a79c6}{export\+\_\+posterior} (\hyperlink{class_m}{M} \&, \hyperlink{class_d}{D} \&)
+\begin{DoxyCompactList}\small\item\em Method to export all relevant vectors (m, d) and posterior covariance matrix into text files, for use elsewhere (notably, to compute the posterior movie). \end{DoxyCompactList}\end{DoxyCompactItemize}
+\subsection*{Public Attributes}
+\begin{DoxyCompactItemize}
+\item 
+\hypertarget{class_quasi_newton_ad74eafe14d3eef96f6cd88bac4cb358e}{}arma\+::mat \hyperlink{class_quasi_newton_ad74eafe14d3eef96f6cd88bac4cb358e}{G}\label{class_quasi_newton_ad74eafe14d3eef96f6cd88bac4cb358e}
+
+\begin{DoxyCompactList}\small\item\em contains the current Jacobian \end{DoxyCompactList}\item 
+\hypertarget{class_quasi_newton_a186725d7fd0c9aa36293ed558a1da33d}{}arma\+::vec \hyperlink{class_quasi_newton_a186725d7fd0c9aa36293ed558a1da33d}{dm}\label{class_quasi_newton_a186725d7fd0c9aa36293ed558a1da33d}
+
+\begin{DoxyCompactList}\small\item\em contains the current step in m \end{DoxyCompactList}\item 
+\hypertarget{class_quasi_newton_a31bab409e3dae8033ad24991502a470b}{}arma\+::vec \hyperlink{class_quasi_newton_a31bab409e3dae8033ad24991502a470b}{residual}\label{class_quasi_newton_a31bab409e3dae8033ad24991502a470b}
+
+\begin{DoxyCompactList}\small\item\em contains the sequence of residuals \end{DoxyCompactList}\item 
+\hypertarget{class_quasi_newton_a3631a7faba07f2d19ac2077e81995396}{}arma\+::mat \hyperlink{class_quasi_newton_a3631a7faba07f2d19ac2077e81995396}{Cmpost}\label{class_quasi_newton_a3631a7faba07f2d19ac2077e81995396}
+
+\begin{DoxyCompactList}\small\item\em posterior covariance matrix on m \end{DoxyCompactList}\end{DoxyCompactItemize}
+
+
+\subsection{Detailed Description}
+The class \hyperlink{class_quasi_newton}{Quasi\+Newton} corresponds to the method and associated tools to solve the inverse problem. It is intended as a high-\/level wrapper to run iterations and exports to files, using objetcs of class \hyperlink{class_m}{M} and \hyperlink{class_d}{D} as inputs. 
+
+\subsection{Constructor \& Destructor Documentation}
+\hypertarget{class_quasi_newton_acdf5d9bfe6f52db5abf04c372fa9192b}{}\index{Quasi\+Newton@{Quasi\+Newton}!Quasi\+Newton@{Quasi\+Newton}}
+\index{Quasi\+Newton@{Quasi\+Newton}!Quasi\+Newton@{Quasi\+Newton}}
+\subsubsection[{Quasi\+Newton(const Parameters \&)}]{\setlength{\rightskip}{0pt plus 5cm}Quasi\+Newton\+::\+Quasi\+Newton (
+\begin{DoxyParamCaption}
+\item[{const {\bf Parameters} \&}]{param}
+\end{DoxyParamCaption}
+)}\label{class_quasi_newton_acdf5d9bfe6f52db5abf04c372fa9192b}
+
+
+Constructor with assignment of parameter values. 
+
+
+\begin{DoxyParams}{Parameters}
+{\em param} & an object of class \hyperlink{class_parameters}{Parameters} containing input parameters and filenames. \\
+\hline
+\end{DoxyParams}
+
+
+\subsection{Member Function Documentation}
+\hypertarget{class_quasi_newton_a6f48065d6c82b0d4679f53e7980a79c6}{}\index{Quasi\+Newton@{Quasi\+Newton}!export\+\_\+posterior@{export\+\_\+posterior}}
+\index{export\+\_\+posterior@{export\+\_\+posterior}!Quasi\+Newton@{Quasi\+Newton}}
+\subsubsection[{export\+\_\+posterior(\+M \&, D \&)}]{\setlength{\rightskip}{0pt plus 5cm}void Quasi\+Newton\+::export\+\_\+posterior (
+\begin{DoxyParamCaption}
+\item[{{\bf M} \&}]{model, }
+\item[{{\bf D} \&}]{data}
+\end{DoxyParamCaption}
+)}\label{class_quasi_newton_a6f48065d6c82b0d4679f53e7980a79c6}
+
+
+Method to export all relevant vectors (m, d) and posterior covariance matrix into text files, for use elsewhere (notably, to compute the posterior movie). 
+
+
+\begin{DoxyParams}{Parameters}
+{\em model} & an object of class \hyperlink{class_m}{M} corresponding to the model space and properties. \\
+\hline
+{\em data} & an object of class \hyperlink{class_d}{D} corresponding to the data space and properties. \\
+\hline
+\end{DoxyParams}
+\hypertarget{class_quasi_newton_ae970b4a40406d2a1f1bbaf97f3ee5708}{}\index{Quasi\+Newton@{Quasi\+Newton}!initialise@{initialise}}
+\index{initialise@{initialise}!Quasi\+Newton@{Quasi\+Newton}}
+\subsubsection[{initialise(const Parameters \&)}]{\setlength{\rightskip}{0pt plus 5cm}void Quasi\+Newton\+::initialise (
+\begin{DoxyParamCaption}
+\item[{const {\bf Parameters} \&}]{param}
+\end{DoxyParamCaption}
+)}\label{class_quasi_newton_ae970b4a40406d2a1f1bbaf97f3ee5708}
+
+
+Method to initialise parameter values. 
+
+
+\begin{DoxyParams}{Parameters}
+{\em param} & an object of class \hyperlink{class_parameters}{Parameters} containing input values. \\
+\hline
+\end{DoxyParams}
+\hypertarget{class_quasi_newton_afe8797743864a335e5f3e636d6685903}{}\index{Quasi\+Newton@{Quasi\+Newton}!iterate@{iterate}}
+\index{iterate@{iterate}!Quasi\+Newton@{Quasi\+Newton}}
+\subsubsection[{iterate(\+M \&, D \&)}]{\setlength{\rightskip}{0pt plus 5cm}void Quasi\+Newton\+::iterate (
+\begin{DoxyParamCaption}
+\item[{{\bf M} \&}]{model, }
+\item[{{\bf D} \&}]{data}
+\end{DoxyParamCaption}
+)}\label{class_quasi_newton_afe8797743864a335e5f3e636d6685903}
+
+
+Method to perform one iteration of the \hyperlink{class_quasi_newton}{Quasi\+Newton} inversion procedure. During this process, the jacobian matrix G is computed and stored in the corresponding field of the class \hyperlink{class_quasi_newton}{Quasi\+Newton}, and the least-\/sqaure residual is also computed and stored in a vector. At the end of the iteration, the model and data are exported to external files, so that one can monitor the progress after each iteration. 
+
+
+\begin{DoxyParams}{Parameters}
+{\em model} & an object of class \hyperlink{class_m}{M} containing the model vector, covariances etc. \\
+\hline
+{\em data} & an object of class \hyperlink{class_d}{D} containing the data vector and method to compute forward model and jacobian. \\
+\hline
+\end{DoxyParams}
+\hypertarget{class_quasi_newton_ad6b725714c4ef6aeb9b40084051eda6f}{}\index{Quasi\+Newton@{Quasi\+Newton}!run@{run}}
+\index{run@{run}!Quasi\+Newton@{Quasi\+Newton}}
+\subsubsection[{run(\+M \&, D \&)}]{\setlength{\rightskip}{0pt plus 5cm}void Quasi\+Newton\+::run (
+\begin{DoxyParamCaption}
+\item[{{\bf M} \&}]{model, }
+\item[{{\bf D} \&}]{data}
+\end{DoxyParamCaption}
+)}\label{class_quasi_newton_ad6b725714c4ef6aeb9b40084051eda6f}
+
+
+Method to run a set number of \hyperlink{class_quasi_newton}{Quasi\+Newton} iterations. this method ends when either the max number of iterations has been reached, or when the residual becomes smaller than the set tolerance. 
+
+
+\begin{DoxyParams}{Parameters}
+{\em model} & an object of class \hyperlink{class_m}{M} corresponding to the model space and properties. \\
+\hline
+{\em data} & an object of class \hyperlink{class_d}{D} corresponding to the data space and properties. \\
+\hline
+\end{DoxyParams}
+
+
+The documentation for this class was generated from the following files\+:\begin{DoxyCompactItemize}
+\item 
+/\+Volumes/\+Data/\+Projects/\+Tomography/\+Faatso/include/tomolib.\+hpp\item 
+/\+Volumes/\+Data/\+Projects/\+Tomography/\+Faatso/src/tomolib.\+cpp\end{DoxyCompactItemize}

@@ -1,0 +1,163 @@
+\begin{theindex}
+
+  \item {compute\+\_\+\+T}
+    \subitem {Tetra}, \hyperpage{22}
+  \item {compute\+\_\+interp\+\_\+der}
+    \subitem {Ray}, \hyperpage{19}
+  \item {compute\+\_\+t}
+    \subitem {Ray}, \hyperpage{19}
+  \item {compute\+\_\+t\+\_\+and\+\_\+interp\+\_\+der}
+    \subitem {Ray}, \hyperpage{20}
+
+  \indexspace
+
+  \item {D}, \hyperpage{3}
+    \subitem {export\+\_\+all}, \hyperpage{4}
+    \subitem {get\+\_\+residual}, \hyperpage{5}
+    \subitem {initialise}, \hyperpage{5}
+  \item {Data}, \hyperpage{5}
+    \subitem {Data}, \hyperpage{6}
+    \subitem {get\+\_\+interp\+\_\+ind\+\_\+coef}, \hyperpage{6}
+    \subitem {load}, \hyperpage{6}
+    \subitem {refine}, \hyperpage{7}
+    \subitem {save}, \hyperpage{7}
+
+  \indexspace
+
+  \item {export\+\_\+\+Tvector}
+    \subitem {Grid}, \hyperpage{9}
+  \item {export\+\_\+all}
+    \subitem {D}, \hyperpage{4}
+  \item {export\+\_\+data}
+    \subitem {M}, \hyperpage{13}
+  \item {export\+\_\+posterior}
+    \subitem {Quasi\+Newton}, \hyperpage{17}
+
+  \indexspace
+
+  \item {findind}
+    \subitem {locations\+::\+Location}, \hyperpage{11}
+  \item {findxyz}
+    \subitem {locations\+::\+Location}, \hyperpage{11}
+
+  \indexspace
+
+  \item {get\+\_\+interp\+\_\+ind\+\_\+coef}
+    \subitem {Data}, \hyperpage{6}
+  \item {get\+\_\+residual}
+    \subitem {D}, \hyperpage{5}
+  \item {Grid}, \hyperpage{7}
+    \subitem {export\+\_\+\+Tvector}, \hyperpage{9}
+    \subitem {Grid}, \hyperpage{8}
+    \subitem {import\+\_\+\+T}, \hyperpage{9}
+    \subitem {ind2sub}, \hyperpage{9}
+    \subitem {initialise}, \hyperpage{9}
+    \subitem {initialise\+\_\+log}, \hyperpage{9}
+    \subitem {march}, \hyperpage{10}
+    \subitem {sub2ind}, \hyperpage{10}
+  \item {group\+\_\+angle}
+    \subitem {Velocity}, \hyperpage{23}
+
+  \indexspace
+
+  \item {import\+\_\+\+T}
+    \subitem {Grid}, \hyperpage{9}
+  \item {ind2sub}
+    \subitem {Grid}, \hyperpage{9}
+  \item {initialise}
+    \subitem {D}, \hyperpage{5}
+    \subitem {Grid}, \hyperpage{9}
+    \subitem {M}, \hyperpage{13}
+    \subitem {Quasi\+Newton}, \hyperpage{17}
+  \item {initialise\+\_\+log}
+    \subitem {Grid}, \hyperpage{9}
+  \item {iterate}
+    \subitem {Quasi\+Newton}, \hyperpage{17}
+
+  \indexspace
+
+  \item {load}
+    \subitem {Data}, \hyperpage{6}
+  \item {Location}
+    \subitem {locations\+::\+Location}, \hyperpage{11}
+  \item {locations\+::\+Location}, \hyperpage{10}
+    \subitem {findind}, \hyperpage{11}
+    \subitem {findxyz}, \hyperpage{11}
+    \subitem {Location}, \hyperpage{11}
+
+  \indexspace
+
+  \item {M}, \hyperpage{12}
+    \subitem {export\+\_\+data}, \hyperpage{13}
+    \subitem {initialise}, \hyperpage{13}
+  \item {march}
+    \subitem {Grid}, \hyperpage{10}
+
+  \indexspace
+
+  \item {nhb}
+    \subitem {Node}, \hyperpage{14}
+  \item {Node}, \hyperpage{13}
+    \subitem {nhb}, \hyperpage{14}
+
+  \indexspace
+
+  \item {Parameters}, \hyperpage{14}
+  \item {phase\+\_\+angle}
+    \subitem {Velocity}, \hyperpage{24}
+
+  \indexspace
+
+  \item {Quasi\+Newton}, \hyperpage{16}
+    \subitem {export\+\_\+posterior}, \hyperpage{17}
+    \subitem {initialise}, \hyperpage{17}
+    \subitem {iterate}, \hyperpage{17}
+    \subitem {Quasi\+Newton}, \hyperpage{17}
+    \subitem {run}, \hyperpage{18}
+
+  \indexspace
+
+  \item {Ray}, \hyperpage{18}
+    \subitem {compute\+\_\+interp\+\_\+der}, \hyperpage{19}
+    \subitem {compute\+\_\+t}, \hyperpage{19}
+    \subitem {compute\+\_\+t\+\_\+and\+\_\+interp\+\_\+der}, 
+		\hyperpage{20}
+    \subitem {trace}, \hyperpage{20}
+  \item {refine}
+    \subitem {Data}, \hyperpage{7}
+  \item {run}
+    \subitem {Quasi\+Newton}, \hyperpage{18}
+
+  \indexspace
+
+  \item {save}
+    \subitem {Data}, \hyperpage{7}
+  \item {Sources}, \hyperpage{20}
+  \item {sub2ind}
+    \subitem {Grid}, \hyperpage{10}
+
+  \indexspace
+
+  \item {tan\+\_\+group\+\_\+angle}
+    \subitem {Velocity}, \hyperpage{24}
+  \item {Tetra}, \hyperpage{21}
+    \subitem {compute\+\_\+\+T}, \hyperpage{22}
+    \subitem {Tetra}, \hyperpage{22}
+  \item {trace}
+    \subitem {Ray}, \hyperpage{20}
+
+  \indexspace
+
+  \item {Velocity}, \hyperpage{22}
+    \subitem {group\+\_\+angle}, \hyperpage{23}
+    \subitem {phase\+\_\+angle}, \hyperpage{24}
+    \subitem {tan\+\_\+group\+\_\+angle}, \hyperpage{24}
+    \subitem {Velocity}, \hyperpage{23}
+    \subitem {Vgroup}, \hyperpage{24}
+    \subitem {Vphase}, \hyperpage{24}
+  \item {Vgroup}
+    \subitem {Velocity}, \hyperpage{24}
+  \item {Vphase}
+    \subitem {Velocity}, \hyperpage{24}
+
+\end{theindex}

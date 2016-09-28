@@ -1,0 +1,77 @@
+\hypertarget{class_node}{}\section{Node Class Reference}
+\label{class_node}\index{Node@{Node}}
+
+
+The class \hyperlink{class_node}{Node} corresponds to a node in a three dimensional orthonormal grid.  
+
+
+
+
+{\ttfamily \#include $<$fmmlib.\+hpp$>$}
+
+\subsection*{Public Member Functions}
+\begin{DoxyCompactItemize}
+\item 
+\hypertarget{class_node_ad7a34779cad45d997bfd6d3d8043c75f}{}\hyperlink{class_node_ad7a34779cad45d997bfd6d3d8043c75f}{Node} ()\label{class_node_ad7a34779cad45d997bfd6d3d8043c75f}
+
+\begin{DoxyCompactList}\small\item\em constructor for class \hyperlink{class_node}{Node}. Sets index and coordinates to 0, T to infinity, all neighbour indices to -\/1, unknown to true, and trial and known to false. \end{DoxyCompactList}\item 
+\hypertarget{class_node_a95697fcac6323cbb7797e93a8127a8cb}{}bool \hyperlink{class_node_a95697fcac6323cbb7797e93a8127a8cb}{operator$>$} (const \hyperlink{class_node}{Node} \&pt) const \label{class_node_a95697fcac6323cbb7797e93a8127a8cb}
+
+\begin{DoxyCompactList}\small\item\em define comparison operator $>$ for class \char`\"{}node\char`\"{} (compares the arrival time T) \end{DoxyCompactList}\item 
+\hypertarget{class_node_aab685edaeba13503d356e496e567f34f}{}bool \hyperlink{class_node_aab685edaeba13503d356e496e567f34f}{operator$<$} (const \hyperlink{class_node}{Node} \&pt) const \label{class_node_aab685edaeba13503d356e496e567f34f}
+
+\begin{DoxyCompactList}\small\item\em define comparison operator $<$ for class \char`\"{}node\char`\"{} (compares the arrival time T) \end{DoxyCompactList}\end{DoxyCompactItemize}
+\subsection*{Public Attributes}
+\begin{DoxyCompactItemize}
+\item 
+\hypertarget{class_node_ac8055cdbda20cacce417192557741ab8}{}int \hyperlink{class_node_ac8055cdbda20cacce417192557741ab8}{index}\label{class_node_ac8055cdbda20cacce417192557741ab8}
+
+\begin{DoxyCompactList}\small\item\em the index of the node in the grid, a unique identifier. It corresponds to the linear index in a 3\+D matrix, similar to Matlab linear indices. \end{DoxyCompactList}\item 
+\hypertarget{class_node_ac92c571228f56330b3e37ca1d43feb93}{}int \hyperlink{class_node_ac92c571228f56330b3e37ca1d43feb93}{i}\label{class_node_ac92c571228f56330b3e37ca1d43feb93}
+
+\begin{DoxyCompactList}\small\item\em the subscript index along the x direction. \end{DoxyCompactList}\item 
+\hypertarget{class_node_a747e7d35178b7a2c4020b9ca4d26ea89}{}int \hyperlink{class_node_a747e7d35178b7a2c4020b9ca4d26ea89}{j}\label{class_node_a747e7d35178b7a2c4020b9ca4d26ea89}
+
+\begin{DoxyCompactList}\small\item\em the subscript index along the y direction. \end{DoxyCompactList}\item 
+\hypertarget{class_node_a0606a25fcca0b0ebfff00711c8b6db03}{}int \hyperlink{class_node_a0606a25fcca0b0ebfff00711c8b6db03}{k}\label{class_node_a0606a25fcca0b0ebfff00711c8b6db03}
+
+\begin{DoxyCompactList}\small\item\em the subscript index along the z direction. \end{DoxyCompactList}\item 
+int \hyperlink{class_node_a8c9884342c7159797193a004efc41487}{nhb} \mbox{[}6\mbox{]}
+\begin{DoxyCompactList}\small\item\em an array of the 6 indices corresponding to the 6 neighbours of the node in the grid. \end{DoxyCompactList}\item 
+\hypertarget{class_node_af2767a71fa91a4331c145bf9f002e48a}{}double \hyperlink{class_node_af2767a71fa91a4331c145bf9f002e48a}{T}\label{class_node_af2767a71fa91a4331c145bf9f002e48a}
+
+\begin{DoxyCompactList}\small\item\em the arrival time of the wavefront at the node. \end{DoxyCompactList}\item 
+\hypertarget{class_node_a5e29eb2082f268ec5ac6fd5283efeaff}{}double \hyperlink{class_node_a5e29eb2082f268ec5ac6fd5283efeaff}{V}\label{class_node_a5e29eb2082f268ec5ac6fd5283efeaff}
+
+\begin{DoxyCompactList}\small\item\em the horizontal wavespeed at this node. \end{DoxyCompactList}\item 
+\hypertarget{class_node_af520653e3757cb51df0ca39e1bd23334}{}double \hyperlink{class_node_af520653e3757cb51df0ca39e1bd23334}{E}\label{class_node_af520653e3757cb51df0ca39e1bd23334}
+
+\begin{DoxyCompactList}\small\item\em the anisotropy parameter (ratio of vertical to horizontal wavespeed). \end{DoxyCompactList}\item 
+\hypertarget{class_node_ac45899b8aec5b70fed4cfd741b50a313}{}bool \hyperlink{class_node_ac45899b8aec5b70fed4cfd741b50a313}{trial}\label{class_node_ac45899b8aec5b70fed4cfd741b50a313}
+
+\begin{DoxyCompactList}\small\item\em boolean tag for \char`\"{}trial\char`\"{} nodes. \end{DoxyCompactList}\item 
+\hypertarget{class_node_a90742c509f7ec1df45564ca84602777a}{}bool \hyperlink{class_node_a90742c509f7ec1df45564ca84602777a}{known}\label{class_node_a90742c509f7ec1df45564ca84602777a}
+
+\begin{DoxyCompactList}\small\item\em boolean tag for \char`\"{}known\char`\"{} nodes. \end{DoxyCompactList}\item 
+\hypertarget{class_node_ad3025b3e4fbfde2644217c6e2099a4ae}{}bool \hyperlink{class_node_ad3025b3e4fbfde2644217c6e2099a4ae}{unknown}\label{class_node_ad3025b3e4fbfde2644217c6e2099a4ae}
+
+\begin{DoxyCompactList}\small\item\em boolean tag for "unknown nodes. \end{DoxyCompactList}\end{DoxyCompactItemize}
+
+
+\subsection{Detailed Description}
+The class \hyperlink{class_node}{Node} corresponds to a node in a three dimensional orthonormal grid. 
+
+\subsection{Member Data Documentation}
+\hypertarget{class_node_a8c9884342c7159797193a004efc41487}{}\index{Node@{Node}!nhb@{nhb}}
+\index{nhb@{nhb}!Node@{Node}}
+\subsubsection[{nhb}]{\setlength{\rightskip}{0pt plus 5cm}int Node\+::nhb\mbox{[}6\mbox{]}}\label{class_node_a8c9884342c7159797193a004efc41487}
+
+
+an array of the 6 indices corresponding to the 6 neighbours of the node in the grid. 
+
+If the index is -\/1, it means that the neighbour does not exist (point outside the grid). nhb\mbox{[}0\mbox{]} corresponds to the neighbour in +x nhb\mbox{[}1\mbox{]} corresponds to the neighbour in -\/x nhb\mbox{[}2\mbox{]} corresponds to the neighbour in +y nhb\mbox{[}3\mbox{]} corresponds to the neighbour in -\/y nhb\mbox{[}4\mbox{]} corresponds to the neighbour in +z nhb\mbox{[}5\mbox{]} corresponds to the neighbour in -\/z 
+
+The documentation for this class was generated from the following files\+:\begin{DoxyCompactItemize}
+\item 
+/\+Volumes/\+Data/\+Projects/\+Tomography/\+Faatso/include/fmmlib.\+hpp\item 
+/\+Volumes/\+Data/\+Projects/\+Tomography/\+Faatso/src/fmmlib.\+cpp\end{DoxyCompactItemize}

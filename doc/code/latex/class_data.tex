@@ -1,0 +1,174 @@
+\hypertarget{class_data}{}\section{Data Class Reference}
+\label{class_data}\index{Data@{Data}}
+
+
+The class \hyperlink{class_data}{Data} is used to load and save the binaries used for input/output in the fmm main code. It stores $<$double$>$ values at every grid point, as well as the grid dimensions and spacing.  
+
+
+
+
+{\ttfamily \#include $<$fmmiolib.\+hpp$>$}
+
+\subsection*{Public Member Functions}
+\begin{DoxyCompactItemize}
+\item 
+\hypertarget{class_data_af11f741cb7f587e2e495452a8905a22a}{}\hyperlink{class_data_af11f741cb7f587e2e495452a8905a22a}{Data} ()\label{class_data_af11f741cb7f587e2e495452a8905a22a}
+
+\begin{DoxyCompactList}\small\item\em basic class constructor \end{DoxyCompactList}\item 
+\hyperlink{class_data_a7fcbb819bb4248bf7b2879ecbd779856}{Data} (const int \&, const int \&, const int \&, const double \&)
+\begin{DoxyCompactList}\small\item\em class constructor \end{DoxyCompactList}\item 
+void \hyperlink{class_data_a1b87bf3e150457ed4802519e01269e6f}{load} (const char $\ast$)
+\begin{DoxyCompactList}\small\item\em member function that loads data from a formatted binary source. \end{DoxyCompactList}\item 
+void \hyperlink{class_data_af662d35ce891f3134126d7228c09ecf2}{save} (const char $\ast$)
+\begin{DoxyCompactList}\small\item\em member function that saves data into formatted binary source. \end{DoxyCompactList}\item 
+\hyperlink{class_data}{Data} \hyperlink{class_data_a918f999b5a6566dea80f2b2386d2e782}{refine} (int)
+\begin{DoxyCompactList}\small\item\em member function that uses the data stored in dat, based on a given (coarse) grid specified by Nx, Ny, Nz and h, to generate a new \hyperlink{class_data}{Data} object containing interpolated values of dat on a refined grid. \end{DoxyCompactList}\item 
+void \hyperlink{class_data_a50dd75925951c02569fc7d7e581246a2}{get\+\_\+interp\+\_\+ind\+\_\+coef} (int $\ast$, double $\ast$, const int \&, const int \&, const int \&, const int \&, const int \&)
+\begin{DoxyCompactList}\small\item\em method to obtain surrounding node indices and interpolation coefficients based on a linear index in a refined grid of size Nxf, Nyf, Nzf (refinement factor n). \end{DoxyCompactList}\end{DoxyCompactItemize}
+\subsection*{Public Attributes}
+\begin{DoxyCompactItemize}
+\item 
+\hypertarget{class_data_aafc6f232c04548e989932a16fa5a3119}{}std\+::vector$<$ double $>$ \hyperlink{class_data_aafc6f232c04548e989932a16fa5a3119}{dat}\label{class_data_aafc6f232c04548e989932a16fa5a3119}
+
+\begin{DoxyCompactList}\small\item\em a vector of data (will be of size Nx$\ast$\+Ny$\ast$\+Nz) \end{DoxyCompactList}\item 
+\hypertarget{class_data_af922e5e61335d2356f7b5baeefaa5497}{}int \hyperlink{class_data_af922e5e61335d2356f7b5baeefaa5497}{Nx}\label{class_data_af922e5e61335d2356f7b5baeefaa5497}
+
+\begin{DoxyCompactList}\small\item\em number of nodes in x direction \end{DoxyCompactList}\item 
+\hypertarget{class_data_a237cd8c4464b0a3600d3f6ed10e376d6}{}int \hyperlink{class_data_a237cd8c4464b0a3600d3f6ed10e376d6}{Ny}\label{class_data_a237cd8c4464b0a3600d3f6ed10e376d6}
+
+\begin{DoxyCompactList}\small\item\em number of nodes in y direction \end{DoxyCompactList}\item 
+\hypertarget{class_data_aff55d085686563c59eef1951723e0247}{}int \hyperlink{class_data_aff55d085686563c59eef1951723e0247}{Nz}\label{class_data_aff55d085686563c59eef1951723e0247}
+
+\begin{DoxyCompactList}\small\item\em number of nodes in z direction \end{DoxyCompactList}\item 
+\hypertarget{class_data_a500aa544b221d1b75a0ac12cffe6a695}{}double \hyperlink{class_data_a500aa544b221d1b75a0ac12cffe6a695}{h}\label{class_data_a500aa544b221d1b75a0ac12cffe6a695}
+
+\begin{DoxyCompactList}\small\item\em grid spacing \end{DoxyCompactList}\end{DoxyCompactItemize}
+
+
+\subsection{Detailed Description}
+The class \hyperlink{class_data}{Data} is used to load and save the binaries used for input/output in the fmm main code. It stores $<$double$>$ values at every grid point, as well as the grid dimensions and spacing. 
+
+\subsection{Constructor \& Destructor Documentation}
+\hypertarget{class_data_a7fcbb819bb4248bf7b2879ecbd779856}{}\index{Data@{Data}!Data@{Data}}
+\index{Data@{Data}!Data@{Data}}
+\subsubsection[{Data(const int \&, const int \&, const int \&, const double \&)}]{\setlength{\rightskip}{0pt plus 5cm}Data\+::\+Data (
+\begin{DoxyParamCaption}
+\item[{const int \&}]{n1, }
+\item[{const int \&}]{n2, }
+\item[{const int \&}]{n3, }
+\item[{const double \&}]{s}
+\end{DoxyParamCaption}
+)}\label{class_data_a7fcbb819bb4248bf7b2879ecbd779856}
+
+
+class constructor 
+
+
+\begin{DoxyParams}{Parameters}
+{\em n1} & number of grid points in the x direction. \\
+\hline
+{\em n2} & number of grid points in the y direction. \\
+\hline
+{\em n3} & number of grid points in the z direction. \\
+\hline
+{\em s} & grid spacing. \\
+\hline
+\end{DoxyParams}
+
+
+\subsection{Member Function Documentation}
+\hypertarget{class_data_a50dd75925951c02569fc7d7e581246a2}{}\index{Data@{Data}!get\+\_\+interp\+\_\+ind\+\_\+coef@{get\+\_\+interp\+\_\+ind\+\_\+coef}}
+\index{get\+\_\+interp\+\_\+ind\+\_\+coef@{get\+\_\+interp\+\_\+ind\+\_\+coef}!Data@{Data}}
+\subsubsection[{get\+\_\+interp\+\_\+ind\+\_\+coef(int $\ast$, double $\ast$, const int \&, const int \&, const int \&, const int \&, const int \&)}]{\setlength{\rightskip}{0pt plus 5cm}void Data\+::get\+\_\+interp\+\_\+ind\+\_\+coef (
+\begin{DoxyParamCaption}
+\item[{int $\ast$}]{I\+I, }
+\item[{double $\ast$}]{xyz, }
+\item[{const int \&}]{ind, }
+\item[{const int \&}]{Nxf, }
+\item[{const int \&}]{Nyf, }
+\item[{const int \&}]{Nzf, }
+\item[{const int \&}]{n}
+\end{DoxyParamCaption}
+)}\label{class_data_a50dd75925951c02569fc7d7e581246a2}
+
+
+method to obtain surrounding node indices and interpolation coefficients based on a linear index in a refined grid of size Nxf, Nyf, Nzf (refinement factor n). 
+
+
+\begin{DoxyParams}{Parameters}
+{\em I\+I} & an array of 8 integers to store the surrounding nodes indices. this is the output value (C style). \\
+\hline
+{\em xyz} & an array of 3 doubles to store the relative (x,y,z) position of the node (in the fine grid) of interest within the cube formed by the 8 neighbouring nodes in the coarse grid. this is the output value (C style). \\
+\hline
+{\em ind} & the linear index of node of interest. \\
+\hline
+{\em Nxf} & the number of nodes along the x direction. \\
+\hline
+{\em Nyf} & the number of nodes along the y direction. \\
+\hline
+{\em Nzf} & the number of nodes along the z direction. \\
+\hline
+{\em n} & the refinement factor. \\
+\hline
+\end{DoxyParams}
+\hypertarget{class_data_a1b87bf3e150457ed4802519e01269e6f}{}\index{Data@{Data}!load@{load}}
+\index{load@{load}!Data@{Data}}
+\subsubsection[{load(const char $\ast$)}]{\setlength{\rightskip}{0pt plus 5cm}void Data\+::load (
+\begin{DoxyParamCaption}
+\item[{const char $\ast$}]{filename}
+\end{DoxyParamCaption}
+)}\label{class_data_a1b87bf3e150457ed4802519e01269e6f}
+
+
+member function that loads data from a formatted binary source. 
+
+The file should be a formatted binary which contains the following sequence\+: 3 integer types (number of grid points Nx, Ny, Nz), 1 double type (grid spacing h), Ntot double types (Ntot = Nx$\ast$\+Ny$\ast$\+Nz) which are the data attached to every grid point.
+
+
+\begin{DoxyParams}{Parameters}
+{\em filename} & a character string containing the name of file to read. \\
+\hline
+\end{DoxyParams}
+\hypertarget{class_data_a918f999b5a6566dea80f2b2386d2e782}{}\index{Data@{Data}!refine@{refine}}
+\index{refine@{refine}!Data@{Data}}
+\subsubsection[{refine(int)}]{\setlength{\rightskip}{0pt plus 5cm}{\bf Data} Data\+::refine (
+\begin{DoxyParamCaption}
+\item[{int}]{n}
+\end{DoxyParamCaption}
+)}\label{class_data_a918f999b5a6566dea80f2b2386d2e782}
+
+
+member function that uses the data stored in dat, based on a given (coarse) grid specified by Nx, Ny, Nz and h, to generate a new \hyperlink{class_data}{Data} object containing interpolated values of dat on a refined grid. 
+
+The refinement factor is given by an integer, to be chosen so that the subdivision produces an integer number of new nodes, i.\+e., n should divide (Nx-\/1), (Ny-\/1) and (Nz-\/1). 
+\begin{DoxyParams}{Parameters}
+{\em n} & the refinement factor. \\
+\hline
+\end{DoxyParams}
+\begin{DoxyReturn}{Returns}
+a \hyperlink{class_data}{Data} object with the refined (linearly interpolated) values of dat. 
+\end{DoxyReturn}
+\hypertarget{class_data_af662d35ce891f3134126d7228c09ecf2}{}\index{Data@{Data}!save@{save}}
+\index{save@{save}!Data@{Data}}
+\subsubsection[{save(const char $\ast$)}]{\setlength{\rightskip}{0pt plus 5cm}void Data\+::save (
+\begin{DoxyParamCaption}
+\item[{const char $\ast$}]{filename}
+\end{DoxyParamCaption}
+)}\label{class_data_af662d35ce891f3134126d7228c09ecf2}
+
+
+member function that saves data into formatted binary source. 
+
+The file generated is a formatted binary which contains the following sequence\+: 3 integer types (number of grid points Nx, Ny, Nz), 1 double type (grid spacing h), Ntot double types (Ntot = Nx$\ast$\+Ny$\ast$\+Nz) which are the data attached to every grid point.
+
+
+\begin{DoxyParams}{Parameters}
+{\em filename} & a character string containing the name of file to write. \\
+\hline
+\end{DoxyParams}
+
+
+The documentation for this class was generated from the following files\+:\begin{DoxyCompactItemize}
+\item 
+/\+Volumes/\+Data/\+Projects/\+Tomography/\+Faatso/include/fmmiolib.\+hpp\item 
+/\+Volumes/\+Data/\+Projects/\+Tomography/\+Faatso/src/fmmiolib.\+cpp\end{DoxyCompactItemize}

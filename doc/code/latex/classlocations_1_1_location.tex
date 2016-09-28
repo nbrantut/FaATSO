@@ -1,0 +1,138 @@
+\hypertarget{classlocations_1_1_location}{}\section{locations\+:\+:Location Class Reference}
+\label{classlocations_1_1_location}\index{locations\+::\+Location@{locations\+::\+Location}}
+
+
+The class Source is used to store source points, with their coordinates and their corresponding linear index in a \hyperlink{class_grid}{Grid}.  
+
+
+
+
+{\ttfamily \#include $<$fmmiolib.\+hpp$>$}
+
+\subsection*{Public Member Functions}
+\begin{DoxyCompactItemize}
+\item 
+\hypertarget{classlocations_1_1_location_a0893d52bf363811060b99bfcb1f15937}{}\hyperlink{classlocations_1_1_location_a0893d52bf363811060b99bfcb1f15937}{Location} ()\label{classlocations_1_1_location_a0893d52bf363811060b99bfcb1f15937}
+
+\begin{DoxyCompactList}\small\item\em default constructor for class Source. Sets the (x,y,z) position to (0,0,0) and the linear index to 0. \end{DoxyCompactList}\item 
+\hyperlink{classlocations_1_1_location_a4ba22525e61db96d14a1beb0e60722a1}{Location} (const double \&, const double \&, const double \&, const double \&)
+\begin{DoxyCompactList}\small\item\em constructor for class \hyperlink{classlocations_1_1_location}{Location}. \end{DoxyCompactList}\item 
+void \hyperlink{classlocations_1_1_location_a474afde4468d90a3124d202f83598f87}{findind} (\hyperlink{class_grid}{Grid} \&)
+\begin{DoxyCompactList}\small\item\em method to determine the source index based on a given \hyperlink{class_grid}{Grid}. \end{DoxyCompactList}\item 
+void \hyperlink{classlocations_1_1_location_afd6d2d2f047e15837ab7cc463ec15654}{findind} (const int \&, const int \&, const int \&, const double \&)
+\begin{DoxyCompactList}\small\item\em method to determine the source index based on a given \hyperlink{class_grid}{Grid} dimensions. \end{DoxyCompactList}\item 
+void \hyperlink{classlocations_1_1_location_abe1541c2a54d0b19cc67213f5e9eead5}{findxyz} (\hyperlink{class_grid}{Grid} \&)
+\begin{DoxyCompactList}\small\item\em method to determine the x,y,z position of an event based on a \hyperlink{class_grid}{Grid}. \end{DoxyCompactList}\end{DoxyCompactItemize}
+\subsection*{Public Attributes}
+\begin{DoxyCompactItemize}
+\item 
+\hypertarget{classlocations_1_1_location_a23a429a4f5fb78c5c9652576791cc57c}{}double \hyperlink{classlocations_1_1_location_a23a429a4f5fb78c5c9652576791cc57c}{x}\label{classlocations_1_1_location_a23a429a4f5fb78c5c9652576791cc57c}
+
+\begin{DoxyCompactList}\small\item\em the x coordinate of the source \end{DoxyCompactList}\item 
+\hypertarget{classlocations_1_1_location_a2bfbc1a3d9f6e47909d4616052380ef1}{}double \hyperlink{classlocations_1_1_location_a2bfbc1a3d9f6e47909d4616052380ef1}{y}\label{classlocations_1_1_location_a2bfbc1a3d9f6e47909d4616052380ef1}
+
+\begin{DoxyCompactList}\small\item\em the y coordinate of the source \end{DoxyCompactList}\item 
+\hypertarget{classlocations_1_1_location_a10ed18a2d5818e1ff1e5dc20e7855c12}{}double \hyperlink{classlocations_1_1_location_a10ed18a2d5818e1ff1e5dc20e7855c12}{z}\label{classlocations_1_1_location_a10ed18a2d5818e1ff1e5dc20e7855c12}
+
+\begin{DoxyCompactList}\small\item\em the z coordinate of the source \end{DoxyCompactList}\item 
+\hypertarget{classlocations_1_1_location_a95df6ae5910144a54d50fef60beff6f6}{}double \hyperlink{classlocations_1_1_location_a95df6ae5910144a54d50fef60beff6f6}{t0}\label{classlocations_1_1_location_a95df6ae5910144a54d50fef60beff6f6}
+
+\begin{DoxyCompactList}\small\item\em the origin time of the source \end{DoxyCompactList}\item 
+\hypertarget{classlocations_1_1_location_a6cef9006891e9e3bdd15fb7ff0a458f3}{}int \hyperlink{classlocations_1_1_location_a6cef9006891e9e3bdd15fb7ff0a458f3}{ind}\label{classlocations_1_1_location_a6cef9006891e9e3bdd15fb7ff0a458f3}
+
+\begin{DoxyCompactList}\small\item\em the linear index of the source (i.\+e., the index of the closest node) in a \hyperlink{class_grid}{Grid} \end{DoxyCompactList}\end{DoxyCompactItemize}
+
+
+\subsection{Detailed Description}
+The class Source is used to store source points, with their coordinates and their corresponding linear index in a \hyperlink{class_grid}{Grid}. 
+
+\subsection{Constructor \& Destructor Documentation}
+\hypertarget{classlocations_1_1_location_a4ba22525e61db96d14a1beb0e60722a1}{}\index{locations\+::\+Location@{locations\+::\+Location}!Location@{Location}}
+\index{Location@{Location}!locations\+::\+Location@{locations\+::\+Location}}
+\subsubsection[{Location(const double \&, const double \&, const double \&, const double \&)}]{\setlength{\rightskip}{0pt plus 5cm}locations\+::\+Location\+::\+Location (
+\begin{DoxyParamCaption}
+\item[{const double \&}]{xi, }
+\item[{const double \&}]{yi, }
+\item[{const double \&}]{zi, }
+\item[{const double \&}]{t0i}
+\end{DoxyParamCaption}
+)}\label{classlocations_1_1_location_a4ba22525e61db96d14a1beb0e60722a1}
+
+
+constructor for class \hyperlink{classlocations_1_1_location}{Location}. 
+
+
+\begin{DoxyParams}{Parameters}
+{\em xi} & x coordinate \\
+\hline
+{\em yi} & y coordinate \\
+\hline
+{\em zi} & z coordinate \\
+\hline
+\end{DoxyParams}
+
+
+\subsection{Member Function Documentation}
+\hypertarget{classlocations_1_1_location_a474afde4468d90a3124d202f83598f87}{}\index{locations\+::\+Location@{locations\+::\+Location}!findind@{findind}}
+\index{findind@{findind}!locations\+::\+Location@{locations\+::\+Location}}
+\subsubsection[{findind(\+Grid \&)}]{\setlength{\rightskip}{0pt plus 5cm}void locations\+::\+Location\+::findind (
+\begin{DoxyParamCaption}
+\item[{{\bf Grid} \&}]{grd}
+\end{DoxyParamCaption}
+)}\label{classlocations_1_1_location_a474afde4468d90a3124d202f83598f87}
+
+
+method to determine the source index based on a given \hyperlink{class_grid}{Grid}. 
+
+
+\begin{DoxyParams}{Parameters}
+{\em grd} & the grid in which the source is. \\
+\hline
+\end{DoxyParams}
+\hypertarget{classlocations_1_1_location_afd6d2d2f047e15837ab7cc463ec15654}{}\index{locations\+::\+Location@{locations\+::\+Location}!findind@{findind}}
+\index{findind@{findind}!locations\+::\+Location@{locations\+::\+Location}}
+\subsubsection[{findind(const int \&, const int \&, const int \&, const double \&)}]{\setlength{\rightskip}{0pt plus 5cm}void locations\+::\+Location\+::findind (
+\begin{DoxyParamCaption}
+\item[{const int \&}]{Nx, }
+\item[{const int \&}]{Ny, }
+\item[{const int \&}]{Nz, }
+\item[{const double \&}]{h}
+\end{DoxyParamCaption}
+)}\label{classlocations_1_1_location_afd6d2d2f047e15837ab7cc463ec15654}
+
+
+method to determine the source index based on a given \hyperlink{class_grid}{Grid} dimensions. 
+
+
+\begin{DoxyParams}{Parameters}
+{\em Nx} & number of grid points in the x direction. \\
+\hline
+{\em Ny} & number of grid points in the y direction. \\
+\hline
+{\em Nz} & number of grid points in the z direction. \\
+\hline
+{\em h} & grid spacing. \\
+\hline
+\end{DoxyParams}
+\hypertarget{classlocations_1_1_location_abe1541c2a54d0b19cc67213f5e9eead5}{}\index{locations\+::\+Location@{locations\+::\+Location}!findxyz@{findxyz}}
+\index{findxyz@{findxyz}!locations\+::\+Location@{locations\+::\+Location}}
+\subsubsection[{findxyz(\+Grid \&)}]{\setlength{\rightskip}{0pt plus 5cm}void locations\+::\+Location\+::findxyz (
+\begin{DoxyParamCaption}
+\item[{{\bf Grid} \&}]{grd}
+\end{DoxyParamCaption}
+)}\label{classlocations_1_1_location_abe1541c2a54d0b19cc67213f5e9eead5}
+
+
+method to determine the x,y,z position of an event based on a \hyperlink{class_grid}{Grid}. 
+
+
+\begin{DoxyParams}{Parameters}
+{\em grd} & the grid in which the source is. \\
+\hline
+\end{DoxyParams}
+
+
+The documentation for this class was generated from the following files\+:\begin{DoxyCompactItemize}
+\item 
+/\+Volumes/\+Data/\+Projects/\+Tomography/\+Faatso/include/fmmiolib.\+hpp\item 
+/\+Volumes/\+Data/\+Projects/\+Tomography/\+Faatso/src/fmmiolib.\+cpp\end{DoxyCompactItemize}

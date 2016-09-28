@@ -1,0 +1,246 @@
+\hypertarget{class_grid}{}\section{Grid Class Reference}
+\label{class_grid}\index{Grid@{Grid}}
+
+
+The class \hyperlink{class_grid}{Grid} corresponds to the set of nodes at which arrival time is to be computed, and contains the methods to do that.  
+
+
+
+
+{\ttfamily \#include $<$fmmlib.\+hpp$>$}
+
+\subsection*{Public Member Functions}
+\begin{DoxyCompactItemize}
+\item 
+\hyperlink{class_grid_acecf610ba3dbc40e048d00d4585e755a}{Grid} (const int \&, const int \&, const int \&, const double \&)
+\begin{DoxyCompactList}\small\item\em Class constructor. \end{DoxyCompactList}\item 
+\hypertarget{class_grid_a3661d0a7f998caaaf8627d7a67072116}{}\hyperlink{class_grid_a3661d0a7f998caaaf8627d7a67072116}{$\sim$\+Grid} ()\label{class_grid_a3661d0a7f998caaaf8627d7a67072116}
+
+\begin{DoxyCompactList}\small\item\em Class destructor. \end{DoxyCompactList}\item 
+void \hyperlink{class_grid_a525c06212728b34d29fef58a3a6d27f8}{initialise} (const std\+::vector$<$ double $>$ \&, const std\+::vector$<$ double $>$ \&)
+\begin{DoxyCompactList}\small\item\em method to initialise grid. \end{DoxyCompactList}\item 
+void \hyperlink{class_grid_a457b4cc1c95623e35e6d16a855b6781e}{initialise\+\_\+log} (const std\+::vector$<$ double $>$ \&, const std\+::vector$<$ double $>$ \&)
+\begin{DoxyCompactList}\small\item\em method to initialise grid using a vecotr of log\+V instead of V. \end{DoxyCompactList}\item 
+\hypertarget{class_grid_aac9b3a29c1b401552b312e9f26eda623}{}void \hyperlink{class_grid_aac9b3a29c1b401552b312e9f26eda623}{reset\+\_\+\+T} ()\label{class_grid_aac9b3a29c1b401552b312e9f26eda623}
+
+\begin{DoxyCompactList}\small\item\em method to reset all nodes of the grid to +infinity, so that the grid is ready for another computation using the same V and E etc. \end{DoxyCompactList}\item 
+\hypertarget{class_grid_acf7695627b9a8573fa614ade7d7720ef}{}void \hyperlink{class_grid_acf7695627b9a8573fa614ade7d7720ef}{reset} (const std\+::vector$<$ double $>$ \&, const std\+::vector$<$ double $>$ \&)\label{class_grid_acf7695627b9a8573fa614ade7d7720ef}
+
+\begin{DoxyCompactList}\small\item\em method to reset all nodes of the grid to +infinity, and changes the values of V and E at all nodes, so that the grid is ready for another computation using the new V and E. \end{DoxyCompactList}\item 
+int \hyperlink{class_grid_a36ab376fb6fa2ef97b52b02e93619676}{march} (const int \&, const bool \&)
+\begin{DoxyCompactList}\small\item\em method to perform the fast marching method and compute arrival times at each node. \end{DoxyCompactList}\item 
+std\+::vector$<$ double $>$ \hyperlink{class_grid_a67e192bc08a5483b9f503fb1a46d7cd8}{export\+\_\+\+Tvector} ()
+\begin{DoxyCompactList}\small\item\em method to export the arrival times into a \hyperlink{class_data}{Data} structure, to save it later. \end{DoxyCompactList}\item 
+void \hyperlink{class_grid_a91177a96caba01154349f06348e1f680}{import\+\_\+\+T} (const \hyperlink{class_data}{Data} \&)
+\begin{DoxyCompactList}\small\item\em method to import arrival times from a \hyperlink{class_data}{Data} structure. \end{DoxyCompactList}\item 
+int \hyperlink{class_grid_a82b0fe20398c55fd1643e0fbea912ac7}{sub2ind} (const int \&, const int \&, const int \&)
+\begin{DoxyCompactList}\small\item\em method to convert subscript to linear indices. \end{DoxyCompactList}\item 
+void \hyperlink{class_grid_a719cd86ef4cafeb3fe257c1c50bc63d7}{ind2sub} (const int \&, int \&, int \&, int \&)
+\begin{DoxyCompactList}\small\item\em method to convert linear to subscript indices\+: \end{DoxyCompactList}\end{DoxyCompactItemize}
+\subsection*{Public Attributes}
+\begin{DoxyCompactItemize}
+\item 
+\hypertarget{class_grid_a5096f486b265399bd0b8f111d015f51a}{}int \hyperlink{class_grid_a5096f486b265399bd0b8f111d015f51a}{Nx}\label{class_grid_a5096f486b265399bd0b8f111d015f51a}
+
+\begin{DoxyCompactList}\small\item\em the number of nodes in the x direction \end{DoxyCompactList}\item 
+\hypertarget{class_grid_a99ce71c381de38a654c3395855a3ae5d}{}int \hyperlink{class_grid_a99ce71c381de38a654c3395855a3ae5d}{Ny}\label{class_grid_a99ce71c381de38a654c3395855a3ae5d}
+
+\begin{DoxyCompactList}\small\item\em the number of nodes in the y direction \end{DoxyCompactList}\item 
+\hypertarget{class_grid_ade0609b6070bad52fbb2a7c16c927246}{}int \hyperlink{class_grid_ade0609b6070bad52fbb2a7c16c927246}{Nz}\label{class_grid_ade0609b6070bad52fbb2a7c16c927246}
+
+\begin{DoxyCompactList}\small\item\em the number of nodes in the z direction \end{DoxyCompactList}\item 
+\hypertarget{class_grid_a6d59374f53543d1fbc59f42014b769aa}{}int \hyperlink{class_grid_a6d59374f53543d1fbc59f42014b769aa}{Ntot}\label{class_grid_a6d59374f53543d1fbc59f42014b769aa}
+
+\begin{DoxyCompactList}\small\item\em the total number of nodes \end{DoxyCompactList}\item 
+\hypertarget{class_grid_a41842316ab09c4808e1e22a1af763975}{}double \hyperlink{class_grid_a41842316ab09c4808e1e22a1af763975}{h}\label{class_grid_a41842316ab09c4808e1e22a1af763975}
+
+\begin{DoxyCompactList}\small\item\em the node spacing \end{DoxyCompactList}\item 
+\hypertarget{class_grid_ae7441f76ba57ccafa703e00f6d052d4b}{}std\+::vector$<$ \hyperlink{class_node}{Node} $>$ \hyperlink{class_grid_ae7441f76ba57ccafa703e00f6d052d4b}{node}\label{class_grid_ae7441f76ba57ccafa703e00f6d052d4b}
+
+\begin{DoxyCompactList}\small\item\em the vector of nodes \end{DoxyCompactList}\item 
+\hypertarget{class_grid_af34f392a5478915fc4450302917ed06e}{}std\+::vector$<$ handle\+\_\+t $>$ \hyperlink{class_grid_af34f392a5478915fc4450302917ed06e}{tab\+\_\+handle\+\_\+trial}\label{class_grid_af34f392a5478915fc4450302917ed06e}
+
+\begin{DoxyCompactList}\small\item\em vector of handles in the trial heap \end{DoxyCompactList}\item 
+\hypertarget{class_grid_a9f7f84c052ee92ba4c80f89b4ecd602f}{}int \hyperlink{class_grid_a9f7f84c052ee92ba4c80f89b4ecd602f}{ind\+\_\+source}\label{class_grid_a9f7f84c052ee92ba4c80f89b4ecd602f}
+
+\begin{DoxyCompactList}\small\item\em linear index of source node \end{DoxyCompactList}\end{DoxyCompactItemize}
+
+
+\subsection{Detailed Description}
+The class \hyperlink{class_grid}{Grid} corresponds to the set of nodes at which arrival time is to be computed, and contains the methods to do that. 
+
+\subsection{Constructor \& Destructor Documentation}
+\hypertarget{class_grid_acecf610ba3dbc40e048d00d4585e755a}{}\index{Grid@{Grid}!Grid@{Grid}}
+\index{Grid@{Grid}!Grid@{Grid}}
+\subsubsection[{Grid(const int \&, const int \&, const int \&, const double \&)}]{\setlength{\rightskip}{0pt plus 5cm}Grid\+::\+Grid (
+\begin{DoxyParamCaption}
+\item[{const int \&}]{nx, }
+\item[{const int \&}]{ny, }
+\item[{const int \&}]{nz, }
+\item[{const double \&}]{hh}
+\end{DoxyParamCaption}
+)}\label{class_grid_acecf610ba3dbc40e048d00d4585e755a}
+
+
+Class constructor. 
+
+
+\begin{DoxyParams}{Parameters}
+{\em nx} & the number of nodes in x direction (Nx) \\
+\hline
+{\em ny} & the number of nodes in y direction (Ny) \\
+\hline
+{\em nz} & the number of nodes in z direction (Nz) \\
+\hline
+{\em hh} & the grid spacing (h) \\
+\hline
+\end{DoxyParams}
+
+
+\subsection{Member Function Documentation}
+\hypertarget{class_grid_a67e192bc08a5483b9f503fb1a46d7cd8}{}\index{Grid@{Grid}!export\+\_\+\+Tvector@{export\+\_\+\+Tvector}}
+\index{export\+\_\+\+Tvector@{export\+\_\+\+Tvector}!Grid@{Grid}}
+\subsubsection[{export\+\_\+\+Tvector()}]{\setlength{\rightskip}{0pt plus 5cm}std\+::vector$<$ double $>$ Grid\+::export\+\_\+\+Tvector (
+\begin{DoxyParamCaption}
+{}
+\end{DoxyParamCaption}
+)}\label{class_grid_a67e192bc08a5483b9f503fb1a46d7cd8}
+
+
+method to export the arrival times into a \hyperlink{class_data}{Data} structure, to save it later. 
+
+\begin{DoxyReturn}{Returns}
+a vector of $<$double$>$ containing T of all nodes. 
+\end{DoxyReturn}
+\hypertarget{class_grid_a91177a96caba01154349f06348e1f680}{}\index{Grid@{Grid}!import\+\_\+\+T@{import\+\_\+\+T}}
+\index{import\+\_\+\+T@{import\+\_\+\+T}!Grid@{Grid}}
+\subsubsection[{import\+\_\+\+T(const Data \&)}]{\setlength{\rightskip}{0pt plus 5cm}void Grid\+::import\+\_\+\+T (
+\begin{DoxyParamCaption}
+\item[{const {\bf Data} \&}]{d}
+\end{DoxyParamCaption}
+)}\label{class_grid_a91177a96caba01154349f06348e1f680}
+
+
+method to import arrival times from a \hyperlink{class_data}{Data} structure. 
+
+
+\begin{DoxyParams}{Parameters}
+{\em d} & a \hyperlink{class_data}{Data} object (loaded with arrival times). \\
+\hline
+\end{DoxyParams}
+\hypertarget{class_grid_a719cd86ef4cafeb3fe257c1c50bc63d7}{}\index{Grid@{Grid}!ind2sub@{ind2sub}}
+\index{ind2sub@{ind2sub}!Grid@{Grid}}
+\subsubsection[{ind2sub(const int \&, int \&, int \&, int \&)}]{\setlength{\rightskip}{0pt plus 5cm}void Grid\+::ind2sub (
+\begin{DoxyParamCaption}
+\item[{const int \&}]{ind, }
+\item[{int \&}]{i, }
+\item[{int \&}]{j, }
+\item[{int \&}]{k}
+\end{DoxyParamCaption}
+)}\label{class_grid_a719cd86ef4cafeb3fe257c1c50bc63d7}
+
+
+method to convert linear to subscript indices\+: 
+
+
+\begin{DoxyParams}{Parameters}
+{\em ind} & the linear index to be computed \\
+\hline
+{\em i} & subcript index (i-\/th node in x direction in the grid) \\
+\hline
+{\em j} & subcript index (j-\/th node in y direction in the grid) \\
+\hline
+{\em k} & subcript index (k-\/th node in z direction in the grid) \\
+\hline
+\end{DoxyParams}
+\hypertarget{class_grid_a525c06212728b34d29fef58a3a6d27f8}{}\index{Grid@{Grid}!initialise@{initialise}}
+\index{initialise@{initialise}!Grid@{Grid}}
+\subsubsection[{initialise(const std\+::vector$<$ double $>$ \&, const std\+::vector$<$ double $>$ \&)}]{\setlength{\rightskip}{0pt plus 5cm}void Grid\+::initialise (
+\begin{DoxyParamCaption}
+\item[{const std\+::vector$<$ double $>$ \&}]{vel, }
+\item[{const std\+::vector$<$ double $>$ \&}]{eps}
+\end{DoxyParamCaption}
+)}\label{class_grid_a525c06212728b34d29fef58a3a6d27f8}
+
+
+method to initialise grid. 
+
+
+\begin{DoxyParams}{Parameters}
+{\em vel} & a vector of size Ntot which contains the horizontal wavespeed at each node. \\
+\hline
+{\em eps} & a vector of size Ntot which contains the anisotropy parameter at each node. Note that no check is made that vel and eps are indeed of size Ntot. The code will crash is they aren\textquotesingle{}t. \\
+\hline
+\end{DoxyParams}
+\hypertarget{class_grid_a457b4cc1c95623e35e6d16a855b6781e}{}\index{Grid@{Grid}!initialise\+\_\+log@{initialise\+\_\+log}}
+\index{initialise\+\_\+log@{initialise\+\_\+log}!Grid@{Grid}}
+\subsubsection[{initialise\+\_\+log(const std\+::vector$<$ double $>$ \&, const std\+::vector$<$ double $>$ \&)}]{\setlength{\rightskip}{0pt plus 5cm}void Grid\+::initialise\+\_\+log (
+\begin{DoxyParamCaption}
+\item[{const std\+::vector$<$ double $>$ \&}]{lvel, }
+\item[{const std\+::vector$<$ double $>$ \&}]{eps}
+\end{DoxyParamCaption}
+)}\label{class_grid_a457b4cc1c95623e35e6d16a855b6781e}
+
+
+method to initialise grid using a vecotr of log\+V instead of V. 
+
+
+\begin{DoxyParams}{Parameters}
+{\em lvel} & a vector of size Ntot which contains the log horizontal wavespeed at each node. \\
+\hline
+{\em eps} & a vector of size Ntot which contains the anisotropy parameter at each node. Note that no check is made that vel and eps are indeed of size Ntot. The code will crash is they aren\textquotesingle{}t. \\
+\hline
+\end{DoxyParams}
+\hypertarget{class_grid_a36ab376fb6fa2ef97b52b02e93619676}{}\index{Grid@{Grid}!march@{march}}
+\index{march@{march}!Grid@{Grid}}
+\subsubsection[{march(const int \&, const bool \&)}]{\setlength{\rightskip}{0pt plus 5cm}int Grid\+::march (
+\begin{DoxyParamCaption}
+\item[{const int \&}]{ind0, }
+\item[{const bool \&}]{box}
+\end{DoxyParamCaption}
+)}\label{class_grid_a36ab376fb6fa2ef97b52b02e93619676}
+
+
+method to perform the fast marching method and compute arrival times at each node. 
+
+
+\begin{DoxyParams}{Parameters}
+{\em ind0} & index of the source node, which has an arrival time of 0.\+0 \\
+\hline
+{\em box} & true if a sourcebox with analytical solutions is to be used, false otherwise. \\
+\hline
+\end{DoxyParams}
+\begin{DoxyReturn}{Returns}
+the number of iterations. 
+\end{DoxyReturn}
+\hypertarget{class_grid_a82b0fe20398c55fd1643e0fbea912ac7}{}\index{Grid@{Grid}!sub2ind@{sub2ind}}
+\index{sub2ind@{sub2ind}!Grid@{Grid}}
+\subsubsection[{sub2ind(const int \&, const int \&, const int \&)}]{\setlength{\rightskip}{0pt plus 5cm}int Grid\+::sub2ind (
+\begin{DoxyParamCaption}
+\item[{const int \&}]{i, }
+\item[{const int \&}]{j, }
+\item[{const int \&}]{k}
+\end{DoxyParamCaption}
+)}\label{class_grid_a82b0fe20398c55fd1643e0fbea912ac7}
+
+
+method to convert subscript to linear indices. 
+
+
+\begin{DoxyParams}{Parameters}
+{\em i} & subcript index (i-\/th node in x direction in the grid) \\
+\hline
+{\em j} & subcript index (j-\/th node in y direction in the grid) \\
+\hline
+{\em k} & subcript index (k-\/th node in z direction in the grid) \\
+\hline
+\end{DoxyParams}
+\begin{DoxyReturn}{Returns}
+the linear index of the node in the grid. 
+\end{DoxyReturn}
+
+
+The documentation for this class was generated from the following files\+:\begin{DoxyCompactItemize}
+\item 
+/\+Volumes/\+Data/\+Projects/\+Tomography/\+Faatso/include/fmmlib.\+hpp\item 
+/\+Volumes/\+Data/\+Projects/\+Tomography/\+Faatso/src/fmmlib.\+cpp\end{DoxyCompactItemize}

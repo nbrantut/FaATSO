@@ -1,0 +1,286 @@
+\documentclass{article}
+\usepackage{amsmath,amssymb}
+\usepackage{graphicx}
+\usepackage{natbib}
+
+\renewcommand\vec[1]{\mathbf{#1}}
+\newcommand\mat[1]{\mathbf{#1}}
+
+
+\title{Threee dimensional, anisotropic, local acoustic emission tomography using a least square inversion method}
+\author{Nicolas \textsc{Brantut}}
+\date{03/08/2016}
+
+\begin{document}
+
+\maketitle
+
+\begin{abstract}
+This document presents an implementation of the Quasi-Newton iterative algorithm to perform local acoustic emission tomography in three dimension, with weakyl vertical transversely isotropic media. The velocity and anisotropy structures are defined along a regular orthonormal grid with relatively coarse spacing (typically more than the wavelength of the elastic waves used to probe the system). The direct problem is solved by tracing rays in the medium within a refined (linearly interpolated) grid, using the fast marching method. The derivatives of the model function are computed on the coarse grid after ray tracing. The receiver and source locations are all given by a specific ndoe of the refined grid (the grid is typically fine enough to do this without losing accuracy). The inverse problem is solved iteratively using the Quasi-Newton method, assuming gaussian errors on all data and model parameters. The program outputs posterior estimates on parameters as well as the posterior covariance matrix.
+\end{abstract}
+
+\section{Problem setting}
+
+\subsection{Why a specific code for acoustic emission tomography ?}
+
+The problem at hand is to determine the P-wave velocity structure, in three dimensions, of any material, using ulatrasonic (active) as well as passive acoutic emission monitoring. The typical context for this problem is rock deformation experiments, where a cylindrical rock sample equipped with an array of piezoelectric transducers is deformed under elevated pressures. The piezoelectric transducers can be used as sources, hence allowing active ultrasonic probing of the sample at repeated time intervals during the test. However,  unless a very large number of transducers is used, such active surveys are not enough to constrain the full 3D velocity structure: the coverage in terms of rays is not dense enough. The idea here is to use the acoustic emission events occurring naturally during the deformation process (e.g., due to microfractures) as sources to improve the coverage and perform a full tomography. 
+
+At a much larger scale, such methods have been routinely used by seismologist to obtain detailed local velocity structures in seismically active regions; these are commonly called Local Earthquake Tomography \citep[e.g.][]{aki76,thurber83}. The program described here is a specific implementation of the method adapted to rock deformation experiments, which are somewhat peculiar:
+\begin{itemize}
+\item all the receivers are used as active transducers, providing rays with known source positions,
+\item the receivers are located in 3D (unlike seismometers which are always at or near the Earth's surface),
+\item the cylindrical geometry and loading conditions (uni- or tri-axial stress state) tend to generate a strong transverse or orthotropic anisotropy,
+\item the velocity contrasts can be very strong (up to 40\%) and occurring over very short distances (millimetres).
+\end{itemize}
+Because of these reasons, it was deemed necessary to develop a specific program to analyse rock deformation experiments. This is how \emph{Faatso} (stupid acronym for ``Fast marching Anisotropic Acoustic emission Tomography using Standard Optimisation'') started.
+
+\subsection{Design choices, data and unknowns}
+
+Like all inverse problems, it starts with \citep{tarantola05}
+\begin{equation}\label{eq:d=g(m)}
+  \vec{d} = \vec{g}(\vec{m})
+\end{equation}
+where $\vec{d}$ is a vector of observable quantities (in the data space), $\vec{m}$ is a vector of model parameters (in the model space), and $g$ is a the physical model relating the model to the observables. Here, the model parameters are: the velocity structure (in practice, the velocity and anisotropy parameter at all nodes in a 3D grid), and the positions of the acoustic emissions. The observables are the measured arrival times for all acoutic emissions, as well as active surveys, at a fixed array of receivers.
+
+\paragraph{Model parameters.} Here, the medium is discretised into a set of nodes placed along an orthonormal grid, oriented so that the $z$-direction is the vertical, and the axis of symmetry. The anisotropy is described with a very simple ellptical vertical transvere isotropic model:
+\begin{equation}
+  V(\theta) = V_\mathrm{h}(1+E\cos^2\theta),
+\end{equation}
+where $V(\theta)$ is the P-wave phase velocity along the angle $\theta$ with the vertical, $V_\mathrm{h}$ is the horizontal P-wave speed, and $E$ is an anisotropy parameter related to Thomsen's parameter $\epsilon$ as $E = -\epsilon/(1+\epsilon)$, using weak anisotropy and $\delta=\epsilon$ \citep{thomsen86}.
+
+In order to reduce the number of unknowns and the computational costs, the grid spacing is typically relatively coarse, such that it is of the same order of magnitude as the wavelength of the elastic waves used to probe the material. In rock deformation experiments, the wavelength is of the order of 5~mm, give or take, so that the grid contains a couple thousand nodes (typical samples sizes are 40~mm in diamater and 100~mm in length). For simplicity, the grid is parallelepipedic, even though the medium of interest is often cylindrical.
+
+The vector of model parameters is therefore formed by the sequence of $V_\mathrm{h}$ values of each node, $E$ values at each node, and quadruplets $x,y,z,t_0$ (source locations) for each acoustic emission.
+
+\paragraph{Observables.} Arrival times from both passive (acoustic emissions) and active (surveys) sources are measured at a set of $n_\mathrm{chan}$ receivers placed around the samples. All the arrival times are corrected from the receiver delay time. If $n_\mathrm{evt}$ have been detected, there are up to $n_\mathrm{chan}\times(n_\mathrm{chan} + n_\mathrm{evt})$ recorded arrival times. In practice however, not all arrivals can be picked, and only a subset of the data is used, requiring the definition of a mapping between the index of the element within the vector $\vec{d}$ and the pair source-receiver. The vector $\vec{d}$ is therefore formed by the sequence of selected arrival times, and a mapping is stored to keep track of the match between $\vec{d}$ and source-receiver numbers.
+
+\section{The forward problem}
+
+The first and foremost difficulty here is to compute accurately arrival times from sources to receivers in a potentially complex, anisotropic and strongly heterogeneous medium. The method chosen is the fast marching algorithm, described in detail in the companion documentation for the \verb+fmm+ program.
+
+The fast marching package allows to compute arrival times at all nodes in a given grid from a single source node. In practice, there are often many more sources than receivers. In order to save computational costs, we can take advantage of the reversibility of the wave equation, and only compute arrival times using the receiver locations as ``virtual'' sources.
+
+One additional subtelty is that the nominal grid used to describe the velocity structure is often too coarse to obtain accurate results with the fast marching method. Therefore, the input velocity structure (the set of $V_\mathrm{h}$ and $E$ values at each node) is interpolated\footnote{More precisely, it is not $V_\mathrm{h}$ that is linearly interpolated but $\ln(V_\mathrm{h})$} onto a finer grid, and the arrival times (and rays) are computed on that fine grid.
+
+For the sake of simplicity, the source positions are approximated by the location of the nearest node within the refined grid. Therefore, the arrival times are simply extracted by looking up the time at appropriate nodes in the grid. This of course limits the accuracy of the locations, but in practice the refined grid is dense enough so that the this approximation is not critical\footnote{Note that this simplification is not needed and the program could be improved by using any source location and computing the arrival times around it using analytical solutions, like in the source box approach. That's something to do in a later version.}.
+
+\section{The inverse problem}
+
+\subsection{Assumptions and prior information}
+
+The observed data (arrival times) vector is denoted $\vec{d}_\mathrm{obs}$. All observational errors are assumed to be gaussian. The covariance matrix for the data, $\mat{C}_\mathrm{D}$, is assumed to be diagonal. The diagonal elements of $\mat{C}_\mathrm{D}$ correspond to the variance on the active survey data $\sigma_\mathrm{shot}^2$, as well as the variance on the passive acoustic emission arrival time data $\sigma_\mathrm{evt}^2$. The latter is typically large than the former, since the acoustic emission arrival times are picked automatically and are not visually checked in a systematic way. So in short $\mat{C}_\mathrm{D}$ is diagonal, with two potentially different variances for each type of data (surveys and acoustic emission).
+
+
+The a priori model parameters vector is denoted $\vec{m}_\mathrm{prior}$. The prior information is also assumed to be gaussian. Because the wave velocity is Jeffrey's parameter, the logarithm of $V_\mathrm{h}$ is used as the  corresponding cartesian parameter. All other parameters (anisotropy, source positions) are cartesian. The covariance matrix in the model space $\mat{C}_\mathrm{M}$ is determined by: the variance $\sigma_\mathrm{v}^2$ and covariances on $\ln(V_\mathrm{h})$, the variance $\sigma_\mathrm{E}^2$ and covariances on $E$, and the variances $\sigma_\mathrm{x}^2$, $\sigma_\mathrm{y}^2$, $\sigma_\mathrm{z}^2$ and $\sigma_\mathrm{t0}^2$ on source locations (we assume no covariance between source location parameters). The covariances on $\ln(V_\mathrm{h})$ and $E$ between two nodes of indices $i$ and $j$ follow an 3D exponential covariance: 
+\begin{equation}
+  c_{ij} = \sigma^2 \exp\left(-\frac{\sqrt{(x_i-x_j)^2+(y_i-y_j)^2+(z_i-z_j)^2}}{\lambda}\right),
+\end{equation}
+where $(x_i,y_i,z_i)$ are the coordinates of node $i$, $\sigma^2$ is the variance on either $\ln(V_\mathrm{h})$ or $E$, and $\lambda$ is a correlation length. Essentially, the length $\lambda$ provides a smoothness of the velocity structure, preventing (statistically) heterogeneities over length scales smaller than $\lambda$.
+
+In summary, the covariance matrix $\mat{C}_\mathrm{M}$ is block-diagonal, the first block being the $c_{ij}$ for the logarithm of the velocity, the second block is the $c_{ij}$ for the anisotropy parameter, and the remaining block is a simple diagonal containing the sequence of variances on source locations.
+
+The inverse problem is nonlinear: the function $\vec{g}(\vec{m})$ essentially contains integrals of slownesses over ray paths between sources and receiver. The tomographic problem is only weakly nonlinear, while the source location problem is strongly nonlinear. Because a gaussian model is assumed for all parameters, it is essential that the a priori source locations are not too far from the true ones.
+
+\subsection{Quasi-Newton Algorithm}
+
+The method chosen to determine the mean posterior model parameters (i.e., the ``best'' model in the sense of the least square norm) is the quasi-Newton method. It is an iterative quadratic minimisation method, described in detail in \citet[][p. 78]{tarantola05}. The model parameters $\vec{m}$ are updated at each iteration $n$ as
+\begin{equation}
+  \vec{m}_{n+1} = \vec{m}_n - \mu_\mathrm{n}\big(\mat{G}^t_n\mat{C}_\mathrm{D}^{-1}\mat{G}_n+\mat{C}_\mathrm{M}^{-1} \big)^{-1}\big(\mat{G}^t_n\mat{C}_\mathrm{D}^{-1}(\vec{d}_n-\vec{d}_\mathrm{obs})+\mat{C}_\mathrm{M}^{-1}(\vec{m}_n-\vec{m}_\mathrm{prior}) \big),
+\end{equation}
+where
+$\vec{d}_n = \vec{g}(\vec{m}_n)$ and $\mu_n \approx 1$ is the step size. The matrix $\mat{G}_n$ contains the derivatives of $\vec{g}$:
+\begin{equation} \label{eq:Gn}
+  (\mat{G}_n)_{ij} = \left( \frac{\partial g_i}{\partial m_j} \right)_{\vec{m}_n}.
+\end{equation}
+The key difficulty here is computing $\mat{G}_n$.
+
+\subsection{Computing the matrix of derivatives}
+
+The (vector) function $\vec{g}$ maps the velocity structure and source locations to the arrival times at each receiver. If we denote $t_{ij}$ the arrival time at receiver $j$ from source $i$, the mapping $\vec{d}=\vec{g}(\vec{m})$ can written as
+\begin{equation} \label{eq:Tij}
+t_{ij} = t_0 + \int_{\mathcal{R}_{ij}}(1/V_\mathrm{g})ds,
+\end{equation}
+where $t_0$ is the origin time of the source, $\mathcal{R}_{ij}$ is the ray path between source and receiver, $s$ is the curvilinear coordinate along the raypath, and $V_\mathrm{g}$ is the \emph{group} velocity along the ray. The medium we are dealing with is VTI, so that the group velocity depends on the local group angle $\phi$ between the ray and the vertical axis. The group velocity is expressed as
+\begin{equation}
+  V_\mathrm{g}[\phi(\theta)] = V_\mathrm{h}\times F(\theta,E),
+\end{equation}
+where $\theta$ is the phase angle, easily computed and stored during the ray tracing process, and
+\begin{equation}
+  F(\theta,E) = \left\{ 1 + 2E\cos^2\theta +E^2\cos^2\theta\left( 1 + 3\sin^2\theta\right)\right\}^{1/2}.
+\end{equation}
+Denoting $v=\ln(V_\mathrm{h})$, Equation \ref{eq:Tij} is rewritten as
+\begin{equation}
+  t_{ij} = t_0 + \int_{\mathcal{R}_{ij}} e^{-v}/F[\theta(\phi),E]ds,
+\end{equation}
+and its discretised form is then
+\begin{equation}
+  t_{ij} \approx t_0 + \sum_{k=0}^N e^{-v_k}/F(\theta_k, E_k)\Delta s_k,
+\end{equation}
+where the summation is performed over all the indices $k=0\ldots N$ of the segments of length $\Delta s_k$ forming the ray $\mathcal{R}_{ij}$.
+
+The derivatives are therefore:
+\begin{align}
+  \frac{\partial t_{ij}}{\partial t_0} &= 1, \\
+  \frac{\partial t_{ij}}{\partial v_k} &= -\frac{e^{v_k}}{F(\theta_k,E_k)}\Delta s_k, \\
+  \frac{\partial t_{ij}}{\partial E_k} &= -\frac{e^{v_k}}{F[\theta_k,E_k]^2}\frac{\partial F}{\partial E_k}\Delta s_k,\\
+  \frac{\partial t_{ij}}{\partial x_i} &= \frac{e^{-v_k}}{F[\theta_k,E_k]}\frac{\partial \Delta s_0}{\partial x_i}\\
+  \frac{\partial t_{ij}}{\partial y_i} &= \frac{e^{-v_k}}{F[\theta_k,E_k]}\frac{\partial \Delta s_0}{\partial y_i}\\
+  \frac{\partial t_{ij}}{\partial z_i} &= \frac{e^{-v_k}}{F[\theta_k,E_k]}\frac{\partial \Delta s_0}{\partial z_i}
+\end{align}
+where
+\begin{equation}
+  \frac{\partial F}{\partial E} = \frac{1}{2 F}\{2\cos^2\theta + 2E\cos^2\theta (1+3\sin^2\theta) \},
+\end{equation}
+and
+\begin{align}
+  \frac{\partial \Delta s_0}{\partial x_i} &= -\frac{x_{\mathrm{r}0}-x_i}{\Delta s_0}, \\
+  \frac{\partial \Delta s_0}{\partial y_i} &= -\frac{y_{\mathrm{r}0}-y_i}{\Delta s_0}, \\
+  \frac{\partial \Delta s_0}{\partial z_i} &= -\frac{z_{\mathrm{r}0}-z_i}{\Delta s_0},
+\end{align}
+correspond to the orientation of the tangent to the ray at the source point, $(x_{\mathrm{r}0},y_{\mathrm{r}0},z_{\mathrm{r}0})$ being the coordinates  of the first point along the ray originating from the source.
+
+During the computation of the forward problem, after the full set of arrival times have been calculated with the fast marching method within the refined grid, rays are traced between sources and receivers. Ray segment lengths are uniform and equal to the (refined) grid spacing. The wave velocity, anisotropy, phase angle and ray point coordinates are stored, and the derivatives are computed.
+
+In order to access to the derivatives in the initial coarse grid, which correspond to the elements of $\mat{G}_n$, the derivatives obtained on the refined grid are combined using to the linear interpolation coefficients used in the grid interpolation procedure. For any model parameter on the coarse grid $m_j$ (either the horizontal wave velocity or the anisotropy parameter), we have
+\begin{equation}
+  \frac{\partial g_i}{\partial m_j} = \sum_k \frac{\partial g_i}{\partial p_k}\frac{\partial p_k}{\partial m_j},
+\end{equation}
+where $p_k$ are the model parameters on the refined grid obtained from trilinear interpolation:
+\begin{equation}
+  p_k = \sum_j a_{kj} m_j,
+\end{equation}
+so that
+\begin{equation}
+  \frac{\partial p_k}{\partial m_j} = a_{kj}.
+\end{equation}
+The coefficients $a_{kj}$ are the interpolation coefficients.
+
+\section{Summary of implementation}
+
+In summary, the algorithm works as follows:
+\begin{enumerate}
+\item load prior $v$, $E$, event locations;
+\item load receiver locations and arrival times;
+\item \label{itm:interp} interpolate $v$ and $E$ onto finer grid;
+\item compute theoretical arrival times, and derivatives;
+\item perform quasi-Newton step;
+\item export results in external files (for progress monitoring);
+\item check for convergence; if not, back to step \ref{itm:interp}.
+\end{enumerate}
+
+The implementation is done through four main C++ classes: 
+\begin{itemize}
+\item \verb+Parameters+: used to read input files and storing all input parameters, 
+\item \verb+M+: used to store model parameters and model covariance matrix,
+\item \verb+D+: used to store observed and computed data and covariance matrix, and contains the method to perform the forward problem and compute derivatives,
+\item \verb+QuasiNewton+: which contains the methods to perform the quasi Newton iterations.
+\end{itemize}
+All these classes have methods to initialise their members, and export results into files (filenames are passed into the \verb+Parameters+ class and as members of \verb+D+ and \verb+M+ when appropriate).
+
+These classes are used in the main program contained in the source file \verb+main_tomo.cpp+, which sould compile into the executable \verb+tomo+. The program \verb+tomo+ requires only one command line argument, which is the name of a specifically formatted text file containing the list of parameters. A typical call to \verb+tomo+ looks like:
+\begin{verbatim}
+>>./tomo params.txt
+\end{verbatim}
+where the file \verb+params.txt+ contains the list of parameter values, in a specific order. This is not the most flexible approach but is simple enough and works.
+
+\subsection{Input files}
+
+The program requires a total of 7 input files. The main input file is the list of parameters, passed as a command line argument. Its structure is fixed; it must contain 27 lines, each containing a parameter value, followed by a tab and possibly a comment. The best way to avoid errors is to make a copy of a parameter file given in the examples, and modify it (instead of making one from scratch).
+
+\paragraph{Parameter file.} The parameter file contains, in that order:\\
+\begin{tabular}{rl}
+  \hline
+  line & description \\ \hline
+  1 & local folder name where input/output files are located \\
+  2 & filename for receiver locations (.txt)\\
+  3 & filename for sources a priori locations (.txt) \\
+  4 & filename for arrival times from surveys (.txt) \\
+  5 & filename for arrival times from sources (.txt)\\
+  6 & filename for a priori $\ln(V_\mathrm{h})$ model (.bin) \\
+  7 & filename for a priori $E$ model (.bin)\\
+  8 & filename for a posteriori $\ln(V_\mathrm{h})$ model (.bin) \\
+  9 & filename for a posteriori $E$ model (.bin)\\
+  10 & filename for a posteriori source locations (.txt) \\
+  11 & filename for the computed $\vec{d}$ (.txt)\\
+  12 & filename for the posterior covariance matrix $\mat{C}_\mathrm{M}^\mathrm{post}$ (.arma.bin)\\
+  13 & filename for posterior model vector $\vec{m}_\mathrm{post}$ (.txt) \\
+  14 & filename for least-square residuals after each iteration (.txt)\\
+  15 & grid refinement factor (integer) \\
+  16 & standard deviation on survey picks ($\sigma_\mathrm{shot}$ in $\mu$s) \\
+  17 & standard deviation on event picks ($\sigma_\mathrm{evt}$ in $\mu$s) \\
+  18 & maximum number of iterations (integer) \\
+  19 & tolerance on residual to exit iterations \\
+  20 & quasi-Newton step size \\
+  21 & standard deviation $\sigma_\mathrm{v}$ on $\ln(V_\mathrm{h})$ (in $\ln($mm/$\mu$s$)$) \\
+  22 & standard deviation $\sigma_\mathrm{E}$ on $E$ \\
+  23 & correlation length $\lambda$ (in mm) \\
+  24 & standard deviation $\sigma_\mathrm{x}$ on $x$ position of sources (in mm) \\
+  25 & standard deviation $\sigma_\mathrm{y}$ on $y$ position of sources (in mm) \\
+  26 & standard deviation $\sigma_\mathrm{z}$ on $z$ position of sources (in mm)\\
+  27 & standard deviation $\sigma_\mathrm{t0}$ on origin time $t_0$ of sources (in $\mu$s)\\
+  \hline
+\end{tabular}
+
+\paragraph{Receiver and source location files.} The file containing receiver positions is an ascii file with $n_\mathrm{chan}$ lines and $4$ columns, separated by single spaces. The first three columns are the $x,y,z$ coordinates of the receivers, in mm, and the fourth column is the time delay of each receiver, in $\mu$s.
+
+Similarly, the file containing prior source positions has the same structure but has $n_\mathrm{evt}$ lines, and the fourth column contains the origin times (again in $\mu$s) of the sources.
+
+The coordinate system in which receiver and source locations must be reported has its origin $(0,0,0)$ at the lower left corner of the grid, so that the coordinate of a node with subscript indices $(i,j,k)$ is located at a position $(ih, jh, kh)$ ($h$ is the grid spacing).
+
+\paragraph{Arrival times files.} The file containing the arrival times of the active surveys is an ascii file forming a table with $n_\mathrm{chan}$ lines and $n_\mathrm{chan}$ columns, spearated by single spaces. The elements of the table are the observed arrival times in $\mu$s. The column number corresponds to the receiver, and the line number corresponds to the the source.
+
+Similarly, the file containing the arrival times from the acoustic emission sources has the same format, but has $n_\mathrm{evt}$ lines.
+
+A very important point is that the number of columns must \emph{always} be equal to the number of receivers. If the arrival time at a given receiver is not detected or of poor quality, a zero or negative value must be attributed. During the initialisation of the data vector, all negative or zero values are skipped so that only good quality data are used in the inversion.
+
+\paragraph{A priori velocity structure.} The prior velocity model ($\ln(V_\mathrm{h})$ and $E$) is given in two binary files of the same type as those used by the \verb+fmm+ program. Importantly, the grid parameters $(N_x,N_y,N_z;h)$ read in these two files also sets the coarse grid size and coordinate system. IT is also worht noting that the binary file for the horizontal velocity must contain the logarithm of $V_\mathrm{h}$, with units of $\ln($mm/$\mu$s$)$.
+
+\subsection{Output files}
+
+After each iteration of the quasi-Newton algorithm, a set of output is generated (overwriting the files produced in the previous iteration). The key output files are:
+\begin{itemize} 
+\item binary files with posterior $\ln(V_\mathrm{h})$ and $E$ over the coarse grid,
+\item ascii file with the posterior source locations (same format as the input prior source locations file).
+\item ascii file containing the least square residual at each iteration.
+\end{itemize}
+
+In addition, two extra ascii files are generated:
+\begin{itemize}
+\item a three columns file containing the theoretical arrival times (third column), and the corresponding indices of the sources (first column) and receivers (second column),
+\item a single column file containing the full $\vec{m}_\mathrm{post}$ vector.
+\end{itemize}
+
+Finally, after all iterations have been completed or stopped, the program outputs a binary file containing the full $\mat{C}_\mathrm{M}^\mathrm{post}$ matrix.
+
+\begin{thebibliography}{4}
+\providecommand{\natexlab}[1]{#1}
+\expandafter\ifx\csname urlstyle\endcsname\relax
+  \providecommand{\doi}[1]{doi:\discretionary{}{}{}#1}\else
+  \providecommand{\doi}{doi:\discretionary{}{}{}\begingroup
+  \urlstyle{rm}\Url}\fi
+\input{englbst.tex}
+\newcommand{\Capitalize}[1]{\uppercase{#1}}
+\newcommand{\capitalize}[1]{\expandafter\Capitalize#1}
+
+\bibitem[{Aki \bbland{} Lee(1976)}]{aki76}
+\textsc{Aki, K.} \bbland{} \textsc{W.~H.~K. Lee} (1976), Determination of
+  thres-dimensional velocity anomalies under and seismic array using first {P}
+  arrival times from local earthquakes. 1. {A} homogeneous initial model,
+  \emph{J. Geophys. Res.}, 81(23), 4381--4399.
+
+\bibitem[{Tarantola(2005)}]{tarantola05}
+\textsc{Tarantola, A.} (2005), \emph{Inverse Problem Theory}, 2nd
+  \bbledition{}, Society for Industrial Mathematics, Philadelphia.
+
+\bibitem[{Thomsen(1986)}]{thomsen86}
+\textsc{Thomsen, L.} (1986), Weak elastic anisotropy, \emph{Geophysics},
+  51(10), 1954--1966.
+
+\bibitem[{Thurber(1983)}]{thurber83}
+\textsc{Thurber, C.~H.} (1983), Earthquake locations and three-dimensional
+  crustal structure in the {C}oyote {L}ake area, central {C}alifornia, \emph{J.
+  Geophys. Res.}, 88(B10), 8226--8236.
+
+\end{thebibliography}
+
+\end{document}

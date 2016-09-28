@@ -1,0 +1,117 @@
+\hypertarget{class_tetra}{}\section{Tetra Class Reference}
+\label{class_tetra}\index{Tetra@{Tetra}}
+
+
+The class \hyperlink{class_tetra}{Tetra} embeds the information (velocity, anisotropy, arrival time of neighbours, etc) and methods required to compute the arrival time at a given node. It is named \char`\"{}\+Tetra\char`\"{} in reference to the tetrahedron that is formed by a given node of interest and three of its neighbours (each in x, y and z direction, resp.).  
+
+
+
+
+{\ttfamily \#include $<$fmmlib.\+hpp$>$}
+
+\subsection*{Public Member Functions}
+\begin{DoxyCompactItemize}
+\item 
+\hyperlink{class_tetra_a3a693e516febb69a64eb9d6270390c4f}{Tetra} (const double \&, const double \&, const double \&)
+\begin{DoxyCompactList}\small\item\em Class constructor. \end{DoxyCompactList}\item 
+\hypertarget{class_tetra_ab782abc840e4ecc354eca9bdec150b05}{}\hyperlink{class_tetra_ab782abc840e4ecc354eca9bdec150b05}{Tetra} ()\label{class_tetra_ab782abc840e4ecc354eca9bdec150b05}
+
+\begin{DoxyCompactList}\small\item\em Class default constructor. \end{DoxyCompactList}\item 
+double \hyperlink{class_tetra_af07f0f99465e9f0fddc5e0621b5f0b49}{compute\+\_\+\+T} ()
+\begin{DoxyCompactList}\small\item\em method to compute the arrival time T at the node of interest. \end{DoxyCompactList}\end{DoxyCompactItemize}
+\subsection*{Public Attributes}
+\begin{DoxyCompactItemize}
+\item 
+\hypertarget{class_tetra_a97520e389f35a37ca10bdeacd72f16c2}{}double \hyperlink{class_tetra_a97520e389f35a37ca10bdeacd72f16c2}{vel}\label{class_tetra_a97520e389f35a37ca10bdeacd72f16c2}
+
+\begin{DoxyCompactList}\small\item\em the horizontal wavespeed at the node of interest (i,j,k). \end{DoxyCompactList}\item 
+\hypertarget{class_tetra_a28326c3274d8efa05743fc416a80fee0}{}double \hyperlink{class_tetra_a28326c3274d8efa05743fc416a80fee0}{eps}\label{class_tetra_a28326c3274d8efa05743fc416a80fee0}
+
+\begin{DoxyCompactList}\small\item\em the aniotropy parameter at the node of interest (i,j,k). \end{DoxyCompactList}\item 
+\hypertarget{class_tetra_adb85980e5e01c530760eca80f59d2a70}{}double \hyperlink{class_tetra_adb85980e5e01c530760eca80f59d2a70}{h}\label{class_tetra_adb85980e5e01c530760eca80f59d2a70}
+
+\begin{DoxyCompactList}\small\item\em grid spacing. \end{DoxyCompactList}\item 
+\hypertarget{class_tetra_a025e73df54f5aef0f573e98b70bba674}{}bool \hyperlink{class_tetra_a025e73df54f5aef0f573e98b70bba674}{test\+\_\+a}\label{class_tetra_a025e73df54f5aef0f573e98b70bba674}
+
+\begin{DoxyCompactList}\small\item\em true is the x-\/neighbour (i+/-\/1,j,k) exists and is known. \end{DoxyCompactList}\item 
+\hypertarget{class_tetra_a2b56ec0c512ec59a998e5493a07a6f23}{}bool \hyperlink{class_tetra_a2b56ec0c512ec59a998e5493a07a6f23}{test\+\_\+b}\label{class_tetra_a2b56ec0c512ec59a998e5493a07a6f23}
+
+\begin{DoxyCompactList}\small\item\em true if the y-\/neighbour (i,j+/-\/1,k) exists and is known. \end{DoxyCompactList}\item 
+\hypertarget{class_tetra_ab38893ea7447e022b1158619e26c36bb}{}bool \hyperlink{class_tetra_ab38893ea7447e022b1158619e26c36bb}{test\+\_\+c}\label{class_tetra_ab38893ea7447e022b1158619e26c36bb}
+
+\begin{DoxyCompactList}\small\item\em true if the z-\/neighbour (i,j,k+/-\/1) exists and is known. \end{DoxyCompactList}\item 
+\hypertarget{class_tetra_a7a7b26176c3f9eda4c27589fa8338fe0}{}double \hyperlink{class_tetra_a7a7b26176c3f9eda4c27589fa8338fe0}{a}\label{class_tetra_a7a7b26176c3f9eda4c27589fa8338fe0}
+
+\begin{DoxyCompactList}\small\item\em arrival time at the x-\/neighbour. \end{DoxyCompactList}\item 
+\hypertarget{class_tetra_ae624a956b1416b954d49ec18fc056bae}{}double \hyperlink{class_tetra_ae624a956b1416b954d49ec18fc056bae}{ap}\label{class_tetra_ae624a956b1416b954d49ec18fc056bae}
+
+\begin{DoxyCompactList}\small\item\em arrival time at the x-\/neighbour of the x-\/neighbour (use for second order F\+D). \end{DoxyCompactList}\item 
+\hypertarget{class_tetra_ad0b4230d979c99f05f2a74e77e49535a}{}double \hyperlink{class_tetra_ad0b4230d979c99f05f2a74e77e49535a}{sw\+\_\+a}\label{class_tetra_ad0b4230d979c99f05f2a74e77e49535a}
+
+\begin{DoxyCompactList}\small\item\em switch\+: equal to 1 if the x-\/neighbour of the x-\/neighbour exists and is knwon, 0 other wise. \end{DoxyCompactList}\item 
+\hypertarget{class_tetra_a318e0f49f36b68b5d64c71ed63e6e4b6}{}double \hyperlink{class_tetra_a318e0f49f36b68b5d64c71ed63e6e4b6}{b}\label{class_tetra_a318e0f49f36b68b5d64c71ed63e6e4b6}
+
+\begin{DoxyCompactList}\small\item\em same as for a, corresponding to the y-\/neighbour. \end{DoxyCompactList}\item 
+\hypertarget{class_tetra_a8121994fb8d2879075f8492ac9407340}{}double \hyperlink{class_tetra_a8121994fb8d2879075f8492ac9407340}{bp}\label{class_tetra_a8121994fb8d2879075f8492ac9407340}
+
+\begin{DoxyCompactList}\small\item\em same as for ap, corresponding to the y-\/neighbour. \end{DoxyCompactList}\item 
+\hypertarget{class_tetra_a61138c5ced7462b978c344d01585a996}{}double \hyperlink{class_tetra_a61138c5ced7462b978c344d01585a996}{sw\+\_\+b}\label{class_tetra_a61138c5ced7462b978c344d01585a996}
+
+\begin{DoxyCompactList}\small\item\em same as for sw\+\_\+a, corresponding to the y-\/neighbour. \end{DoxyCompactList}\item 
+\hypertarget{class_tetra_adbab19053caa4eef4d37383b69c35ccc}{}double \hyperlink{class_tetra_adbab19053caa4eef4d37383b69c35ccc}{c}\label{class_tetra_adbab19053caa4eef4d37383b69c35ccc}
+
+\begin{DoxyCompactList}\small\item\em same as for a, corresponding to the z-\/neighbour. \end{DoxyCompactList}\item 
+\hypertarget{class_tetra_a3eed864590d999a6e7770b6fb9b05628}{}double \hyperlink{class_tetra_a3eed864590d999a6e7770b6fb9b05628}{cp}\label{class_tetra_a3eed864590d999a6e7770b6fb9b05628}
+
+\begin{DoxyCompactList}\small\item\em same as for ap, corresponding to the z-\/neighbour. \end{DoxyCompactList}\item 
+\hypertarget{class_tetra_a5cbd6123aa93aee733d6839a820c649f}{}double \hyperlink{class_tetra_a5cbd6123aa93aee733d6839a820c649f}{sw\+\_\+c}\label{class_tetra_a5cbd6123aa93aee733d6839a820c649f}
+
+\begin{DoxyCompactList}\small\item\em same as for sw\+\_\+a, corresponding to the z-\/neighbour. \end{DoxyCompactList}\end{DoxyCompactItemize}
+
+
+\subsection{Detailed Description}
+The class \hyperlink{class_tetra}{Tetra} embeds the information (velocity, anisotropy, arrival time of neighbours, etc) and methods required to compute the arrival time at a given node. It is named \char`\"{}\+Tetra\char`\"{} in reference to the tetrahedron that is formed by a given node of interest and three of its neighbours (each in x, y and z direction, resp.). 
+
+\subsection{Constructor \& Destructor Documentation}
+\hypertarget{class_tetra_a3a693e516febb69a64eb9d6270390c4f}{}\index{Tetra@{Tetra}!Tetra@{Tetra}}
+\index{Tetra@{Tetra}!Tetra@{Tetra}}
+\subsubsection[{Tetra(const double \&, const double \&, const double \&)}]{\setlength{\rightskip}{0pt plus 5cm}Tetra\+::\+Tetra (
+\begin{DoxyParamCaption}
+\item[{const double \&}]{hh, }
+\item[{const double \&}]{vv, }
+\item[{const double \&}]{ee}
+\end{DoxyParamCaption}
+)}\label{class_tetra_a3a693e516febb69a64eb9d6270390c4f}
+
+
+Class constructor. 
+
+
+\begin{DoxyParams}{Parameters}
+{\em hh} & the grid spacing (h) \\
+\hline
+{\em vv} & the horizontal velocity (vel) \\
+\hline
+{\em ee} & the anisotropy parameter (eps) \\
+\hline
+\end{DoxyParams}
+
+
+\subsection{Member Function Documentation}
+\hypertarget{class_tetra_af07f0f99465e9f0fddc5e0621b5f0b49}{}\index{Tetra@{Tetra}!compute\+\_\+\+T@{compute\+\_\+\+T}}
+\index{compute\+\_\+\+T@{compute\+\_\+\+T}!Tetra@{Tetra}}
+\subsubsection[{compute\+\_\+\+T()}]{\setlength{\rightskip}{0pt plus 5cm}double Tetra\+::compute\+\_\+\+T (
+\begin{DoxyParamCaption}
+{}
+\end{DoxyParamCaption}
+)}\label{class_tetra_af07f0f99465e9f0fddc5e0621b5f0b49}
+
+
+method to compute the arrival time T at the node of interest. 
+
+It checks which neighbour is known and uses the appropriate method to compute the time based on that. 
+
+The documentation for this class was generated from the following files\+:\begin{DoxyCompactItemize}
+\item 
+/\+Volumes/\+Data/\+Projects/\+Tomography/\+Faatso/include/fmmlib.\+hpp\item 
+/\+Volumes/\+Data/\+Projects/\+Tomography/\+Faatso/src/fmmlib.\+cpp\end{DoxyCompactItemize}

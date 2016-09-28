@@ -1,0 +1,23 @@
+\form#0:$f(x)$
+\form#1:$f(x)=x$
+\form#2:$x$
+\form#3:$f(x)<x$
+\form#4:$f(x)>x$
+\form#5:$f(x)-x$
+\form#6:$y$
+\form#7:$z$
+\form#8:$t = \int_{Ray} (1/V_{group})ds.$
+\form#9:$dt/dv, dt/dE$
+\form#10:$V_g = V_h\times F(\theta,E)$
+\form#11:$V_h$
+\form#12:$F(\theta,E)$
+\form#13:$dF/dE = G(\theta,E)/(2F)$
+\form#14:$G(\theta,E)$
+\form#15:$\phi$
+\form#16:$\pi/2$
+\form#17:$\phi=\pi/2$
+\form#18:$\phi<-\pi/2$
+\form#19:$v(\theta) = v_\mathrm{h}(1 + E \cos^2(\theta))$
+\form#20:$\theta$
+\form#21:$v_\mathrm{h}$
+\form#22:$E$

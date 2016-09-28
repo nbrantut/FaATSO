@@ -1,0 +1,27 @@
+files/	#folder where files are looked for/stored
+sensors_synth.txt	#sensor file name
+events_synth.txt	#events file name
+t_shots_synth.txt	#surveys arrival times
+t_events_synth.txt	#events arrival times
+V_prior.bin		#prior ln(v) model
+E_prior.bin		#prior E model
+v0_out.bin	#posterior ln(v) model
+E0_out.bin	#posterior E model
+events_out.txt	#posterior event positions
+dcalc.txt	#theoretical arrival times
+CMpost.arma.bin	#posterior covariance matrix
+mpost.txt	#posterior model parameters
+residuals.txt	#residuals file name
+10		#grid refinement factor
+0.01		#std dev on survey picks (us)
+0.2		#std dev on event picks (us)
+10		#max number of QN iterations
+1e-6		#tolerance to exit QN loop
+1.0		#QN step size
+0.1		#std dev on ln(v)
+0.1		#std dev on E
+5		#correlation length
+0.2		#std dev on x position
+0.2		#std dev on y position
+0.2		#std dev on z position
+0.2		#std dev on t0
