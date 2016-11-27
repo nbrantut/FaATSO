@@ -640,7 +640,7 @@ void D::forward_model(M& model, arma::mat & G)
 	  i_s = path[k].passive(p);
 	  std::cout << "   ... from passive source " << i_s <<" | ";
 	  // extract arrival time
-	  d(i_data) = grid.node[model.events[i_s].ind].T + model.events[i_s].t0;b
+	  d(i_data) = grid.node[model.events[i_s].ind].T + model.events[i_s].t0;
 	  std::cout << "Dt(obs-calc) = " << d_obs(i_data) - d(i_data) << "\n";
 	  // trace ray
 	  ray.trace(grid, model.events[i_s].x, model.events[i_s].y, model.events[i_s].z);
