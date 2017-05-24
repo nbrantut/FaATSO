@@ -1,5 +1,5 @@
-function [Vh_prior, E_prior, events_prior] = priormodel_2d_xy(V0, E0, Vh_true, events_true, noise_p)
-%[Vh_prior, E_prior, events_prior] = PRIORMODEL_2D_XY(V0, Vh_true, events_true, noise_p)
+function [Vh_prior, E_prior, events_prior] = priormodel_2d_xz(V0, E0, Vh_true, events_true, noise_p)
+%[Vh_prior, E_prior, events_prior] = PRIORMODEL_2D_XZ(V0, E0, Vh_true, events_true, noise_p)
 %
 %This function builds a homogeneous, anisotropic prior velocity model as well
 %as "noisy" prior event locations based on the true ones.

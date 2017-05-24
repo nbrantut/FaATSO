@@ -14,6 +14,6 @@ faatso_root_dir = '/Volumes/Data/Projects/Tomography/Faatso/';
 
 %add to environment:
 pth = getenv('PATH');
-if isempty(strfind(pth, faatso_root_dir))
+if isempty(strfind(pth, [faatso_root_dir 'bin/']))
     setenv('PATH', [pth ':' faatso_root_dir 'bin/']);
 end
