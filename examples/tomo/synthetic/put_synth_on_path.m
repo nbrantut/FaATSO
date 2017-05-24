@@ -9,4 +9,6 @@ here = pwd;
 
 %add to environment:
 pth = getenv('PATH');
-setenv('PATH', [pth ':' here '/bin/']);
+if isempty(strfind(here,pth))
+    setenv('PATH', [pth ':' here '/bin/']);
+end

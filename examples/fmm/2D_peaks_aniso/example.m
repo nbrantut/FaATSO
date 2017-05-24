@@ -39,4 +39,4 @@ box = 1;
 [T,x,y,z] = run_fmm(source, Vh, E, h, box);
 
 %plot result in contourplot
-show_movie_2d_xz(x,z,Vh,E,T, 0.01)
+F=show_movie_2d_xz(x,z,Vh,E,T, 0.01);

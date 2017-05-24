@@ -1,7 +1,7 @@
-function show_movie_2d_xz(x,z,V,E,T, ts)
-%SHOW_MOVIE_2D_XZ(x,z,V,E,T,ts)
+function F = show_movie_2d_xz(x,z,V,E,T, ts)
+%F = SHOW_MOVIE_2D_XZ(x,z,V,E,T,ts)
 %
-%This function displays a new fiugure with a colorplot of the V field, and
+%This function displays a new figure with a colorplot of the V field, and
 %a sequence of wavefront propagation based on the arrival times given in T.
 %
 %input:
@@ -11,6 +11,9 @@ function show_movie_2d_xz(x,z,V,E,T, ts)
 %    E:     anisotropy, size (Nx,1,Nz)
 %    T:     arrival times, size (Nx,1,Nz)
 %    ts:    time step between successive frames
+%
+%output:
+%    F:     movie frames
 
 
 tt = linspace(0,max(max(T(isfinite(T)))),60);
@@ -33,6 +36,8 @@ plotaniso(x,z,E,10)
 [~,h2] = contour(x,z,squeeze(T(:,1,:))',tt(1),'k', 'linewidth',0.5);
 [~,h1] = contour(x,z,squeeze(T(:,1,:))',[tt(1) tt(1)],'k', 'linewidth',2);
 
+F(1) = getframe;
+
 for k=2:length(tt)
     delete(h1);
     delete(h2);
@@ -40,6 +45,8 @@ for k=2:length(tt)
     [~,h1] = contour(x,z,squeeze(T(:,1,:))',[tt(k) tt(k)],'k', 'linewidth',2);
     
     drawnow;
+    
+    F(k) = getframe;
     
     pause(ts);
     
