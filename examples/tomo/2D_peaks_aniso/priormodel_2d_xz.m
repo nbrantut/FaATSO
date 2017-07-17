@@ -31,7 +31,7 @@ Nev = size(events_true, 1);
 % add noise to event positions
 events_prior = events_true;
 events_prior(:,1) = events_prior(:,1) + (rand(Nev,1)*2 - 1)*noise_p;
-events_prior(:,2) = events_prior(:,2) + (rand(Nev,1)*2 - 1)*noise_p;
+events_prior(:,3) = events_prior(:,3) + (rand(Nev,1)*2 - 1)*noise_p;
 events_prior(:,4) = events_prior(:,4) + (rand(Nev,1)*2 - 1)*noise_p;
 
 

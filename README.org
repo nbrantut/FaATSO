@@ -84,6 +84,11 @@ The documentation is given in the folder [[doc/]] which contains a full explanat
 Nicolas Brantut, Rock and Ice Physics and Seismological Laboratory, University College London, UK.
 [[http://www.normalesup.org/~brantut][homepage]]
 
+** Referencing
+
+If you use FaATSO or parts of it for your own research, please cite the following article that describes the code and method:
+Brantut N., *Time-resolved tomography using acoustic emissions in the laboratory, and application to sandstone compaction*, submitted to /Geophys. J. Int./
+
 ** Acknowledgments
 
 Many thanks to Romain Jolivet for his help during the development of the inversion program, and for suggesting the name of the package. Thanks also to Ana Feirrera and Alex Song for their useful discussions about wave propagation, eikonal solvers and tomography.
