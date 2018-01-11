@@ -1,5 +1,5 @@
 function export_data(filename, Nx,Ny,Nz,h,data)
-%export_data(filename, dat,Nx,Ny,Nz,h)
+%export_data(filename,Nx,Ny,Nz,h,data)
 %
 %this function takes an array "dat" of size Nx-by-Ny-by-Nz, and a grid
 %spacing parameter "h", and writes it in a binary file "filename" for use
