@@ -129,14 +129,14 @@ int main(int nargin, char *varargin[] )
       // indices of nonzero picks
       arma::rowvec tobsi = tobs.row(i);
       arma::uvec ind = arma::find(tobsi>0);
-      int nmax = 0;
+      int jmax = 0;
       double L;
       double Lmax = 0.0;
       double torigin;
       
-      for (int n=0; n<grid.Ntot; n++)
+      for (int j=0; j<grid.Ntot; j++)
 	{
-	  arma::rowvec Tcalcn = Tcalc.row(n);
+	  arma::rowvec Tcalcn = Tcalc.row(j);
 	  // origin time of event
 	  double to_trial = arma::median( tobsi(ind) - Tcalcn(ind));
 
@@ -146,15 +146,15 @@ int main(int nargin, char *varargin[] )
 	  // check if minimum
 	  if (L > Lmax)
 	    {
-	      nmax = n;
+	      jmax = j;
 	      Lmax = L;
 	      torigin = to_trial;
 	    }
 	}
       // now I have the index of the best location in the grid
-      loc(i, 0) = grid.node[nmax].i*grid.h;
-      loc(i, 1) = grid.node[nmax].j*grid.h;
-      loc(i, 2) = grid.node[nmax].k*grid.h;
+      loc(i, 0) = grid.node[jmax].i*grid.h;
+      loc(i, 1) = grid.node[jmax].j*grid.h;
+      loc(i, 2) = grid.node[jmax].k*grid.h;
       loc(i, 3) = torigin;
 
       std::cout << "(" << loc(i,0) << "," << loc(i,1) << "," << loc(i,2) << ";" << loc(i,3) << ")\n";      

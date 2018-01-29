@@ -1,7 +1,7 @@
 files/sensors.txt
 files/tobs.txt
-files/vh.dat
-files/E.dat
+files/vh.bin
+files/E.bin
 log
 10
 0.5

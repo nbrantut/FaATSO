@@ -41,8 +41,8 @@ end
 % save in files 
 [Nx,Ny,Nz] = size(Vh);
 
-export_data([folder 'vh.dat'],Nx, Ny, Nz, h, log(Vh));
-export_data([folder 'E.dat'],Nx, Ny, Nz, h, E);
+export_data([folder 'vh.bin'],Nx, Ny, Nz, h, log(Vh));
+export_data([folder 'E.bin'],Nx, Ny, Nz, h, E);
 dlmwrite([folder 'sensors.txt'],sensors,' ');
 dlmwrite([folder 'events.txt'],events,' ');
 
