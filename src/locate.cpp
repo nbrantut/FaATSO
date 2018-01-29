@@ -24,8 +24,8 @@ int main(int nargin, char *varargin[] )
           
       list.push_back(line);
      
-    }
-
+    }  
+  
   // parse input file
   std::string sensorfile, tobsfile, vfile, Efile, islog, locfile;
   int n;
@@ -141,7 +141,10 @@ int main(int nargin, char *varargin[] )
 	  double to_trial = arma::median( tobsi(ind) - Tcalcn(ind));
 
 	  // likelihood
-	  L = std::exp( -arma::sum( arma::abs( tobsi(ind) - to_trial - Tcalcn(ind) )/sD ) );
+	  if (std::abs(to_trial)>1/DBL_EPSILON)
+	    L = 0.0;
+	  else
+	    L = std::exp( -arma::sum( arma::abs( tobsi(ind) - to_trial - Tcalcn(ind) )/sD ) );
 
 	  // check if minimum
 	  if (L > Lmax)
